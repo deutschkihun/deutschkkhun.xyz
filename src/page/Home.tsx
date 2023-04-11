@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { reveal } from '../helper/reveal'
 import { Splash } from './Splash'
 import styled from 'styled-components'
 import data from '../assets/data.svg'
@@ -121,9 +119,6 @@ export const AnimationChar = styled.h1`
 export const Home = (): JSX.Element => {
   const setToggle = useSetRecoilState(toggleState)
   const images = [coding, language, data, learning]
-  useEffect(() => {
-    window.addEventListener('scroll', reveal)
-  })
 
   return (
     <aside onMouseOver={() => setToggle(false)}>
