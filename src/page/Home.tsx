@@ -1,12 +1,12 @@
-import { FormattedMessage } from 'react-intl'
-import { Splash } from './Splash'
+import {FormattedMessage} from 'react-intl'
+import {Splash} from './Splash'
 import styled from 'styled-components'
 import data from '../assets/data.svg'
 import language from '../assets/language.svg'
 import coding from '../assets/coding.svg'
 import learning from '../assets/learning.svg'
-import { useSetRecoilState } from 'recoil'
-import { toggleState } from '../recoil/toggle'
+import {useSetRecoilState} from 'recoil'
+import {toggleState} from '../recoil/toggle'
 
 const SilderContainer = styled.div`
   padding: 1rem;
@@ -135,7 +135,7 @@ export const Home = (): JSX.Element => {
         <h2 className="mb-3">
           <FormattedMessage id="HomeQuestion1" />
         </h2>
-        {Array.from({ length: 4 }, (_, k) => (
+        {Array.from({length: 4}, (_, k) => (
           <SilderContainer className="reveal-container fade-bottom">
             <Silder>
               <img src={images[k]} alt="img" />
