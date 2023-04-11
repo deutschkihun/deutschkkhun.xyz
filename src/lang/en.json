@@ -1,0 +1,58 @@
+{
+  "lang": "en",
+  "Home": "Home",
+  "About": "About",
+  "Projects": "Projects",
+  "VizProjects": "Visualization Projects",
+  "Menu": "Menu",
+  "TechBlog": "Tech blog",
+  "Repository": "Repository",
+  "MyApp": "My app",
+  "Copyright": "© 2023 Deutschkihun. All rights reserved.",
+  "Design": "This application is designed by DUI (Deutschkihun UI)",
+  "Social Network": "Social Network",
+
+  "HomeTitle": "Hi, I'm software engineer",
+  "HomeName": "Kihun Kim",
+
+  "HomeQuestion1": "Competence",
+  "HomeAnswer1-1": "Professional frontend development experience",
+  "HomeAnswer1-2": "Business level english / german experience",
+  "HomeAnswer1-3": "Data visualization (D3.js)",
+  "HomeAnswer1-4": "Fast learning curve with unfamiliar libraries or packages",
+
+  "AboutTitle": "Professional experiences",
+
+  "JD-col1-1": "Design and development of Platform Suite UI/UX for creating and managing large datasets required for machine learning",
+  "JD-col1-2": "Design and implementation of in-house design systems for web service development",
+  "JD-col1-3": "Design, implement, document and maintain high test coverage UI and resilient systems",
+  "JD-col1-4": "d3 & react-based chart, dashboard, and design system construction",
+
+  "JD-col2-1": "Development of  progressive web app (PWA) monorepo in PACE Drive Application",
+  "JD-col2-2": "Mobile app based real time fueling service (fueling-app) / fuel-price payments service (payment-app) development ",
+  "JD-col2-3": "Custom fueling platfom for oil company (partner-management-app) development",
+  "JD-col2-4": "MapBox API based providing gas-station location and opening hours (fuel-station-finder-app) development",
+
+  "JD-col3-1": "Frontend development for Low-code system",
+  "JD-col3-2": "Responsive web component development",
+  "JD-col3-3": "Graphic User Interface (GUI) development",
+  "JD-col3-4": "Workflow dashboard development",
+
+  "Accomplishment-col1-1": "Project Report Development for Suite AI Application",
+  "Accomplishment-col1-2": "Providing various types of charts considering user convenience (heatmap, treemap, bar chart, donut chart etc.)",
+  "Accomplishment-col1-3": "Providing consistent, high-quality UI/UX through the development of a self-design system",
+
+  "Accomplishment-col2-1": "Identifying the conversion rate of users by building event-logging on the services contained in monorepo and providing direction for service improvement",
+  "Accomplishment-col2-2": "User interface improvement based on user interface experimental results by A/B test",
+  "Accomplishment-col2-3": "Building unit test and automatic snapshot test pipeline",
+
+  "Accomplishment-col3-1": "Modifying javaScript code to static type language (typescript)",
+  "Accomplishment-col3-2": "Converting legacy code such as jQuery to the latest stack",
+  "Accomplishment-col3-3": "Minimizing system bugs related to GUI and Workflow Dashboard",
+
+  "Splash": "WELCOME",
+  "CodingTitle": "Tech blog",
+
+  "LoadingTitle": "Loading",
+  "LoadingBody": "Please wait"
+}
