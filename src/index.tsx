@@ -1,8 +1,8 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createGlobalStyle } from 'styled-components'
 import App from './App'
-import { RecoilRoot } from 'recoil'
+import {RecoilRoot} from 'recoil'
+import '@fontsource/material-icons'
+import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -134,11 +134,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <GlobalStyle />
-      <App />
-    </RecoilRoot>
-  </React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+root.render(
+  <RecoilRoot>
+    <GlobalStyle />
+    <App />
+  </RecoilRoot>
 )

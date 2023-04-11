@@ -1,14 +1,14 @@
-import { useRef } from 'react'
-import { Title, Message, Box } from '../../components/Foundation'
-import { SVGBasic } from './SVGBasic'
-import { SVGD3Circle } from './SVGD3Circle'
-import { refreshHandler } from '../../helper/refreshHandler'
-import { SVGD3CircleAdvance } from './SVGD3CircleAdvance'
-import { OlympicFlag } from './OlympicFlag'
-import { Face } from './Face'
-import { SVGOnMouse } from './SVGOnMouse'
-import { SVGOnMouseAdvance } from './SVGOnMouseAdvance'
-import { Button as RenderButton } from '@mui/material'
+import {useRef} from 'react'
+import {Title, Message, Box} from '../../components/Foundation'
+import {SVGBasic} from './SVGBasic'
+import {SVGD3Circle} from './SVGD3Circle'
+import {refreshHandler} from '../../helper/refreshHandler'
+import {SVGD3CircleAdvance} from './SVGD3CircleAdvance'
+import {OlympicFlag} from './OlympicFlag'
+import {Face} from './Face'
+import {SVGOnMouse} from './SVGOnMouse'
+import {SVGOnMouseAdvance} from './SVGOnMouseAdvance'
+import {Button as RenderButton} from '@mui/material'
 
 export const SVGVisualizationDemo = (): JSX.Element => {
   const SVGD3CircleRef = useRef(null)
@@ -23,7 +23,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       <Box>
         <Title> SVG with D3: circle</Title>
         <RenderButton
-          sx={{ m: 'auto', display: 'block', width: '30%' }}
+          sx={{m: 'auto', display: 'block', width: '30%'}}
           variant="contained"
           onClick={() =>
             refreshHandler(
@@ -38,8 +38,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
               />,
               SVGD3CircleRef
             )
-          }
-        >
+          }>
           Click me
         </RenderButton>
         <div ref={SVGD3CircleRef}>
@@ -57,7 +56,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       <Box>
         <Title> SVG with D3: half circle</Title>
         <RenderButton
-          sx={{ m: 'auto', display: 'block', width: '30%', mb: 3 }}
+          sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
           variant="contained"
           onClick={() =>
             refreshHandler(
@@ -70,8 +69,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
               />,
               SVGD3CircleAdvanceRef
             )
-          }
-        >
+          }>
           Click me
         </RenderButton>
         <div ref={SVGD3CircleAdvanceRef}>
@@ -98,7 +96,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       <Box>
         <Title>Ex.2) Randomly generated smile Emojis</Title>
         <RenderButton
-          sx={{ m: 'auto', display: 'block', width: '30%', mb: 3 }}
+          sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
           variant="contained"
           onClick={() =>
             refreshHandler(
@@ -111,8 +109,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
               />,
               FaceRef
             )
-          }
-        >
+          }>
           Click me
         </RenderButton>
         <div ref={FaceRef}>
@@ -128,16 +125,16 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       <Box>
         <Title>Ex.3) SVG Circle that follows the mouse cursor</Title>
         <Message>
-          Svg circle and reaction on mouse event can be used to create
-          interactions that follow the cursor.
+          Svg circle and reaction on mouse event can be used to create interactions that
+          follow the cursor.
         </Message>
         <SVGOnMouse width={width} height={height} radius={10} />
       </Box>
       <Box>
         <Title>Ex.4) SVG mouse cursor with pattern effect</Title>
         <Message>
-          svg mouse cursor and unique svg visualization combining mask effects
-          and pattern effects
+          svg mouse cursor and unique svg visualization combining mask effects and pattern
+          effects
         </Message>
         <SVGOnMouseAdvance width={width} height={height} />
       </Box>

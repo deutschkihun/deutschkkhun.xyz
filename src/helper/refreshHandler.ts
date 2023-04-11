@@ -1,9 +1,9 @@
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom'
 
 export const refreshHandler = (
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   element: any,
-  ref: { current: ReactDOM.Container | null }
+  ref: {current: ReactDOM.Container | null}
 ): void => {
-  ReactDOM.render(element, ref.current);
-};
+  ReactDOM.render(element, ref.current)
+}
