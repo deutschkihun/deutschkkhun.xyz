@@ -5,7 +5,7 @@
   "Projects": "Projects",
   "VizProjects": "Visualization Projects",
   "Menu": "Menu",
-  "TechBlog": "Tech blog",
+  "TechBlog": "Blog",
   "Repository": "Repository",
   "MyApp": "My app",
   "Copyright": "© 2023 Deutschkihun. All rights reserved.",
@@ -51,7 +51,7 @@
   "Accomplishment-col3-3": "Minimizing system bugs related to GUI and Workflow Dashboard",
 
   "Splash": "WELCOME",
-  "CodingTitle": "Tech blog",
+  "CodingTitle": "Blog",
 
   "LoadingTitle": "Loading",
   "LoadingBody": "Please wait"
