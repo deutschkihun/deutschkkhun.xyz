@@ -41,6 +41,12 @@ export const vizProject = {
       description: 'Donut chart',
       link: 'donut',
       iconName: 'DonutLarge'
+    },
+    {
+      title: 'Design system',
+      description: 'Donut system',
+      link: 'design-system',
+      iconName: 'Brush'
     }
   ],
   kr: [
@@ -85,6 +91,12 @@ export const vizProject = {
       description: '도넛 차트',
       link: 'donut',
       iconName: 'DonutLarge'
+    },
+    {
+      title: '디자인 시스템',
+      description: '디자인 시스템',
+      link: 'design-system',
+      iconName: 'Brush'
     }
   ]
 }

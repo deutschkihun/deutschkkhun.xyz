@@ -6,15 +6,16 @@ import {toggleState} from './recoil/toggle'
 import {Footers, Header} from './components'
 import {
   Home,
-  Project,
   About,
+  Project,
   DonutDemo,
   BarplotDemo,
   HeatmapDemo,
   ScatterplotDemo,
   ChartBasicDemo,
   SVGVisualizationDemo,
-  LollipopDemo
+  LollipopDemo,
+  DesignSystemDemo
 } from './page'
 import {IntlProvider} from 'react-intl'
 import en from './lang/en.json'
@@ -35,28 +36,26 @@ export default function App(): JSX.Element {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/project" element={<Project />} />
-              <Route path="/data-visualization/svg" element={<SVGVisualizationDemo />} />
+              <Route path="/project/svg" element={<SVGVisualizationDemo />} />
+              <Route path="/project/chart-basic" element={<ChartBasicDemo />} />
               <Route
-                path="/data-visualization/chart-basic"
-                element={<ChartBasicDemo />}
-              />
-              <Route
-                path="/data-visualization/scatterplot"
+                path="/project/scatterplot"
                 element={<ScatterplotDemo width={700} height={700} />}
               />
               <Route
-                path="/data-visualization/heatmap"
+                path="/project/heatmap"
                 element={<HeatmapDemo width={1000} height={400} />}
               />
               <Route
-                path="/data-visualization/barplot"
+                path="/project/barplot"
                 element={<BarplotDemo width={1000} height={400} />}
               />
               <Route
-                path="/data-visualization/lollipop"
+                path="/project/lollipop"
                 element={<LollipopDemo width={1000} height={400} />}
               />
-              <Route path="/data-visualization/donut" element={<DonutDemo />} />
+              <Route path="/project/donut" element={<DonutDemo />} />
+              <Route path="/project/design-system" element={<DesignSystemDemo />} />
               <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           </section>

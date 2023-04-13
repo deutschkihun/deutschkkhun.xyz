@@ -24,7 +24,7 @@ export const Project = (): JSX.Element => {
 
   return (
     <aside onMouseOver={() => setToggle(false)}>
-      <Title children={<FormattedMessage id="VizProjects" />} />
+      <Title children={<FormattedMessage id="ProjectList" />} />
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom">
         <ul
           className="grid gap-x-2 "
@@ -35,7 +35,7 @@ export const Project = (): JSX.Element => {
             <li
               className="mb-4 border-2 border-black"
               key={i}
-              onClick={() => navigate(`/data-visualization/${link}`)}>
+              onClick={() => navigate(`/project/${link}`)}>
               {IconMaterial && <IconMaterial iconName={iconName} />}
               <div className="p-3">
                 <strong className="border-b-2 border-indigo-500">{title}</strong>
