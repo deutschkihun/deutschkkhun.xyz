@@ -7,7 +7,7 @@ import coding from '../assets/coding.svg'
 import learning from '../assets/learning.svg'
 import {useSetRecoilState} from 'recoil'
 import {toggleState} from '../recoil/toggle'
-import {Title} from '../components/Texts'
+import {Title} from '../components'
 
 const SilderContainer = styled.div`
   padding: 1rem;
@@ -85,10 +85,6 @@ const Intro = styled.div`
   }
 
   @media screen and (min-width: 1045px) {
-    p {
-      font-size: 20px;
-    }
-
     h1 {
       font-size: 110px;
       text-align: center;
@@ -133,7 +129,7 @@ export const Home = (): JSX.Element => {
         </AnimationChar>
       </Intro>
       <Intro>
-        <Title />
+        <Title className="mb-4" children={<FormattedMessage id="HomeQuestion1" />} />
 
         {Array.from({length: 4}, (_, k) => (
           <SilderContainer className="reveal-container fade-bottom">

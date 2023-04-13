@@ -7,6 +7,12 @@ export const vizProject = {
       iconName: 'Mood'
     },
     {
+      title: 'Canvas Game',
+      description: 'Canvas Game',
+      link: 'game',
+      iconName: 'Gamepad'
+    },
+    {
       title: 'Chart Basic',
       description: 'chrat basic: coordinate, axis',
       link: 'chart-basic',
@@ -55,6 +61,12 @@ export const vizProject = {
       description: 'D3 와 React 를 이용한 SVG 시각화',
       link: 'svg',
       iconName: 'Mood'
+    },
+    {
+      title: '캔버스 게임',
+      description: '캔버스 게임',
+      link: 'game',
+      iconName: 'Gamepad'
     },
     {
       title: '차트 기초',
