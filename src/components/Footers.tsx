@@ -1,17 +1,5 @@
 import {FormattedMessage} from 'react-intl'
-import styled from 'styled-components'
 import {Div, Link, Typography} from '../components'
-
-const FooterCategory = styled.div`
-  display: inline-table;
-  @media screen and (max-width: 555px) {
-    width: 100%;
-  }
-
-  padding-left: 30px;
-  vertical-align: top;
-  width: 25%;
-`
 
 export const Footers = (): JSX.Element => {
   return (
