@@ -42,24 +42,6 @@ export const vizProject = {
       link: 'donut',
       iconName: 'DonutLarge'
     }
-    // {
-    //   title: 'Canvas Game',
-    //   description: 'Canvas Game',
-    //   link: 'game',
-    //   iconName: 'Gamepad',
-    // },
-    // {
-    //   title: '3D World',
-    //   description: '3d World with three.js',
-    //   link: 'threeDRotation',
-    //   iconName: 'ThreeDRotation'
-    // }
-    // {
-    //   title: 'Dashboard',
-    //   description: 'Dashbord template',
-    //   link: 'dashboard',
-    //   iconName: 'DashboardCustomize',
-    // },
   ],
   kr: [
     {
@@ -104,23 +86,5 @@ export const vizProject = {
       link: 'donut',
       iconName: 'DonutLarge'
     }
-    // {
-    //   title: '캔버스 게임',
-    //   description: '캔버스 게임',
-    //   link: 'game',
-    //   iconName: 'Gamepad',
-    // },
-    // {
-    //   title: '3D 월드',
-    //   description: '3D 월드',
-    //   link: 'threeDRotation',
-    //   iconName: 'ThreeDRotation'
-    // }
-    // {
-    //   title: '대시보드',
-    //   description: '대시보드 탬플릿',
-    //   link: 'dashboard',
-    //   iconName: 'DashboardCustomize',
-    // },
   ]
 }

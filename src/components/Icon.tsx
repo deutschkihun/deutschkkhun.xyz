@@ -1,19 +1,29 @@
-import type {FC} from 'react'
+import type {FC, DetailedHTMLProps, HTMLAttributes} from 'react'
 import type {ButtonProps} from '../components/Button'
-import type {MaterialIconProps as CIconProps} from '../components/MaterialIcon'
 import {Button} from '../components/Button'
-import {Icon as CIcon} from '../components'
+
+type ReactSpanProps = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
+
+export type MaterialIconProps = ReactSpanProps & {
+  name: string
+}
 
 export type IconProps = ButtonProps &
-  CIconProps & {
+  MaterialIconProps & {
     iconClassName?: string
   }
+
+// prettier-ignore
+export const MaterialIcon: FC<MaterialIconProps> = ({name, className: _className, ...props}) => {
+  const className = ['material-icons', _className].join(' ')
+  return <span {...props} className={className}>{name}</span>
+}
 
 export const Icon: FC<IconProps> = ({name, iconClassName, className, ...buttonProps}) => {
   const btnClassName = ['btn-circle', className].join(' ')
   return (
     <Button {...buttonProps} className={btnClassName}>
-      <CIcon className={iconClassName} name={name} />
+      <MaterialIcon className={iconClassName} name={name} />
     </Button>
   )
 }
