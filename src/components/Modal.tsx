@@ -1,6 +1,6 @@
 import type {FC} from 'react'
-import type {ReactDivProps} from '../../components'
-import {Div} from '../../components'
+import type {ReactDivProps} from '../components'
+import {Div} from '../components'
 import {Icon} from './Icon'
 
 export type ModalProps = ReactDivProps & {
