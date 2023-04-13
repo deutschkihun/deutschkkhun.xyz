@@ -1,22 +1,20 @@
-import { Title, Box } from '../../components/Foundation'
-import { Dumbbell } from './DumbbellPlot'
-import { LollipopBasicPlot } from './LollipopBasicPlot'
-import { LollipopDatasetTransition } from './TransitionLollipopPlot'
+import {Dumbbell, LollipopBasicPlot, LollipopDatasetTransition} from '.'
+import {Box, Div, Subtitle} from '../../components'
 
-export const LollipopDemo = ({ width, height }) => (
-  <>
+export const LollipopDemo = ({width, height}) => (
+  <Div>
     <Box>
-      <Title>Simple lollipop plot</Title>
+      <Subtitle>Simple lollipop plot</Subtitle>
       <LollipopBasicPlot width={width} height={height} />
     </Box>
     <Box>
-      <Title>Dumbbell lollipop plot</Title>
+      <Subtitle>Dumbbell lollipop plot</Subtitle>
       <Dumbbell width={width} height={height} />
     </Box>
 
     <Box>
-      <Title>Transition lollipop plot</Title>
+      <Subtitle>Transition lollipop plot</Subtitle>
       <LollipopDatasetTransition width={width} height={height} />
     </Box>
-  </>
+  </Div>
 )

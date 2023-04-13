@@ -1,35 +1,31 @@
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import * as d3 from 'd3'
+import {data} from './data'
 
-const MARGIN = { top: 30, right: 30, bottom: 30, left: 30 }
+const MARGIN = {top: 30, right: 30, bottom: 30, left: 30}
 const BAR_PADDING = 0.3
 
 type BarplotProps = {
   width: number
   height: number
-  data: { name: string; value: number }[]
 }
 
-export const SimpleBarplot = ({ width, height, data }: BarplotProps) => {
+export const SimpleBarplot = ({width, height}: BarplotProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
   // Y axis is for groups since the barplot is horizontal
-  const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name)
+  const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
   const yScale = useMemo(() => {
-    return d3
-      .scaleBand()
-      .domain(groups)
-      .range([0, boundsHeight])
-      .padding(BAR_PADDING)
+    return d3.scaleBand().domain(groups).range([0, boundsHeight]).padding(BAR_PADDING)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, height])
 
   // X axis
   const xScale = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [min, max] = d3.extent(data.map((d) => d.value))
+    const [min, max] = d3.extent(data.map(d => d.value))
     return d3
       .scaleLinear()
       .domain([0, max || 10])
@@ -73,8 +69,7 @@ export const SimpleBarplot = ({ width, height, data }: BarplotProps) => {
           y={y + yScale.bandwidth() / 2}
           textAnchor="start"
           alignmentBaseline="central"
-          fontSize={12}
-        >
+          fontSize={12}>
           {d.name}
         </text>
       </g>
@@ -101,8 +96,7 @@ export const SimpleBarplot = ({ width, height, data }: BarplotProps) => {
           alignmentBaseline="central"
           fontSize={9}
           stroke="#808080"
-          opacity={0.8}
-        >
+          opacity={0.8}>
           {value}
         </text>
       </g>
@@ -114,8 +108,7 @@ export const SimpleBarplot = ({ width, height, data }: BarplotProps) => {
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {grid}
           {allShapes}
         </g>

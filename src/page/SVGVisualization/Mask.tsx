@@ -1,16 +1,15 @@
-import React from 'react'
-import { Message, Title, Box } from '../../components/Foundation'
+import {Box, Paragraph, Subtitle} from '../../components'
 
 const Mask = (): JSX.Element => {
   return (
     <Box>
-      <Title>SVG basic: mask</Title>
-      <Message>
-        mask is a effect that show only specific area, other areas are hidden by
-        mask. Set the color to white will show the effect area. when the fill
-        color close to black effect area will be disappeared.
-      </Message>
-      <svg style={{ width: '100%' }}>
+      <Subtitle>SVG basic: mask</Subtitle>
+      <Paragraph>
+        mask is a effect that show only specific area, other areas are hidden by mask. Set
+        the color to white will show the effect area. when the fill color close to black
+        effect area will be disappeared.
+      </Paragraph>
+      <svg style={{width: '100%'}}>
         <defs>
           <mask id="mask-circle">
             <circle cx="150" cy="70" r="40" fill="grey" />
@@ -20,8 +19,8 @@ const Mask = (): JSX.Element => {
         </defs>
         <g mask="url(#mask-circle)">
           <text x="10" y="100" fontSize="2rem">
-            ex.) mask svg d3 react mask svg d3 react mask svg d3 react mask svg
-            d3 react mask svg d3 react
+            ex.) mask svg d3 react mask svg d3 react mask svg d3 react mask svg d3 react
+            mask svg d3 react
           </text>
         </g>
       </svg>

@@ -1,15 +1,14 @@
-import { Title, Message, Box } from '../../components/Foundation'
+import {Subtitle, Box, Paragraph} from '../../components'
 
 const Text = (): JSX.Element => {
   return (
     <Box>
-      <Title>SVG basic: text</Title>
-      <Message>
-        Writing dynamic text component with svg. x: the x coordinate of the
-        starting point, y: the y coordinate of the starting point. default is
-        zero. Use defs to save graphic object such as path and connect with
-        textPath href.
-      </Message>
+      <Subtitle>SVG basic: text</Subtitle>
+      <Paragraph>
+        Writing dynamic text component with svg. x: the x coordinate of the starting
+        point, y: the y coordinate of the starting point. default is zero. Use defs to
+        save graphic object such as path and connect with textPath href.
+      </Paragraph>
       <svg viewBox="0 0 1000 500">
         <defs>
           <path
@@ -19,12 +18,11 @@ const Text = (): JSX.Element => {
         </defs>
         <text x="0" y="0">
           <textPath href="#text-curve">
-            hello my <tspan className="strong">friends</tspan> my name is Kihun
-            Kim. nice to see you. how are you ? hello my{' '}
-            <tspan className="strong">friends</tspan> my name is Kihun Kim. nice
-            to see you. how are you ? hello my{' '}
-            <tspan className="strong">friends</tspan> my name is Kihun Kim. nice
-            to see you.
+            hello my <tspan className="strong">friends</tspan> my name is Kihun Kim. nice
+            to see you. how are you ? hello my <tspan className="strong">friends</tspan>{' '}
+            my name is Kihun Kim. nice to see you. how are you ? hello my{' '}
+            <tspan className="strong">friends</tspan> my name is Kihun Kim. nice to see
+            you.
           </textPath>
         </text>
       </svg>

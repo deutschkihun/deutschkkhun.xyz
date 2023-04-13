@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FormattedMessage } from 'react-intl'
-import { Link } from 'react-router-dom'
-import { SubMenu, Sidebar } from '../Advance'
-import { Button } from '@mui/material'
-import { useSetRecoilState } from 'recoil'
-import { locationState, toggleState } from '../../recoil/toggle'
+import {FormattedMessage} from 'react-intl'
+import {Link} from 'react-router-dom'
+import {SubMenu, Sidebar} from '.'
+import {Button} from '@mui/material'
+import {useSetRecoilState} from 'recoil'
+import {locationState, toggleState} from '../recoil/toggle'
 export const HeaderComponent = styled.header`
   top: 0;
   left: 0;
@@ -75,7 +75,7 @@ export const Header = (): JSX.Element => {
     const tempBtn = e.currentTarget.getBoundingClientRect()
     const center = (tempBtn.left + tempBtn.right) / 2
     const bottom = tempBtn.bottom
-    setLocation({ center, bottom })
+    setLocation({center, bottom})
   }
 
   return (
@@ -87,8 +87,7 @@ export const Header = (): JSX.Element => {
         </HomeComponent>
         <ComfortComponent
           onMouseOver={onMouseOverHandler}
-          onMouseOut={() => setToggle(false)}
-        >
+          onMouseOut={() => setToggle(false)}>
           <Button>Hover me</Button>
         </ComfortComponent>
         <SubMenu />
@@ -98,10 +97,7 @@ export const Header = (): JSX.Element => {
         <ProjectComponent className="menu" to="/project">
           <FormattedMessage id="Projects" />
         </ProjectComponent>
-        <TechBlogComponent
-          className="menu"
-          href="https://blog-deutschkihun.vercel.app/"
-        >
+        <TechBlogComponent className="menu" href="https://blog-deutschkihun.vercel.app/">
           <FormattedMessage id="TechBlog" />
         </TechBlogComponent>
       </HeaderContainer>

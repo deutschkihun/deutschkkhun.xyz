@@ -1,45 +1,36 @@
-import React from 'react'
-import { data } from './Basic/data'
-import { data as toolTipData } from './Tooltip/data'
-import { Scatterplot } from './Basic/Scatterplot'
-import { ScatterplotToolTip } from './Tooltip/ScatterplotToolTip'
-import { ScatterplotHoverEffect } from './Hovereffect/ScatterplotHoverEffect'
-import { Title, Message, Box } from '../../components/Foundation'
+import {FC} from 'react'
+import {Box, Div, Paragraph, Subtitle} from '../../components'
+import {Scatterplot, ScatterplotHoverEffect, ScatterplotToolTip} from '.'
 
 interface ScatterplotDemoProps {
   width: number
   height: number
 }
 
-export const ScatterplotDemo = ({
+export const ScatterplotDemo: FC<ScatterplotDemoProps> = ({
   width,
-  height,
-}: ScatterplotDemoProps): JSX.Element => (
-  <>
+  height
+}): JSX.Element => (
+  <Div>
     <Box>
-      <Title>Scatterplot basic</Title>
-      <Scatterplot data={data} width={width} height={height} />
+      <Subtitle>Scatterplot basic</Subtitle>
+      <Scatterplot width={width} height={height} />
     </Box>
     <Box>
-      <Title>Scatterplot advance with tooltip </Title>
-      <Message>
-        When each plot in coordinate is hovered tooltip with matched information
-        will be shown up
-      </Message>
-      <ScatterplotToolTip data={toolTipData} width={width} height={height} />
+      <Subtitle>Scatterplot advance with tooltip </Subtitle>
+      <Paragraph>
+        When each plot in coordinate is hovered tooltip with matched information will be
+        shown up
+      </Paragraph>
+      <ScatterplotToolTip width={width} height={height} />
     </Box>
     <Box>
-      <Title>Scatterplot advance with hover effect </Title>
-      <Message>
-        When each plot in coordinate is hovered it will show only same group of
-        plot in coordinate
-      </Message>
-
-      <ScatterplotHoverEffect
-        data={toolTipData}
-        width={width}
-        height={height}
-      />
+      <Subtitle>Scatterplot advance with hover effect </Subtitle>
+      <Paragraph>
+        When each plot in coordinate is hovered it will show only same group of plot in
+        coordinate
+      </Paragraph>
+      <ScatterplotHoverEffect width={width} height={height} />
     </Box>
-  </>
+  </Div>
 )

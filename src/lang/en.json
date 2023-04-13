@@ -3,23 +3,22 @@
   "Home": "Home",
   "About": "About",
   "Projects": "Projects",
-  "VizProjects": "Visualization Projects",
+  "ProjectList": "Project list",
   "Menu": "Menu",
   "TechBlog": "Blog",
   "Repository": "Repository",
   "MyApp": "My app",
   "Copyright": "© 2023 Deutschkihun. All rights reserved.",
-  "Design": "This application is designed by DUI (Deutschkihun UI)",
   "Social Network": "Social Network",
 
-  "HomeTitle": "Hi, I'm software engineer",
+  "HomeTitle": "Hello, I'm a software engineer",
   "HomeName": "Kihun Kim",
 
   "HomeQuestion1": "Competence",
   "HomeAnswer1-1": "Professional frontend development experience",
-  "HomeAnswer1-2": "Business level english / german experience",
-  "HomeAnswer1-3": "Data visualization (D3.js)",
-  "HomeAnswer1-4": "Fast learning curve with unfamiliar libraries or packages",
+  "HomeAnswer1-2": "Business level english communication",
+  "HomeAnswer1-3": "Data visualization (D3.js,SVG,Canvas)",
+  "HomeAnswer1-4": "Fast learning curve",
 
   "AboutTitle": "Professional experiences",
 

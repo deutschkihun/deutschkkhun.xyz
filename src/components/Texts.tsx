@@ -36,8 +36,8 @@ export const Subtitle: FC<SubtitleProps> = ({
   return <p {...props} className={className} />
 }
 
-export type SummaryProps = SubtitleProps & {}
-export const Summary: FC<SummaryProps> = ({
+export type TypographyProps = SubtitleProps & {}
+export const Typography: FC<TypographyProps> = ({
   className: _className,
   numberOfLines,
   ...props
@@ -50,7 +50,7 @@ export const Summary: FC<SummaryProps> = ({
   return <p {...props} className={className} />
 }
 
-export type ParagraphProps = SummaryProps & {}
+export type ParagraphProps = TypographyProps & {}
 export const Paragraph: FC<ParagraphProps> = ({
   className: _className,
   numberOfLines,

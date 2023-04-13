@@ -1,13 +1,13 @@
-import { Title, Message, Box } from '../../components/Foundation'
+import {Box, Paragraph, Subtitle} from '../../components'
 
 const Stroke = (): JSX.Element => {
   return (
     <Box>
-      <Title>SVG basic: stroke animation</Title>
-      <Message>
-        Create stroke animation with stroke-dashoffset and stroke-dasharray
-        (animation start from stroke-dashofsset to stroke-dasharray)
-      </Message>
+      <Subtitle>SVG basic: stroke animation</Subtitle>
+      <Paragraph>
+        Create stroke animation with stroke-dashoffset and stroke-dasharray (animation
+        start from stroke-dashofsset to stroke-dasharray)
+      </Paragraph>
       <svg viewBox="0 0 800 500">
         <circle className="stroke-circle" cx="400" cy="150" r="100" />
         <path
