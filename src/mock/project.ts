@@ -26,7 +26,7 @@ export const vizProject = {
     },
     {
       title: 'Bar plot',
-      description: 'Bar plot',
+      description: 'bar plot',
       link: 'barplot',
       iconName: 'BarChart'
     },
@@ -38,13 +38,13 @@ export const vizProject = {
     },
     {
       title: 'Donut chart',
-      description: 'Donut chart',
+      description: 'donut chart',
       link: 'donut',
       iconName: 'DonutLarge'
     },
     {
       title: 'Design system',
-      description: 'Donut system',
+      description: 'design system',
       link: 'design-system',
       iconName: 'Brush'
     }
