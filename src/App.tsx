@@ -3,7 +3,7 @@ import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import {useRecoilValue, useSetRecoilState} from 'recoil'
 import {languageState} from './recoil/language'
 import {toggleState} from './recoil/toggle'
-import {Footers, Header} from './components/Foundation'
+import {Footers, Header} from './components'
 import {
   Home,
   Project,

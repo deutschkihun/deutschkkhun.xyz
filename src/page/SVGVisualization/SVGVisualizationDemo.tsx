@@ -1,5 +1,4 @@
 import {useRef} from 'react'
-import {Title, Message, Box} from '../../components/Foundation'
 import {SVGBasic} from './SVGBasic'
 import {SVGD3Circle} from './SVGD3Circle'
 import {refreshHandler} from '../../helper/refreshHandler'
@@ -9,6 +8,7 @@ import {Face} from './Face'
 import {SVGOnMouse} from './SVGOnMouse'
 import {SVGOnMouseAdvance} from './SVGOnMouseAdvance'
 import {Button as RenderButton} from '@mui/material'
+import {Box, Paragraph, Subtitle} from '../../components'
 
 export const SVGVisualizationDemo = (): JSX.Element => {
   const SVGD3CircleRef = useRef(null)
@@ -21,7 +21,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
     <>
       <SVGBasic />
       <Box>
-        <Title> SVG with D3: circle</Title>
+        <Subtitle>SVG with D3: circle</Subtitle>
         <RenderButton
           sx={{m: 'auto', display: 'block', width: '30%'}}
           variant="contained"
@@ -54,7 +54,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
         </div>
       </Box>
       <Box>
-        <Title> SVG with D3: half circle</Title>
+        <Subtitle> SVG with D3: half circle</Subtitle>
         <RenderButton
           sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
           variant="contained"
@@ -83,7 +83,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
         </div>
       </Box>
       <Box>
-        <Title>Ex.1) Olympic flag</Title>
+        <Subtitle>Ex.1) Olympic flag</Subtitle>
         <OlympicFlag
           width={400}
           height={230}
@@ -94,7 +94,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
         />
       </Box>
       <Box>
-        <Title>Ex.2) Randomly generated smile Emojis</Title>
+        <Subtitle>Ex.2) Randomly generated smile Emojis</Subtitle>
         <RenderButton
           sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
           variant="contained"
@@ -123,19 +123,19 @@ export const SVGVisualizationDemo = (): JSX.Element => {
         </div>
       </Box>
       <Box>
-        <Title>Ex.3) SVG Circle that follows the mouse cursor</Title>
-        <Message>
+        <Subtitle>Ex.3) SVG Circle that follows the mouse cursor</Subtitle>
+        <Paragraph>
           Svg circle and reaction on mouse event can be used to create interactions that
           follow the cursor.
-        </Message>
+        </Paragraph>
         <SVGOnMouse width={width} height={height} radius={10} />
       </Box>
       <Box>
-        <Title>Ex.4) SVG mouse cursor with pattern effect</Title>
-        <Message>
+        <Subtitle>Ex.4) SVG mouse cursor with pattern effect</Subtitle>
+        <Paragraph>
           svg mouse cursor and unique svg visualization combining mask effects and pattern
           effects
-        </Message>
+        </Paragraph>
         <SVGOnMouseAdvance width={width} height={height} />
       </Box>
     </>

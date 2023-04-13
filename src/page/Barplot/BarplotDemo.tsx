@@ -1,10 +1,10 @@
-import { data, SimpleBarplot } from './SimpleBarplot'
-import { Title, Box } from '../../components/Foundation'
-import { HorizontalStackedBarplot } from './HorizontalStackedBarplot'
-import { BarplotDatasetTransition } from './TransitionBarplot'
-import { VerticalStackedBarplot } from './VerticalStackedBarplot'
+import {data, SimpleBarplot} from './SimpleBarplot'
+import {HorizontalStackedBarplot} from './HorizontalStackedBarplot'
+import {BarplotDatasetTransition} from './TransitionBarplot'
+import {VerticalStackedBarplot} from './VerticalStackedBarplot'
+import {Box, Title} from '../../components'
 
-export const BarplotDemo = ({ width, height }) => (
+export const BarplotDemo = ({width, height}) => (
   <>
     <Box>
       <Title>Simple bar plot</Title>

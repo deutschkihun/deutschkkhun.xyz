@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 import * as d3 from 'd3'
-import { Title, Message, Box } from '../../components/Foundation'
+import {Box, Paragraph, Subtitle} from '../../components'
 
 const Pattern = (): JSX.Element => {
   useEffect(() => {
@@ -8,26 +8,19 @@ const Pattern = (): JSX.Element => {
   }, [])
   return (
     <Box>
-      <Title>SVG basic: pattern</Title>
-      <Message>
-        Making pattern effect with pattern tag in svg. In this example set
-        pattern with width 0.1 and height 0.1. This number does not mean the
-        absolute pixel. circle has radius 50, so diameter is 100, and width 0.1
-        mean that 100 will be a 10% of entire width, so when you want to fill
-        all circle in svg you need to set viewbox with 1000. As a same result
-        you can change 1000 to 500 in viewbox and 50 to 25 in circle cx cy and
-        radius brings a same pattern result.
-      </Message>
+      <Subtitle>SVG basic: pattern</Subtitle>
+      <Paragraph>
+        Making pattern effect with pattern tag in svg. In this example set pattern with
+        width 0.1 and height 0.1. This number does not mean the absolute pixel. circle has
+        radius 50, so diameter is 100, and width 0.1 mean that 100 will be a 10% of entire
+        width, so when you want to fill all circle in svg you need to set viewbox with
+        1000. As a same result you can change 1000 to 500 in viewbox and 50 to 25 in
+        circle cx cy and radius brings a same pattern result.
+      </Paragraph>
       <svg id="pattern-svg" viewBox="0 0 1000 1000">
         <defs>
           <pattern id="bg-pattern" x="0" y="0" width="0.1" height="0.1">
-            <circle
-              cx="50"
-              cy="50"
-              r="50"
-              className="pattern-circle"
-              fill="#fff000"
-            />
+            <circle cx="50" cy="50" r="50" className="pattern-circle" fill="#fff000" />
           </pattern>
         </defs>
         <rect

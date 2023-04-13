@@ -1,5 +1,5 @@
 export * from './DarkLightMode'
-export * from './IconMaterial'
+export * from '../IconMaterial'
 export * from './Languages'
 export * from './Sidebar'
 export * from './SubMenu'
