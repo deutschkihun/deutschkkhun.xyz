@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { modeState } from '../../recoil/mode'
-import { useRecoilState } from 'recoil'
+import {modeState} from '../recoil/mode'
+import {useRecoilState} from 'recoil'
 
 const ToggleContainer = styled.div`
   max-height: 40px;
@@ -78,8 +78,7 @@ export const DarkLightMode = (): JSX.Element => {
       <ToggleLabel
         htmlFor="night-mode"
         className="label"
-        onClick={() => onClickModeHandler()}
-      >
+        onClick={() => onClickModeHandler()}>
         <i className="fas fa-sun" />
         <i className="fas fa-moon" />
         <div className="blob" />

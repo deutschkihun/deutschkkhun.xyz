@@ -1,22 +1,18 @@
 import * as d3 from 'd3'
-import { AxisLeft } from '../AxisLeft'
-import { AxisBottom } from '../AxisBottom'
-import { useRecoilValue } from 'recoil'
-import { modeState } from '../../../recoil/mode'
+import {AxisLeft} from '../AxisLeft'
+import {AxisBottom} from '../AxisBottom'
+import {useRecoilValue} from 'recoil'
+import {modeState} from '../../../recoil/mode'
+import {data} from './data'
 
-const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 }
+const MARGIN = {top: 60, right: 60, bottom: 60, left: 60}
 
 type ScatterplotProps = {
   width: number
   height: number
-  data: { x: number; y: number }[]
 }
 
-export const Scatterplot = ({
-  width,
-  height,
-  data,
-}: ScatterplotProps): JSX.Element => {
+export const Scatterplot = ({width, height}: ScatterplotProps): JSX.Element => {
   const mode = useRecoilValue(modeState)
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
@@ -49,18 +45,13 @@ export const Scatterplot = ({
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
 
           {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
-            <AxisBottom
-              xScale={xScale}
-              pixelsPerTick={40}
-              height={boundsHeight}
-            />
+            <AxisBottom xScale={xScale} pixelsPerTick={40} height={boundsHeight} />
           </g>
 
           {/* Circles */}

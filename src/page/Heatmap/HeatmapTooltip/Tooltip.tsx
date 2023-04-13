@@ -1,5 +1,5 @@
+import {InteractionData} from '../HeatmapTooltip/HeatmapTooltip'
 import styles from './tooltip.module.css'
-import {InteractionData} from './type'
 
 type TooltipProps = {
   interactionData: InteractionData | null
@@ -13,7 +13,6 @@ export const Tooltip = ({interactionData, width, height}: TooltipProps): JSX.Ele
   }
 
   return (
-    // Wrapper div: a rect on top of the viz area
     <div
       style={{
         width,
@@ -23,20 +22,30 @@ export const Tooltip = ({interactionData, width, height}: TooltipProps): JSX.Ele
         left: 0,
         pointerEvents: 'none'
       }}>
-      {/* The actual box with white background */}
       <div
         className={styles.tooltip}
         style={{
           position: 'absolute',
-          left: interactionData.xPos,
+          left: interactionData.xPos - 50,
           top: interactionData.yPos
         }}>
-        <span>{interactionData.yLabel}</span>
-        <br />
-        <span>{interactionData.xLabel}</span>
-        <span>: </span>
-        <b>{interactionData.value}</b>
+        <TooltipRow label={'x'} value={interactionData.xLabel} />
+        <TooltipRow label={'y'} value={interactionData.yLabel} />
+        <TooltipRow label={'value'} value={String(interactionData.value)} />
       </div>
     </div>
   )
 }
+
+type TooltipRowProps = {
+  label: string
+  value: string
+}
+
+const TooltipRow = ({label, value}: TooltipRowProps) => (
+  <div>
+    <b>{label}</b>
+    <span>: </span>
+    <span>{value}</span>
+  </div>
+)

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { useRef, useEffect } from 'react'
-import { DarkLightMode } from './DarkLightMode'
-import { Languages } from './Languages'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { modeState } from '../../recoil/mode'
-import { locationState, toggleState } from '../../recoil/toggle'
+import {useRef, useEffect} from 'react'
+import {DarkLightMode} from './DarkLightMode'
+import {Languages} from '.'
+import {useRecoilState, useRecoilValue} from 'recoil'
+import {modeState} from '../recoil/mode'
+import {locationState, toggleState} from '../recoil/toggle'
 
 interface SubMenuProps {
   isSubmenuOpen?: boolean | undefined
@@ -13,7 +13,7 @@ interface SubMenuProps {
 
 export const SubMenuContainer = styled.aside<SubMenuProps>`
   background: #fff;
-  box-shadow: ${(p) =>
+  box-shadow: ${p =>
     p.mode === 'dark-mode'
       ? '2px 5px 3px 0px rgba(255, 255, 255, 0.5)'
       : '2px 5px 3px 0px rgba(0, 0, 0, 0.5)'};
@@ -21,7 +21,7 @@ export const SubMenuContainer = styled.aside<SubMenuProps>`
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  display: ${(p) => (p.isSubmenuOpen ? 'block' : 'none')};
+  display: ${p => (p.isSubmenuOpen ? 'block' : 'none')};
   padding: 1.5rem;
   border-radius: 0.25rem;
   transition: all 0.3s linear;
@@ -42,7 +42,6 @@ export const SubMenuContainer = styled.aside<SubMenuProps>`
 
 export const SubMenu = (): JSX.Element => {
   const mode = useRecoilValue(modeState)
-  //const { subMenuAction, subMenu, location } = useSubMenuContext()
   const [toggle, setToggle] = useRecoilState(toggleState)
   const location = useRecoilValue(locationState)
   const container = useRef<HTMLElement>(null)
@@ -57,8 +56,7 @@ export const SubMenu = (): JSX.Element => {
       mode={mode}
       isSubmenuOpen={toggle}
       ref={container}
-      onMouseOver={() => setToggle(true)}
-    >
+      onMouseOver={() => setToggle(true)}>
       <div className="flex flex-wrap">
         <DarkLightMode />
         <Languages />

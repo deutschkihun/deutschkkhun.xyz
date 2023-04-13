@@ -1,15 +1,15 @@
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import * as d3 from 'd3'
-import { InteractionData } from '../HeatmapTooltip'
-import { useRecoilValue } from 'recoil'
-import { modeState } from '../../../recoil/mode'
+import {InteractionData} from './HeatmapTooltip'
+import {useRecoilValue} from 'recoil'
+import {modeState} from '../../../recoil/mode'
 
-const MARGIN = { top: 10, right: 50, bottom: 30, left: 50 }
+const MARGIN = {top: 10, right: 50, bottom: 30, left: 50}
 
 type RendererProps = {
   width: number
   height: number
-  data: { x: string; y: string; value: number }[]
+  data: {x: string; y: string; value: number}[]
   setHoveredCell: (hoveredCell: InteractionData | null) => void
 }
 
@@ -17,30 +17,22 @@ export const Renderer = ({
   width,
   height,
   data,
-  setHoveredCell,
+  setHoveredCell
 }: RendererProps): JSX.Element => {
   const mode = useRecoilValue(modeState)
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  const allYGroups = useMemo(() => [...new Set(data.map((d) => d.y))], [data])
-  const allXGroups = useMemo(() => [...new Set(data.map((d) => d.x))], [data])
+  const allYGroups = useMemo(() => [...new Set(data.map(d => d.y))], [data])
+  const allXGroups = useMemo(() => [...new Set(data.map(d => d.x))], [data])
 
-  const [min = 0, max = 0] = d3.extent(data.map((d) => d.value)) // extent can return [undefined, undefined], default to [0,0] to fix types
+  const [min = 0, max = 0] = d3.extent(data.map(d => d.value)) // extent can return [undefined, undefined], default to [0,0] to fix types
   const xScale = useMemo(() => {
-    return d3
-      .scaleBand()
-      .range([0, boundsWidth])
-      .domain(allXGroups)
-      .padding(0.01)
+    return d3.scaleBand().range([0, boundsWidth]).domain(allXGroups).padding(0.01)
   }, [allXGroups, boundsWidth])
 
   const yScale = useMemo(() => {
-    return d3
-      .scaleBand()
-      .range([boundsHeight, 0])
-      .domain(allYGroups)
-      .padding(0.01)
+    return d3.scaleBand().range([boundsHeight, 0]).domain(allYGroups).padding(0.01)
   }, [allYGroups, boundsHeight])
 
   const colorScale = d3
@@ -70,13 +62,13 @@ export const Renderer = ({
         fill={colorScale(d.value)}
         rx={5}
         stroke={'white'}
-        onMouseEnter={(e) => {
+        onMouseEnter={e => {
           setHoveredCell({
             xLabel: 'group ' + d.x,
             yLabel: 'group ' + d.y,
             xPos: x + xScale.bandwidth() + MARGIN.left,
             yPos: y + xScale.bandwidth() / 2 + MARGIN.top,
-            value: Math.round(d.value * 100) / 100,
+            value: Math.round(d.value * 100) / 100
           })
         }}
         onMouseLeave={() => setHoveredCell(null)}
@@ -100,8 +92,7 @@ export const Renderer = ({
         textAnchor="middle"
         dominantBaseline="middle"
         fill={mode === 'light-mode' ? 'black' : 'white'}
-        fontSize={10}
-      >
+        fontSize={10}>
         {name}
       </text>
     )
@@ -122,24 +113,18 @@ export const Renderer = ({
         textAnchor="end"
         fill={mode === 'light-mode' ? 'black' : 'white'}
         dominantBaseline="middle"
-        fontSize={10}
-      >
+        fontSize={10}>
         {name}
       </text>
     )
   })
 
   return (
-    <svg
-      width={width}
-      height={height}
-      style={{ display: 'flex', margin: '0 auto' }}
-    >
+    <svg width={width} height={height} style={{display: 'flex', margin: '0 auto'}}>
       <g
         width={boundsWidth}
         height={boundsHeight}
-        transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-      >
+        transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
         {allShapes}
         {xLabels}
         {yLabels}

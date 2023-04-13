@@ -1,18 +1,20 @@
 import {useRef} from 'react'
-import {SVGBasic} from './SVGBasic'
-import {SVGD3Circle} from './SVGD3Circle'
 import {refreshHandler} from '../../helper/refreshHandler'
-import {SVGD3CircleAdvance} from './SVGD3CircleAdvance'
-import {OlympicFlag} from './OlympicFlag'
-import {Face} from './Face'
-import {SVGOnMouse} from './SVGOnMouse'
-import {SVGOnMouseAdvance} from './SVGOnMouseAdvance'
 import {Button as RenderButton} from '@mui/material'
 import {Box, Paragraph, Subtitle} from '../../components'
+import {
+  SVGD3CircleAdvance,
+  SVGOnMouseAdvance,
+  OlympicFlag,
+  SVGD3Circle,
+  SVGBasic,
+  SVGOnMouse,
+  Face
+} from '.'
 
 export const SVGVisualizationDemo = (): JSX.Element => {
-  const SVGD3CircleRef = useRef(null)
-  const SVGD3CircleAdvanceRef = useRef(null)
+  const SVGD3CircleRef = useRef<HTMLDivElement>(null)
+  const SVGD3CircleAdvanceRef = useRef<HTMLDivElement>(null)
   const FaceRef = useRef(null)
   const width = 160
   const height = 160

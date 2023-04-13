@@ -1,43 +1,31 @@
-import * as d3 from "d3";
-import { AxisBottom } from "../AxisBottom";
-import { AxisLeft } from "../AxisLeft";
-import React, { useState } from "react";
-import { InteractionData, Tooltip } from "./Tooltip";
+import * as d3 from 'd3'
+import {AxisBottom} from '../AxisBottom'
+import {AxisLeft} from '../AxisLeft'
+import React, {useState} from 'react'
+import {InteractionData, Tooltip} from './Tooltip'
+import {data} from './data'
 
-const MARGIN = { top: 60, right: 60, bottom: 60, left: 60 };
-
-type DataPoint = {
-  x: number;
-  y: number;
-  size: number;
-  group: string;
-  subGroup: string;
-};
+const MARGIN = {top: 60, right: 60, bottom: 60, left: 60}
 
 type ScatterplotProps = {
-  width: number;
-  height: number;
-  data: DataPoint[];
-};
+  width: number
+  height: number
+}
 
-export const ScatterplotToolTip = ({
-  width,
-  height,
-  data,
-}: ScatterplotProps): JSX.Element => {
-  const boundsWidth = width - MARGIN.right - MARGIN.left;
-  const boundsHeight = height - MARGIN.top - MARGIN.bottom;
+export const ScatterplotToolTip = ({width, height}: ScatterplotProps): JSX.Element => {
+  const boundsWidth = width - MARGIN.right - MARGIN.left
+  const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  const [hovered, setHovered] = useState<InteractionData | null>(null);
+  const [hovered, setHovered] = useState<InteractionData | null>(null)
 
   // Scales
-  const yScale = d3.scaleLinear().domain([0, 85]).range([boundsHeight, 0]);
-  const xScale = d3.scaleLinear().domain([0, 50000]).range([0, boundsWidth]);
-  const allGroups = data.map((d) => String(d.group));
+  const yScale = d3.scaleLinear().domain([0, 85]).range([boundsHeight, 0])
+  const xScale = d3.scaleLinear().domain([0, 50000]).range([0, boundsWidth])
+  const allGroups = data.map(d => String(d.group))
   const colorScale = d3
     .scaleOrdinal<string>()
     .domain(allGroups)
-    .range(["#A6A6A6", "#D3F354", "#FF3A28", "#F8FFDE", "#3479FF"]);
+    .range(['#A6A6A6', '#D3F354', '#FF3A28', '#F8FFDE', '#3479FF'])
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
@@ -54,32 +42,27 @@ export const ScatterplotToolTip = ({
           setHovered({
             xPos: xScale(d.x),
             yPos: yScale(d.y),
-            name: d.subGroup,
+            name: d.subGroup
           })
         }
         onMouseLeave={() => setHovered(null)}
       />
-    );
-  });
+    )
+  })
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{position: 'relative'}}>
       <svg width={width} height={height}>
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-        >
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
 
           {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
-            <AxisBottom
-              xScale={xScale}
-              pixelsPerTick={40}
-              height={boundsHeight}
-            />
+            <AxisBottom xScale={xScale} pixelsPerTick={40} height={boundsHeight} />
           </g>
 
           {/* Circles */}
@@ -92,16 +75,15 @@ export const ScatterplotToolTip = ({
         style={{
           width: boundsWidth,
           height: boundsHeight,
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          pointerEvents: "none",
+          pointerEvents: 'none',
           marginLeft: MARGIN.left,
-          marginTop: MARGIN.top,
-        }}
-      >
+          marginTop: MARGIN.top
+        }}>
         <Tooltip interactionData={hovered} />
       </div>
     </div>
-  );
-};
+  )
+}

@@ -11,7 +11,7 @@
 
 /* Add an arrow */
 .tooltip:after {
-  content: "";
+  content: '';
   position: absolute;
   border-width: 5px; /* Arrow width */
   left: -10px; /* Arrow width * 2 */

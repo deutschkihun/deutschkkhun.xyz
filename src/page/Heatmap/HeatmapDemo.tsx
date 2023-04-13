@@ -1,16 +1,15 @@
-import {data} from './Tooltip/data'
-import {HeatmapToolTip} from './HeatmapTooltip'
-import {ContinuousColorLegend} from './ColorLegend'
-import {HeatmapWithLegend} from './HeatmapWithLegend/HeatmapWithLegend'
-import {data as legendData} from './HeatmapWithLegend/data'
+import {FC} from 'react'
+import {HeatmapToolTip} from './HeatmapTooltip/HeatmapTooltip'
 import {Box, Paragraph, Subtitle} from '../../components'
+import {ContinuousColorLegend} from '.'
+import {HeatmapWithLegend} from './HeatmapWithLegend/HeatmapWithLegend'
 
 type HeatmapProps = {
   width: number
   height: number
 }
 
-export const HeatmapDemo = ({width, height}: HeatmapProps): JSX.Element => {
+export const HeatmapDemo: FC<HeatmapProps> = ({width, height}): JSX.Element => {
   return (
     <>
       <Box>
@@ -20,7 +19,7 @@ export const HeatmapDemo = ({width, height}: HeatmapProps): JSX.Element => {
           a good choice. It's because you can set x and y coordindate in custom label.
           Also in each position you can show third information
         </Paragraph>
-        <HeatmapToolTip data={data} width={width} height={height} />
+        <HeatmapToolTip width={width} height={height} />
       </Box>
       <Box>
         <Subtitle>Color legend</Subtitle>
@@ -37,7 +36,7 @@ export const HeatmapDemo = ({width, height}: HeatmapProps): JSX.Element => {
           heat map, but to show it with color legend. When working in that way, users can
           grasp information the easiest and fastest.
         </Paragraph>
-        <HeatmapWithLegend width={width} height={height} data={legendData} />
+        <HeatmapWithLegend width={width} height={height} />
       </Box>
     </>
   )

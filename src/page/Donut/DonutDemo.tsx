@@ -1,4 +1,4 @@
-import {Title, Box, Paragraph, Subtitle} from '../../components'
+import {Box, Paragraph, Subtitle} from '../../components'
 
 export const DonutDemo = () => {
   return (

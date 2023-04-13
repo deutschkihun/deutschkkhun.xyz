@@ -30,12 +30,12 @@ export const vizProject = {
       link: 'barplot',
       iconName: 'BarChart'
     },
-    // {
-    //   title: 'Lollipop',
-    //   description: 'lollipop',
-    //   link: 'lollipop',
-    //   iconName: 'TimelineSharp',
-    // },
+    {
+      title: 'Lollipop',
+      description: 'lollipop',
+      link: 'lollipop',
+      iconName: 'TimelineSharp'
+    },
     {
       title: 'Donut chart',
       description: 'Donut chart',
@@ -92,12 +92,12 @@ export const vizProject = {
       link: 'barplot',
       iconName: 'BarChart'
     },
-    // {
-    //   title: '롤리팝',
-    //   description: '롤리팝',
-    //   link: 'lollipop',
-    //   iconName: 'TimelineSharp',
-    // },
+    {
+      title: '롤리팝',
+      description: '롤리팝',
+      link: 'lollipop',
+      iconName: 'TimelineSharp'
+    },
     {
       title: '도넛 차트',
       description: '도넛 차트',
