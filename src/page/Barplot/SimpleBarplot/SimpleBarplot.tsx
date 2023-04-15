@@ -11,71 +11,23 @@ type BarplotProps = {
 }
 
 export const SimpleBarplot = ({width, height}: BarplotProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  // Y axis is for groups since the barplot is horizontal
-  const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
-  const yScale = useMemo(() => {
-    return d3.scaleBand().domain(groups).range([0, boundsHeight]).padding(BAR_PADDING)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, height])
-
-  // X axis
   const xScale = useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [min, max] = d3.extent(data.map(d => d.value))
+    const [, max] = d3.extent(data.map(d => d.value))
     return d3
       .scaleLinear()
       .domain([0, max || 10])
       .range([0, boundsWidth])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, width])
+  }, [boundsWidth])
 
-  // Build the shapes
-  const allShapes = data.map((d, i) => {
-    const y = yScale(d.name)
-    if (y === undefined) {
-      return null
-    }
+  const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
+  const yScale = useMemo(() => {
+    return d3.scaleBand().domain(groups).range([0, boundsHeight]).padding(BAR_PADDING)
+  }, [boundsHeight, groups])
 
-    return (
-      <g key={i}>
-        <rect
-          x={xScale(0)}
-          y={yScale(d.name)}
-          width={xScale(d.value)}
-          height={yScale.bandwidth()}
-          opacity={0.7}
-          stroke="#9d174d"
-          fill="#9d174d"
-          fillOpacity={0.3}
-          strokeWidth={1}
-          rx={1}
-        />
-        <text
-          x={xScale(d.value) - 7}
-          y={y + yScale.bandwidth() / 2}
-          textAnchor="end"
-          alignmentBaseline="central"
-          fontSize={12}
-          opacity={xScale(d.value) > 90 ? 1 : 0} // hide label if bar is not wide enough
-        >
-          {d.value}
-        </text>
-        <text
-          x={xScale(0) + 7}
-          y={y + yScale.bandwidth() / 2}
-          textAnchor="start"
-          alignmentBaseline="central"
-          fontSize={12}>
-          {d.name}
-        </text>
-      </g>
-    )
-  })
-
+  // 눈금자 수 = ticks()
   const grid = xScale
     .ticks(5)
     .slice(1)
@@ -86,7 +38,7 @@ export const SimpleBarplot = ({width, height}: BarplotProps) => {
           x2={xScale(value)}
           y1={0}
           y2={boundsHeight}
-          stroke="#808080"
+          stroke="#312f2f"
           opacity={0.2}
         />
         <text
@@ -102,17 +54,58 @@ export const SimpleBarplot = ({width, height}: BarplotProps) => {
       </g>
     ))
 
+  const bars = data.map((d, i) => {
+    const y = yScale(d.name)
+
+    if (y === undefined) {
+      return null
+    }
+
+    return (
+      <g key={i}>
+        <rect
+          x={xScale(0)}
+          y={yScale(d.name)}
+          opacity={0.7}
+          stroke="#383738"
+          fill="yellow"
+          fillOpacity={0.3}
+          strokeWidth={1}
+          width={xScale(d.value)}
+          height={yScale.bandwidth()}
+          rx={5}
+        />
+        <text
+          x={xScale(d.value) - 7}
+          y={y + yScale.bandwidth() / 2}
+          textAnchor="end"
+          alignmentBaseline="central"
+          fontSize={12}
+          opacity={xScale(d.value) > 90 ? 1 : 0} // bar 길이가 너무 짧으면 값을 보여주지 않음
+        >
+          {d.value}
+        </text>
+        <text
+          x={xScale(0) + 7}
+          y={y + yScale.bandwidth() / 2}
+          textAnchor="start"
+          alignmentBaseline="central"
+          fontSize={12}>
+          {d.name}
+        </text>
+      </g>
+    )
+  })
+
   return (
-    <div>
-      <svg width={width} height={height}>
-        <g
-          width={boundsWidth}
-          height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
-          {grid}
-          {allShapes}
-        </g>
-      </svg>
-    </div>
+    <svg width={width} height={height}>
+      <g
+        width={boundsWidth}
+        height={boundsHeight}
+        transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
+        {grid}
+        {bars}
+      </g>
+    </svg>
   )
 }
