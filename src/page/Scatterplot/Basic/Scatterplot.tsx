@@ -48,12 +48,10 @@ export const Scatterplot = ({width, height}: ScatterplotProps): JSX.Element => {
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
-
           {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} pixelsPerTick={40} height={boundsHeight} />
           </g>
-
           {/* Circles */}
           {allShapes}
         </g>
