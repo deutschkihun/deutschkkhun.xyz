@@ -1,44 +1,37 @@
-import React, { useMemo } from 'react'
-import { ScaleLinear } from 'd3'
-import { useRecoilValue } from 'recoil'
-import { modeState } from '../../recoil/mode'
+import type {ScaleLinear} from 'd3'
+import {FC, useMemo} from 'react'
+import {useRecoilValue} from 'recoil'
+import {modeState} from '../../recoil/mode'
 
-type AxisBottomProps = {
+export type AxisBottomProps = {
   xScale: ScaleLinear<number, number>
   pixelsPerTick: number
   height: number
 }
 
-// tick length
 const TICK_LENGTH = 10
 
-export const AxisBottom = ({
-  xScale,
-  pixelsPerTick,
-  height,
-}: AxisBottomProps): JSX.Element => {
-  const range = xScale.range()
+export const AxisBottom: FC<AxisBottomProps> = ({xScale, pixelsPerTick, height}) => {
+  const [min, max] = xScale.range()
   const mode = useRecoilValue(modeState)
 
   const ticks = useMemo(() => {
-    const width = range[1] - range[0]
+    const width = max - min
     const numberOfTicksTarget = Math.floor(width / pixelsPerTick)
 
-    return xScale.ticks(numberOfTicksTarget).map((value) => ({
-      value,
-      xOffset: xScale(value),
-    }))
-  }, [pixelsPerTick, range, xScale])
+    return xScale
+      .ticks(numberOfTicksTarget)
+      .map(value => ({value, xOffset: xScale(value)}))
+  }, [max, min, pixelsPerTick, xScale])
 
   return (
     <>
       {/* Ticks and labels */}
-      {ticks.map(({ value, xOffset }) => (
+      {ticks.map(({value, xOffset}) => (
         <g
           key={value}
           transform={`translate(${xOffset}, 0)`}
-          shapeRendering={'crispEdges'}
-        >
+          shapeRendering={'crispEdges'}>
           <line
             y1={TICK_LENGTH}
             y2={-height - TICK_LENGTH}
@@ -51,9 +44,8 @@ export const AxisBottom = ({
               fontSize: '10px',
               textAnchor: 'middle',
               transform: 'translateY(20px)',
-              fill: mode === 'light-mode' ? 'black' : '#D2D7D3',
-            }}
-          >
+              fill: mode === 'light-mode' ? 'black' : '#D2D7D3'
+            }}>
             {value}
           </text>
         </g>
