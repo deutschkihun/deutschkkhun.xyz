@@ -15,7 +15,8 @@ import {
   ChartBasicDemo,
   SVGVisualizationDemo,
   LollipopDemo,
-  DesignSystemDemo
+  DesignSystemDemo,
+  Kanban
 } from './page'
 import {IntlProvider} from 'react-intl'
 import en from './lang/en.json'
@@ -55,6 +56,7 @@ export default function App(): JSX.Element {
                 element={<LollipopDemo width={1000} height={400} />}
               />
               <Route path="/project/donut" element={<DonutDemo />} />
+              <Route path="/project/kanban" element={<Kanban />} />
               <Route path="/project/design-system" element={<DesignSystemDemo />} />
               <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
