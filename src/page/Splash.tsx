@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react'
+import {CSSProperties, useEffect, useRef} from 'react'
 import styled from 'styled-components'
-import { useRecoilValue } from 'recoil'
-import { languageState } from '../recoil/language'
-import { modeState } from '../recoil/mode'
+import {useRecoilValue} from 'recoil'
+import {languageState} from '../recoil/language'
+import {modeState} from '../recoil/mode'
 
 interface SplashProps {
   mode: string
@@ -45,8 +45,8 @@ const SplashContainer = styled.aside<SplashProps>`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: ${(p) => (p.mode === 'light-mode' ? '#FFFAFA' : 'black')};
-  color: ${(p) => (p.mode === 'light-mode' ? 'black' : '#FFFAFA')};
+  background-color: ${p => (p.mode === 'light-mode' ? '#FFFAFA' : 'black')};
+  color: ${p => (p.mode === 'light-mode' ? 'black' : '#FFFAFA')};
   opacity: 1;
   z-index: 999;
   justify-content: center;
@@ -59,6 +59,13 @@ const SplashContainer = styled.aside<SplashProps>`
     transition: all 1.5s;
   }
 `
+
+type MyStyleType = {
+  [key: string]: string | number
+  '--i': number
+}
+
+type ExtendedCSSProperties = CSSProperties & MyStyleType
 
 export const Splash = (): JSX.Element => {
   const ref = useRef<HTMLElement>(null)
@@ -76,7 +83,7 @@ export const Splash = (): JSX.Element => {
     <SplashContainer mode={mode} ref={ref}>
       <Waviy>
         {locale.split('').map((m, k) => (
-          <span key={k} style={{ '--i': k + 1 }}>
+          <span key={k} style={{'--i': k + 1} as ExtendedCSSProperties}>
             {m}
           </span>
         ))}
