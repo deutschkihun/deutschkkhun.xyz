@@ -16,7 +16,7 @@ export const CardDraggable: FC<PropsWithChildren<CardDraggableProps>> = ({
       {provided => {
         return (
           <div
-            //{...provided.draggableProps}
+            {...provided.draggableProps}
             ref={provided.innerRef}
             {...provided.dragHandleProps}>
             {children}
