@@ -43,6 +43,12 @@ export const vizProject = {
       iconName: 'DonutLarge'
     },
     {
+      title: 'Kanban board',
+      description: 'kanban board',
+      link: 'kanban',
+      iconName: 'ViewKanban'
+    },
+    {
       title: 'Design system',
       description: 'design system',
       link: 'design-system',
@@ -91,6 +97,12 @@ export const vizProject = {
       description: '도넛 차트',
       link: 'donut',
       iconName: 'DonutLarge'
+    },
+    {
+      title: '칸반 보드',
+      description: '칸반 보드',
+      link: 'kanban',
+      iconName: 'ViewKanban'
     },
     {
       title: '디자인 시스템',
