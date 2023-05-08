@@ -1,13 +1,11 @@
 import {FormattedMessage} from 'react-intl'
-import {Splash} from './Splash'
 import styled from 'styled-components'
-import data from '../assets/data.svg'
-import language from '../assets/language.svg'
-import coding from '../assets/coding.svg'
-import learning from '../assets/learning.svg'
+import * as icons from '../assets'
+
 import {useSetRecoilState} from 'recoil'
 import {toggleState} from '../recoil/toggle'
 import {Title} from '../components/Texts'
+import Splash from './Splash'
 
 const SilderContainer = styled.div`
   padding: 1rem;
@@ -119,7 +117,7 @@ export const AnimationChar = styled.h1`
 
 export const Home = (): JSX.Element => {
   const setToggle = useSetRecoilState(toggleState)
-  const images = [coding, language, data, learning]
+  const keys = Object.keys(icons)
 
   return (
     <aside onMouseOver={() => setToggle(false)}>
@@ -135,10 +133,10 @@ export const Home = (): JSX.Element => {
       <Intro>
         <Title />
 
-        {Array.from({length: 4}, (_, k) => (
-          <SilderContainer className="reveal-container fade-bottom">
+        {Array.from({length: keys.length}, (_, k) => (
+          <SilderContainer key={k} className="reveal-container fade-bottom">
             <Silder>
-              <img src={images[k]} alt="img" />
+              <img src={icons[keys[k]]} alt="img" />
               <h2>
                 <FormattedMessage id={`HomeAnswer1-${k + 1}`} />
               </h2>

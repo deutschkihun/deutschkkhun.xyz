@@ -8,6 +8,13 @@ interface SplashProps {
   mode: string
 }
 
+type SplashType = {
+  [key: string]: string | number
+  '--i': number
+}
+
+type ExtendedCSSProperties = CSSProperties & SplashType
+
 const Waviy = styled.div`
   position: relative;
   -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
@@ -40,19 +47,6 @@ const Waviy = styled.div`
 `
 
 const SplashContainer = styled.aside<SplashProps>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: ${p => (p.mode === 'light-mode' ? '#FFFAFA' : 'black')};
-  color: ${p => (p.mode === 'light-mode' ? 'black' : '#FFFAFA')};
-  opacity: 1;
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
   &.display-none {
     opacity: 0;
     z-index: -10;
@@ -60,18 +54,12 @@ const SplashContainer = styled.aside<SplashProps>`
   }
 `
 
-type MyStyleType = {
-  [key: string]: string | number
-  '--i': number
-}
-
-type ExtendedCSSProperties = CSSProperties & MyStyleType
-
-export const Splash = (): JSX.Element => {
+export default function Splash() {
   const ref = useRef<HTMLElement>(null)
   const mode = useRecoilValue(modeState)
   const lang = useRecoilValue(languageState)
   const locale = lang === 'en' ? 'WELCOME' : '환영합니다'
+  const color = mode === 'light-mode' ? 'white' : 'black'
 
   useEffect(() => {
     setTimeout(() => {
@@ -80,7 +68,10 @@ export const Splash = (): JSX.Element => {
   })
 
   return (
-    <SplashContainer mode={mode} ref={ref}>
+    <SplashContainer
+      className={`bg-${color} fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen`}
+      mode={mode}
+      ref={ref}>
       <Waviy>
         {locale.split('').map((m, k) => (
           <span key={k} style={{'--i': k + 1} as ExtendedCSSProperties}>

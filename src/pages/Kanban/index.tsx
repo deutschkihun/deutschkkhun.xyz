@@ -1,13 +1,13 @@
 import {useMemo} from 'react'
 import {DragDropContext} from 'react-beautiful-dnd'
-import {Title} from '../../../components'
-import CreateListForm from './CreateListForm'
-import {ListDroppable} from '../../../components'
-import BoardList from '../BoardList'
+import {Title} from '../../components'
+import {ListDroppable} from '../../components'
 
-import {useLists} from '../../../store'
+import {useLists} from '../../store'
+import BoardList from './BoardList'
+import CreateListForm from './Board/CreateListForm'
 
-export default function Board() {
+export const KanbanDemo = () => {
   const {lists, onRemoveList, onCreateList, onMoveList, onDragEnd} = useLists()
 
   const children = useMemo(
