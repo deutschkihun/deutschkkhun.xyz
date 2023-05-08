@@ -7,8 +7,6 @@ import {Button} from '@mui/material'
 import {useSetRecoilState} from 'recoil'
 import {locationState, toggleState} from '../recoil/toggle'
 export const HeaderComponent = styled.header`
-  top: 0;
-  left: 0;
   width: 100%;
   padding: 32px 0;
   margin-bottom: 50px;

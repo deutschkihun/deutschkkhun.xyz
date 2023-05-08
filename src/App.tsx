@@ -19,24 +19,23 @@ import {
   KanbanDemo
 } from './pages'
 import {IntlProvider} from 'react-intl'
-import en from './lang/en.json'
-import kr from './lang/kr.json'
+import * as lang from './lang'
 import {Provider as ReduxProvider} from 'react-redux'
 import {DndProvider} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
 import {useStore} from './store'
 
 export default function App(): JSX.Element {
-  const lang = useRecoilValue(languageState)
+  const selected = useRecoilValue(languageState)
   const setToggle = useSetRecoilState(toggleState)
-  const messages = {en: en, kr: kr}[lang]
+  const messages = lang[selected]
   const store = useStore()
 
   return (
     <ReduxProvider store={store}>
       <DndProvider backend={HTML5Backend}>
         <BrowserRouter>
-          <IntlProvider locale={lang} messages={messages}>
+          <IntlProvider locale={selected} messages={messages}>
             <main className="flex flex-col min-h-screen">
               <Header />
               <section className="flex-auto" onMouseOver={() => setToggle(false)}>
