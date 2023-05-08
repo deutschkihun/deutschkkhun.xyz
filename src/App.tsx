@@ -16,11 +16,11 @@ import {
   SVGVisualizationDemo,
   LollipopDemo,
   DesignSystemDemo
-} from './page'
+} from './pages'
 import {IntlProvider} from 'react-intl'
 import en from './lang/en.json'
 import kr from './lang/kr.json'
-import Board from './page/Kanban/Board'
+import Board from './pages/Kanban/Board'
 import {Provider as ReduxProvider} from 'react-redux'
 import {DndProvider} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
