@@ -4,10 +4,6 @@ import {useRecoilValue} from 'recoil'
 import {languageState} from '../recoil/language'
 import {modeState} from '../recoil/mode'
 
-interface SplashProps {
-  mode: string
-}
-
 type SplashType = {
   [key: string]: string | number
   '--i': number
@@ -46,7 +42,7 @@ const Waviy = styled.div`
   }
 `
 
-const SplashContainer = styled.aside<SplashProps>`
+const SplashContainer = styled.aside`
   &.display-none {
     opacity: 0;
     z-index: -10;
@@ -70,7 +66,6 @@ export default function Splash() {
   return (
     <SplashContainer
       className={`bg-${color} fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen`}
-      mode={mode}
       ref={ref}>
       <Waviy>
         {locale.split('').map((m, k) => (
