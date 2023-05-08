@@ -42,30 +42,30 @@ const Waviy = styled.div`
   }
 `
 
-const SplashContainer = styled.aside`
-  &.display-none {
-    opacity: 0;
-    z-index: -10;
-    transition: all 1.5s;
-  }
-`
-
 export default function Splash() {
   const ref = useRef<HTMLElement>(null)
   const mode = useRecoilValue(modeState)
   const lang = useRecoilValue(languageState)
   const locale = lang === 'en' ? 'WELCOME' : '환영합니다'
-  const color = mode === 'light-mode' ? 'white' : 'black'
 
   useEffect(() => {
     setTimeout(() => {
-      ref.current?.classList.add('display-none')
+      if (ref.current) {
+        ref.current?.classList.add(
+          'opacity-0',
+          'transition-all',
+          'duration-1000',
+          'ease-in-out'
+        )
+      }
     }, 2500)
-  })
+  }, [])
 
   return (
-    <SplashContainer
-      className={`bg-${color} fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen`}
+    <aside
+      className={`bg-${
+        mode === 'light-mode' ? 'white' : 'black'
+      } fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen`}
       ref={ref}>
       <Waviy>
         {locale.split('').map((m, k) => (
@@ -74,6 +74,6 @@ export default function Splash() {
           </span>
         ))}
       </Waviy>
-    </SplashContainer>
+    </aside>
   )
 }
