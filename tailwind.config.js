@@ -20,5 +20,25 @@ module.exports = {
       ssm: {max: '600px'}
     }
   },
+  animation: {
+    'dash-ani': 'dash-ani 2s linear infinite alternate'
+  },
+  keyframes: {
+    'dash-ani': {
+      '0%': {'stroke-dashoffset': '700', stroke: 'black'},
+      '50%': {'stroke-dashoffset': '350', stroke: 'blue'},
+      '100%': {'stroke-dashoffset': '0', stroke: 'red'}
+    },
+    'fade-bottom': {
+      '0%': {
+        transform: 'translateY(100px)',
+        opacity: 0
+      },
+      '100%': {
+        transform: 'translateY(0)',
+        opacity: 1
+      }
+    }
+  },
   plugins: [require('daisyui')]
 }
