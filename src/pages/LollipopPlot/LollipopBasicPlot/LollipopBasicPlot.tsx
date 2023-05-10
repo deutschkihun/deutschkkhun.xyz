@@ -1,35 +1,33 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react'
+import {useMemo} from 'react'
 import * as d3 from 'd3'
-import { data } from './data'
+import {data} from './data'
 
-const MARGIN = { top: 30, right: 30, bottom: 30, left: 80 }
+const MARGIN = {top: 30, right: 30, bottom: 30, left: 80}
 
 type LollipopProps = {
   width: number
   height: number
 }
 
-export const LollipopBasicPlot = ({ width, height }: LollipopProps) => {
+export const LollipopBasicPlot = ({width, height}: LollipopProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
   // Y axis is for groups since the barplot is horizontal
-  const groups = data.sort((a, b) => b.value - a.value).map((d) => d.name)
+  const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
   const yScale = useMemo(() => {
     return d3.scaleBand().domain(groups).range([0, boundsHeight])
-  }, [data, height])
+  }, [boundsHeight, groups])
 
   // X axis
   const xScale = useMemo(() => {
-    const [min, max] = d3.extent(data.map((d) => d.value))
+    const [, max] = d3.extent(data.map(d => d.value))
     return d3
       .scaleLinear()
       .domain([0, max || 10])
       .range([0, boundsWidth])
-  }, [data, width])
+  }, [boundsWidth])
 
   // Build the shapes
   const allShapes = data.map((d, i) => {
@@ -60,8 +58,7 @@ export const LollipopBasicPlot = ({ width, height }: LollipopProps) => {
           y={y}
           textAnchor="end"
           alignmentBaseline="central"
-          fontSize={12}
-        >
+          fontSize={12}>
           {d.name}
         </text>
       </g>
@@ -88,8 +85,7 @@ export const LollipopBasicPlot = ({ width, height }: LollipopProps) => {
           alignmentBaseline="central"
           fontSize={9}
           stroke="#808080"
-          opacity={0.8}
-        >
+          opacity={0.8}>
           {value}
         </text>
       </g>
@@ -101,8 +97,7 @@ export const LollipopBasicPlot = ({ width, height }: LollipopProps) => {
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {grid}
           {allShapes}
         </g>

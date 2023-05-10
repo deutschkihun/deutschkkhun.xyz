@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useLayoutEffect, useMemo, useRef } from 'react'
+import {useLayoutEffect, useMemo, useRef} from 'react'
 import * as d3 from 'd3'
 
-const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 }
+const MARGIN = {top: 30, right: 30, bottom: 50, left: 50}
 
-export type Group = { [key: string]: any }
+export type Group = {[key: string]: any}
 
 type StackedBarplotProps = {
   width: number
@@ -12,17 +11,13 @@ type StackedBarplotProps = {
   data: Group[]
 }
 
-export const StackedBarplot = ({
-  width,
-  height,
-  data,
-}: StackedBarplotProps) => {
+export const StackedBarplot = ({width, height, data}: StackedBarplotProps) => {
   // bounds = area inside the graph axis = calculated by substracting the margins
   const axesRef = useRef(null)
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  const allGroups = data.map((d) => String(d.x))
+  const allGroups = data.map(d => String(d.x))
   const allSubgroups = ['groupA', 'groupB', 'groupC', 'groupD'] // todo
 
   // Data Wrangling: stack the data
@@ -37,16 +32,12 @@ export const StackedBarplot = ({
       .scaleLinear()
       .domain([0, max || 0])
       .range([boundsHeight, 0])
-  }, [data, height])
+  }, [boundsHeight])
 
   // X axis
   const xScale = useMemo(() => {
-    return d3
-      .scaleBand<string>()
-      .domain(allGroups)
-      .range([0, boundsWidth])
-      .padding(0.05)
-  }, [data, width])
+    return d3.scaleBand<string>().domain(allGroups).range([0, boundsWidth]).padding(0.05)
+  }, [allGroups, boundsWidth])
 
   // Color Scale
   var colorScale = d3
@@ -80,8 +71,7 @@ export const StackedBarplot = ({
               height={yScale(group[0]) - yScale(group[1])}
               width={xScale.bandwidth()}
               fill={colorScale(subgroup.key)}
-              opacity={0.9}
-            ></rect>
+              opacity={0.9}></rect>
           )
         })}
       </g>
@@ -94,8 +84,7 @@ export const StackedBarplot = ({
         <g
           width={boundsWidth}
           height={boundsHeight}
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
-        >
+          transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
           {rectangles}
         </g>
         <g
