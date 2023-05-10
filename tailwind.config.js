@@ -20,6 +20,9 @@ module.exports = {
       ssm: {max: '600px'}
     }
   },
+  minHeight: {
+    '4/5-screen': '80vh'
+  },
   animation: {
     'dash-ani': 'dash-ani 2s linear infinite alternate'
   },

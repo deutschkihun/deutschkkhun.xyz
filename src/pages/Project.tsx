@@ -20,7 +20,7 @@ export const Project = (): JSX.Element => {
   }, [vizList])
 
   return (
-    <aside className="min-h-max">
+    <div className="min-h-[80vh]">
       <Title>
         <FormattedMessage id="ProjectList" />
       </Title>
@@ -45,6 +45,6 @@ export const Project = (): JSX.Element => {
           ))}
         </ul>
       </section>
-    </aside>
+    </div>
   )
 }
