@@ -1,7 +1,6 @@
 import {useRef} from 'react'
 import {refreshHandler} from '../../helper/refreshHandler'
-import {Button as RenderButton} from '@mui/material'
-import {Box, Paragraph, Subtitle} from '../../components'
+import {Box, Button, Paragraph, Subtitle} from '../../components'
 import {
   SVGD3CircleAdvance,
   SVGOnMouseAdvance,
@@ -24,9 +23,8 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       <SVGBasic />
       <Box>
         <Subtitle>SVG with D3: circle</Subtitle>
-        <RenderButton
-          sx={{m: 'auto', display: 'block', width: '30%'}}
-          variant="contained"
+        <Button
+          className="flex m-auto my-3 btn-outline"
           onClick={() =>
             refreshHandler(
               <SVGD3Circle
@@ -42,7 +40,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
             )
           }>
           Click me
-        </RenderButton>
+        </Button>
         <div ref={SVGD3CircleRef}>
           <SVGD3Circle
             width={width / 4}
@@ -57,9 +55,8 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       </Box>
       <Box>
         <Subtitle> SVG with D3: half circle</Subtitle>
-        <RenderButton
-          sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
-          variant="contained"
+        <Button
+          className="flex m-auto my-3 btn-outline"
           onClick={() =>
             refreshHandler(
               <SVGD3CircleAdvance
@@ -73,7 +70,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
             )
           }>
           Click me
-        </RenderButton>
+        </Button>
         <div ref={SVGD3CircleAdvanceRef}>
           <SVGD3CircleAdvance
             width={width / 2}
@@ -97,9 +94,8 @@ export const SVGVisualizationDemo = (): JSX.Element => {
       </Box>
       <Box>
         <Subtitle>Ex.2) Randomly generated smile Emojis</Subtitle>
-        <RenderButton
-          sx={{m: 'auto', display: 'block', width: '30%', mb: 3}}
-          variant="contained"
+        <Button
+          className="flex m-auto my-3 btn-outline"
           onClick={() =>
             refreshHandler(
               <Face
@@ -113,7 +109,7 @@ export const SVGVisualizationDemo = (): JSX.Element => {
             )
           }>
           Click me
-        </RenderButton>
+        </Button>
         <div ref={FaceRef}>
           <Face
             width={width}

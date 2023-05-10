@@ -1,6 +1,9 @@
 import {Routes, Route} from 'react-router-dom'
 import {useRecoilValue} from 'recoil'
 import {languageState} from '../recoil/language'
+import {useSelector} from 'react-redux'
+import {AppState} from '../store'
+import * as LG from '../store/languages'
 import {
   Home,
   About,
@@ -21,8 +24,12 @@ import Layout from './Layout'
 import NoMatch from './NoMatch'
 
 export default function RoutesSetup() {
+  const temp = useSelector<AppState, LG.State>(state => state.languages)
+  console.log('temp', temp)
+
   const selected = useRecoilValue(languageState)
   const messages = lang[selected]
+
   return (
     <IntlProvider locale={selected} messages={messages}>
       <Routes>
