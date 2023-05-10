@@ -1,8 +1,10 @@
 import {CSSProperties, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import {useRecoilValue} from 'recoil'
-import {languageState} from '../recoil/language'
 import {modeState} from '../recoil/mode'
+import {useSelector} from 'react-redux'
+import {AppState} from '../store'
+import * as LG from '../store/languages'
 
 interface SplashProps {
   mode: string
@@ -70,7 +72,7 @@ type ExtendedCSSProperties = CSSProperties & MyStyleType
 export const Splash = (): JSX.Element => {
   const ref = useRef<HTMLElement>(null)
   const mode = useRecoilValue(modeState)
-  const lang = useRecoilValue(languageState)
+  const lang = useSelector<AppState, LG.State>(({languages}) => languages)
   const locale = lang === 'en' ? 'WELCOME' : '환영합니다'
 
   useEffect(() => {

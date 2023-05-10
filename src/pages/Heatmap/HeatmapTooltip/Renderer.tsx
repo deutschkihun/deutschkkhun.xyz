@@ -46,8 +46,7 @@ export const Renderer = ({
     const y = yScale(d.y)
 
     if (d.value === null || !x || !y) {
-      // eslint-disable-next-line array-callback-return
-      return
+      return <></>
     }
 
     return (

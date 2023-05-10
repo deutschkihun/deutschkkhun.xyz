@@ -1,148 +1,86 @@
 import {FormattedMessage} from 'react-intl'
-import styled from 'styled-components'
 import * as icons from '../assets'
-
-import {useSetRecoilState} from 'recoil'
-import {toggleState} from '../recoil/toggle'
 import {Title, Splash} from '../components'
 
-const SilderContainer = styled.div`
-  padding: 1rem;
-  border: 0.2rem solid;
-  width: 70vw;
-  margin: auto;
-  border-radius: 8px;
-  margin-bottom: 3rem;
-`
-
-const Silder = styled.div`
-  padding: 1rem;
-  border: 0.2rem solid;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  height: 420px;
-  justify-items: center;
-
-  svg {
-    fill: black;
-  }
-
-  img {
-    width: 200px;
-    margin: auto;
-  }
-
-  h2 {
-    margin: auto;
-  }
-
-  @media screen and (max-width: 1045px) {
-    display: block;
-    text-align: center;
-
-    h2 {
-      padding: 1rem 0;
-      font-size: 30px !important;
-    }
-
-    img {
-      min-height: 250px;
-    }
-  }
-
-  @media screen and (max-width: 570px) {
-    display: block;
-    text-align: center;
-
-    h2 {
-      padding: 1rem 0;
-      font-size: 20px !important;
-    }
-
-    img {
-      width: 60%;
-      min-height: 250px;
-    }
-  }
-`
-
-const Intro = styled.div`
-  max-width: 70vw;
-  margin: auto;
-  display: block;
-  padding: 3rem 0;
-
-  h1 {
-    font-size: 80px;
-  }
-
-  h2 {
-    font-size: 50px;
-  }
-
-  @media screen and (min-width: 1045px) {
-    p {
-      font-size: 20px;
-    }
-
-    h1 {
-      font-size: 110px;
-      text-align: center;
-    }
-  }
-`
-
-export const AnimationChar = styled.h1`
-  background-image: linear-gradient(
-    -225deg,
-    #231557 0%,
-    #44107a 29%,
-    #ff1361 67%,
-    #fff800 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text;
-  animation: textclip 3s linear infinite;
-
-  @keyframes textclip {
-    to {
-      background-position: 200% center;
-    }
-  }
-`
-
 export const Home = (): JSX.Element => {
-  const setToggle = useSetRecoilState(toggleState)
-  const keys = Object.keys(icons)
-
   return (
-    <aside onMouseOver={() => setToggle(false)}>
+    <div>
       <Splash />
-      <Intro>
-        <h2>
-          <FormattedMessage id="HomeTitle" />
-        </h2>
-        <AnimationChar>
-          <FormattedMessage id="HomeName" />
-        </AnimationChar>
-      </Intro>
-      <Intro>
-        <Title />
+      <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <Title>
+            <FormattedMessage id="HomeTitle" />
+          </Title>
+          <h1 className="font-extrabold text-center text-transparent text-7xl bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text">
+            <FormattedMessage id="HomeName" />
+          </h1>
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <img
+                alt="img"
+                src={icons.CodingIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id={`HomeAnswer1-1`} />
+                </h1>
+                <p className="py-6">
+                  React, TypeScript, Next.js, TailwindCSS, Node.js, Redux, Recoil,
+                  React-Query, Storybook
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {Array.from({length: keys.length}, (_, k) => (
-          <SilderContainer key={k} className="reveal-container fade-bottom">
-            <Silder>
-              <img src={icons[keys[k]]} alt="img" />
-              <h2>
-                <FormattedMessage id={`HomeAnswer1-${k + 1}`} />
-              </h2>
-            </Silder>
-          </SilderContainer>
-        ))}
-      </Intro>
-    </aside>
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-2" />
+                </h1>
+                <p className="py-6">English, German, Korean</p>
+              </div>
+              <img
+                alt="img"
+                src={icons.LanguageIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+            </div>
+          </div>
+
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <img
+                alt="img"
+                src={icons.DataIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-3" />
+                </h1>
+                <p className="py-6">D3.js, SVG, Canvas</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-4" />
+                </h1>
+              </div>
+              <img
+                alt="img"
+                src={icons.LearningIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

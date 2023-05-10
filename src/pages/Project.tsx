@@ -1,19 +1,17 @@
 import {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {vizProject} from '../mock/project'
-import {IconMaterial} from '../components/IconMaterial'
+import {useSelector} from 'react-redux'
 import {FormattedMessage} from 'react-intl'
-import {useRecoilValue, useSetRecoilState} from 'recoil'
-import {languageState} from '../recoil/language'
-import {toggleState} from '../recoil/toggle'
-import {Title} from '../components'
+import {mock} from './mock'
+import {Title, IconMaterial} from '../components'
+import {AppState} from '../store'
+import * as LG from '../store/languages'
 
 export const Project = (): JSX.Element => {
   const navigate = useNavigate()
-  const lang = useRecoilValue(languageState)
-  const setToggle = useSetRecoilState(toggleState)
+  const lang = useSelector<AppState, LG.State>(({languages}) => languages)
 
-  const vizList = vizProject[lang as keyof typeof vizProject]
+  const vizList = mock[lang as keyof typeof mock]
 
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal')
@@ -23,8 +21,10 @@ export const Project = (): JSX.Element => {
   }, [vizList])
 
   return (
-    <aside onMouseOver={() => setToggle(false)}>
-      <Title children={<FormattedMessage id="ProjectList" />} />
+    <div className="min-h-[80vh]">
+      <Title>
+        <FormattedMessage id="ProjectList" />
+      </Title>
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom">
         <ul
           className="grid gap-x-2 "
@@ -46,6 +46,6 @@ export const Project = (): JSX.Element => {
           ))}
         </ul>
       </section>
-    </aside>
+    </div>
   )
 }

@@ -9,6 +9,6 @@ export type LinkProps = ReactAnchorProps & {}
 
 // prettier-ignore
 export const Link: FC<LinkProps> = ({className: _className,href,children, ...anchorProps}) => {
-  const className = ['link', 'no-underline','block','mb-2','text-sm',_className].join(' ')
+  const className = ['link', 'link-hover','no-underline', 'hover:no-underline','block','mb-2','text-sm',_className].join(' ')
   return <a href={href} {...anchorProps} className={className}>{children}</a>
 }

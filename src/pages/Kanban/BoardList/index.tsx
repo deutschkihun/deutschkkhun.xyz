@@ -1,4 +1,4 @@
-import type {FC} from 'react'
+import {FC, useCallback} from 'react'
 import {useMemo} from 'react'
 import type {List} from '../../../store/commonTypes'
 import type {MoveFunc} from '../../../components'
@@ -6,6 +6,7 @@ import type {MoveFunc} from '../../../components'
 import {Div, CardDroppable, Icon, ListDraggable} from '../../../components'
 import ListCard from '../ListCard'
 import {useCards} from '../../../store'
+import {useNavigate} from 'react-router-dom'
 
 export type BoardListProps = {
   list: List
@@ -17,7 +18,13 @@ export type BoardListProps = {
 // prettier-ignore
 const BoardList:FC<BoardListProps> = ({list,onRemoveList,index,onMoveList,...props}) => {
   const {cards, onPrependCard, onAppendCard, onRemoveCard} = useCards(list.uuid)
-
+  const navigate = useNavigate()
+  const cardClicked = useCallback(
+    (cardid: string) => () => {
+      navigate(`/project/kanban/${cardid}`)
+    },
+    [navigate]
+  )
   const children = useMemo(
     () =>
       cards.map((card, index) => (
@@ -27,9 +34,11 @@ const BoardList:FC<BoardListProps> = ({list,onRemoveList,index,onMoveList,...pro
           onRemove={onRemoveCard(card.uuid)}
           draggableId={card.uuid}
           index={index}
+          onClick={cardClicked(card.uuid)}
+
         />
       )),
-    [cards, onRemoveCard]
+    [cardClicked, cards, onRemoveCard]
   )
 
   return (

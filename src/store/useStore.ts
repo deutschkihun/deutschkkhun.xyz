@@ -1,19 +1,26 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {useMemo} from 'react'
 import {rootReducer} from './rootReducer'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
+import {Action, Dispatch} from 'redux'
 
-const useLogger = process.env.NODE_ENV !== 'production'
-
-const initializeStore = () => {
-  const middleware: any[] = [thunk]
-  if (useLogger) {
-    middleware.push(logger)
+const localStorageMiddleware =
+  <S = any>(store: {getState: () => S}) =>
+  (next: Dispatch) =>
+  (action: Action) => {
+    const result = next(action)
+    localStorage.setItem('locale', JSON.stringify(store.getState()))
+    return result
   }
 
-  const store = configureStore({reducer: rootReducer, middleware})
-  return store
+const persistedState = JSON.parse(localStorage.getItem('locale') as string) ?? {}
+
+const initializeStore = () => {
+  const init = configureStore({
+    reducer: rootReducer,
+    middleware: [localStorageMiddleware],
+    preloadedState: persistedState
+  })
+  return init
 }
 
 export function useStore() {

@@ -1,51 +1,26 @@
-import React from "react";
-import styled from "styled-components";
-
-// Information needed to build the tooltip
 export type InteractionData = {
-  xPos: number;
-  yPos: number;
-  name: string;
-};
+  xPos: number
+  yPos: number
+  name: string
+}
 
 type TooltipProps = {
-  interactionData: InteractionData | null;
-};
+  interactionData: InteractionData | null
+}
 
-const StyledToolTip = styled.div`
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 4px;
-  color: white;
-  font-size: 12px;
-  padding: 4px;
-  margin-left: 15px;
-  transform: translateY(-50%);
-
-  ::after {
-    content: "";
-    position: absolute;
-    border-width: 5px; /* Arrow width */
-    left: -10px; /* Arrow width * 2 */
-    top: 50%;
-    transform: translateY(-50%);
-    border-color: transparent black transparent transparent;
-  }
-`;
-
-export const Tooltip = ({ interactionData }: TooltipProps): JSX.Element => {
+export const Tooltip = ({interactionData}: TooltipProps): JSX.Element => {
   if (!interactionData) {
-    return <></>;
+    return <></>
   }
 
   return (
-    <StyledToolTip
+    <div
+      className="absolute px-2 py-1 ml-4 text-sm text-white transform -translate-y-1/2 bg-black rounded-md bg-opacity-80"
       style={{
         left: interactionData.xPos,
-        top: interactionData.yPos,
-      }}
-    >
+        top: interactionData.yPos
+      }}>
       {interactionData.name}
-    </StyledToolTip>
-  );
-};
+    </div>
+  )
+}
