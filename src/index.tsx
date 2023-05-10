@@ -5,21 +5,7 @@ import '@fontsource/material-icons'
 import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
   body {
-    background-color: rgba(17, 16, 34, 0.911);
-    color: #FFFAFA;
-    font-family: "Montserrat", sans-serif;
-    line-height: 1.75;
-    width: 100%;
-    position: relative;
-    overflow-x: hidden;
-    margin: 0 auto;
-
-
     &.light-mode {
       background-color: #FFFAFA;
       color: rgba(17, 16, 34, 0.911);
@@ -32,28 +18,8 @@ const GlobalStyle = createGlobalStyle`
     form {      
         box-shadow: 0 20px 25px -5px rgba(243, 237, 237, 0.1),
     0 10px 10px -5px rgba(243, 239, 239, 0.4);
-      
     }
 
-
-
-
-    p {
-      margin: 0;
-      font-size:1rem;
-    }
-    
-    ul {
-      padding: 0;
-      list-style-type: none;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 
   .reveal.active {
