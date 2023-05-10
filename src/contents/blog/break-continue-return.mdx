@@ -1,0 +1,96 @@
+---
+title: '[Javascript] Break vs Continue vs Return'
+date: '2022-10-15'
+lastmod: '2022-11-01'
+tags: ['break', 'continue', 'return']
+draft: false
+summary: 'Continue,Break 그리고 Return 의 차이를 정확히 이해하고 사용하는 것이 올바른 코드를 작성하고 효율적인 코드를 작성하는데 중요한 부분중에 하나이다. 이 포스팅을 통해 확실한 차이를 알아보자.'
+---
+
+![main](/static/continue-return-break/cover.jpg)
+
+Continue,Break 그리고 Return 의 차이를 정확히 이해하고 사용하는 것이 올바른 코드를 작성하고 효율적인 코드를 작성하는데 중요한 부분중에 하나이다. 이 포스팅을 통해 확실한 차이를 알아보자
+
+## 1.Continue
+
+continue는 반복문의 현재 단계를 중단하고 다음 단계를 이어서 진행한다.
+
+```tsx
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    console.log(`${i}에서 건너뛴다.`)
+    continue
+  }
+  console.log(i)
+}
+```
+
+## 2.break
+
+break는 반복문을 즉시 빠져나온다.
+
+```tsx
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    console.log(`${i}에서 멈춘다.`)
+    break
+  }
+  console.log(i)
+}
+```
+
+### 3.Return
+
+```tsx
+/* 잘못된 사용법 */
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    return i
+  }
+  console.log(i)
+}
+```
+
+위처럼 사용하게되면 `Uncaught SyntaxError: Illegal return statement` 라는 에러를 얻게 된다.
+
+```tsx
+/* 올바른 사용법 */
+function number() {
+  for (let i = 0; i < 10; i++) {
+    if (i === 5) {
+      return i
+    }
+    console.log(i)
+  }
+}
+
+console.log(`number라는 함수가 ${number()} 입니다.`)
+```
+
+위 number 함수에서 i가 5일 때 number 함수에 5가 반환되고 그 자리에서 함수가 종료된다.
+
+```tsx
+// console
+0
+1
+2
+3
+4
+number 라는 함수가 5입니다.
+```
+
+즉 i=5 인경우의 콘솔은 찍히지 않는다.
+
+사실 return을 사용하지 않더라도 함수는 항상 값을 반환한다.
+
+기본값은 undefined다.
+
+```tsx
+function test() {}
+
+console.log(test() === undefined) // true
+```
+
+감사합니다.
+
+#### reference: [[JavaScript] continue, break, return 차이](https://lpla.tistory.com/182)

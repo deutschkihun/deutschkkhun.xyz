@@ -1,0 +1,190 @@
+---
+title: '[Data Structure] Graph & Tree'
+date: '2022-10-01'
+lastmod: '2022-10-01'
+tags: ['graph', 'tree', 'data structure']
+draft: false
+summary: 'graph 와 tree 는 비선형 자료구조이다. 비선형 자료구조라는 것은 한개의 원소 다음에 한개의 원소가 오는 선형구조와 달리 다대다 관계로 설정되어있는 구조를 말한다. 중급이상의 코딩테스트 문제에서는 거의 필수적으로 나오는 개념이고 실무진 인터뷰에서도 이들의 차이에 대해 설명하는 경우도 나오기 때문에 반드시 아는 것이 중요하다.
+'
+images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
+authors: ['default']
+---
+
+![main](/static/graph-tree/cover.jpg)
+
+## 1.Graph
+
+![graph1](/static/graph-tree/graph1.png)
+
+- 그래프는 노드와 노드간을 연결하는 간선으로 구성된 비선형 자료구조이다. (node / edge)
+- 그래프는 루트노드의 개념이 없다. 즉 부모와 자식 관계가 없다.
+- 그래프는 방향성을 가질수도 (directed graph) 있고 가지지 않을 수도 있다 (undirected graph).
+- 그래프는 네트워크 모델이다.
+
+![graph2](/static/graph-tree/graph2.png)
+
+- 그래프에는 순환 (cycle) / 비순환 그래프로 나눌 수 있다.
+- 그래프는 트리와 달리 cycle 을 형성 할 수 있습니다. 이러한 특징은 그래프와 트리의 차이를 결정짓는 가장 중요한 특징이다.
+
+![graph3](/static/graph-tree/graph3.png)
+
+- 트리는 그래프에 속한다.
+- **그래프가 만약 방향성을 가지게 된다면 이것을 방향성 그래프이며 tree 는 방향성 그래프의 일종이다. 즉 트리는 방향을 가진다.**
+
+### 1.1 Graph 구현방법: 인접리스트
+
+```tsx
+const graph = Array.from(Array(5), () => [])
+
+graph[0].push(1)
+graph[0].push(2)
+graph[1].push(2)
+graph[2].push(0)
+graph[2].push(4)
+graph[3].push(2)
+graph[4].push(0)
+```
+
+### 1.2 Graph 구현방법: 인접행렬
+
+```tsx
+const graph = Array.from(Array(5), () => Array(5).fill(false))
+
+graph[0][1] = true
+graph[0][2] = true
+graph[1][2] = true
+graph[2][0] = true
+graph[2][4] = true
+graph[3][2] = true
+graph[4][0] = true
+```
+
+## 2.Tree
+
+![tree](/static/graph-tree/tree.png)
+
+- 트리는 방향그래프(directed graph)
+- 자식노드는 반드시 한개의 부모노드만을 가진다.
+- Cycle 이 존재하지 않는 방향 그래프이다.
+
+### 2.1 Binary tree
+
+- 부모노드가 최대 2개의 자식 노드를 가지는 트리
+- 정점이 n개인 binary tree 의 최악의 경우 높이가 n이다 (편향트리).
+- 정점이 n개인 포화 혹은 완전 이진트리의 높이는 logn 이다.
+- 높이가 h 포화 이진트리는 2^h-1 개의 정점을 가진다. 높이 h = 레벨 k+1 (k 는 0부터 시작, k=0 은 루트 레벨).
+
+![binarytree](/static/graph-tree/binarytree.png)
+
+```tsx
+class Tree {
+  constructor(val) {
+    this.val = val
+    this.leftNode = null
+    this.rightNode = null
+  }
+
+  getVal() {
+    return this.val
+  }
+
+  setVal(val) {
+    this.val = val
+  }
+
+  setLeftNode(node) {
+    this.leftNode = node
+  }
+
+  getLeftNode(node) {
+    return this.leftNode
+  }
+
+  setRightNode(node) {
+    this.rightNode = node
+  }
+
+  getRightNode(node) {
+    return this.rightNode
+  }
+
+  // 중위순회 = left -> parent -> right
+  // 노드기준 아래 화살표 & 오름차순으로 순회
+  InOrderTree(node) {
+    if (!node) {
+      return
+    }
+
+    this.InOrderTree(node.leftNode)
+    console.log(node.val)
+    this.InOrderTree(node.rightNode)
+  }
+
+  // 전위순회 = parent -> left -> right
+  // 노드기준 왼쪽 화살표
+  preOrderTree(node) {
+    if (!node) {
+      return
+    }
+
+    console.log(node.val)
+    this.preOrderTree(node.leftNode)
+    this.preOrderTree(node.rightNode)
+  }
+
+  // 후위순회 = left -> right -> parent
+  // 노드기준 오른쪽 화살표
+  postOrderTree(node) {
+    if (!node) {
+      return
+    }
+
+    this.postOrderTree(node.leftNode)
+    this.postOrderTree(node.rightNode)
+    console.log(node.val)
+  }
+}
+
+let root = new Tree(5)
+let node = new Tree(3)
+root.setLeftNode(node)
+
+node = new Tree(7)
+root.setRightNode(node)
+
+node = new Tree(2)
+root.leftNode.setLeftNode(node)
+
+node = new Tree(4)
+root.leftNode.setRightNode(node)
+
+node = new Tree(6)
+root.rightNode.setLeftNode(node)
+
+node = new Tree(8)
+root.rightNode.setRightNode(node)
+
+console.log('tree', root)
+
+console.log('>>>> InOrder Start!! ')
+root.InOrderTree(root)
+
+console.log('>>>> preOrder Start!! ')
+root.preOrderTree(root)
+
+console.log('>>>> postOrder Start!! ')
+root.postOrderTree(root)
+```
+
+### 2.2 참고하면 좋을 문제들
+
+- in-order
+
+  - https://leetcode.com/problems/binary-tree-inorder-traversal
+  - https://leetcode.com/problems/increasing-order-search-tree/
+
+- post-order: https://leetcode.com/problems/binary-tree-postorder-traversal
+
+- pre-order: https://leetcode.com/problems/binary-tree-preorder-traversal
+
+감사합니다.

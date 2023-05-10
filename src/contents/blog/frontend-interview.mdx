@@ -1,0 +1,1670 @@
+---
+title: '프론트앤드 엔지니어를 위한 기술인터뷰 준비'
+date: '2023-01-31'
+lastmod: '2023-01-31'
+tags: ['frontend engineer', 'frontend developer', 'technical interview']
+draft: false
+summary: '이 포스팅에서는 프론트앤드 개발자가 들이기술인터뷰를 준비하면서 알아야 하는 내용들을 정리한 포스팅 입니다. 구체적으로 자바스크립트 기초,심화 및 리액트와 관련된 내용이 들어가 있습니다.'
+images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
+authors: ['default']
+---
+
+![main](/static/interview/cover.jpg)
+
+이 포스팅에서는 자바스크립트 관련 기술인터뷰를 준비하는 사람들을 위한 포스팅입니다. 시리즈는 2개로 나뉘어 기초편과 심화편으로 나누어 포스팅을 하겠습니다. 기초 포스팅에서는 자바스크립트의 동작원리 및 기초적인 문법과 인터뷰에서 잘나오는 질문에 대한 정리를 해두었습니다.
+
+---
+
+# JavaScript 기초
+
+## 1. 동기 vs 비동기 (callback,Promise,Async await)
+
+필자는 이 질문에 대해서는 거의 무조건 나온다고 생각하면 될 정도로 매우 중요하다고 생각한다.
+
+동기처리
+한가지 작업을 처리하고 있을 때에 다른 작업을 수행 할 수 없음. 현재 처리중인 작업이 마무리 되어야만 다음 작업을 처리 할 수 있음
+
+비동기처리
+한가지 작업을 처리하고 있을 다른 작업을 동시에 수행 할 수 있음. 속도면에서 동기 처리보다 더 빠르다. 다만 두개의 작업이 서로 연관되어있는 경우 첫번째 작업의 결과가 두번째 작업의 결과에 영향을 주는 경우라면 비동기 처리를 할 때 원하지 않는 결과가 나올수 있다. 이러한 문제를 해결하기 위해 만들어 진것이 콜백함수이다.
+
+예를들면 a 와 b 라는 메소드가 있다. a는 변수를 따로 받지 않지만 b 는 a 의 리턴값을 매개변수로 받는다면 a가 완료되지 않은 시점에서 b 를 작동시키는 것은 예상한 결과를 얻지 못하게 될 것이다.
+
+### 1.1 Callback
+
+- 정의: 함수에 파라미터로 들어가는 함수
+- 용도: 작업을 순차적으로 처리하고 싶을 때 사용한다.
+- 다만 여러개의 작업에 대한 실행순서를 보장해야 하는 경우 콜백안에 콜백을 넣고 그안에 다시 콜백을 넣는 콜백지옥에 빠질수 있다. 가독성이 떨어진다
+  변수 설정을 용이하게 할 수 없다. 또한 에러 핸들링을 하기 어렵다.
+
+### 1.2 Promise
+
+callback 과 마찬가지로 비동기처리 함수, 실행순서를 보장시켜준다.
+callback 은 callback 밖에서 처리된 비동기호출을 처리 할 수 없다. 하지만 promise 는 비동기처리 값이 promise 라는 객체에 저장되기 때문에 코드 작성이 쉬워진다.
+
+Promise 3가지 상태를 가진다
+
+> resolve: 비동기처리 성공
+
+> rejected: 비동기처리 실패
+
+> pending: 아직 작업중
+
+Promise 의 병렬작업
+Promise 는 작업은 처리 되었지만 그에대한 결과를 아직 반환하지 않은 객체이다. 따라서 결과를 반환하기 위해서는 then 이나 catch, finally 와 같은 병렬 작업을 해주어야 한다.
+promise 는 비동기처리 성공 (resolve)에 대한 작업을 then 으로 처리
+promise 는 비동기처리 실패 (resolve)에 대한 작업을 catch 으로 처리
+
+허나 then 과 catch 와 같은 병렬작업을 하고 그안에서 callback 을 처리해 주어야 하기 때문에 callback 보다는 용이하나 async await 보다는 가독성이 떨어지고 callback 과 마찬가지로 꼬리에 꼬리를 무는 구조를 완전히 피할 수는 없다.
+
+### 1.3 Async await
+
+async await
+
+callback, promise 과 마찬가지로 비동기처리 함수, 실행순서를 보장시켜준다.
+이전의 꼬리를 무는 구조를 개선하기 위해 promise 결과값을 await 를 통해 변수로 할당 해 줄 수 있다.
+이를 통해 좀더 유연하고 가독성 높은 코드를 쓸 수 있다.
+단 이 기능을 쓰려면 함수 앞에 async 라는 키워드를 써야한다.
+
+### 1.4 async await vs Promise
+
+에러 핸들링 Promise 를 활용할 시에는 .catch() 문을 통해 에러 핸들링
+async/await 은 에러 핸들링 할 수 있는 기능이 없어 try-catch() 문을 활용
+코드 가독성
+Promise의 .then() 지옥의 가능성
+코드가 길어지면 길어질수록, async/await 를 활용한 코드가 가독성이 좋다.
+async/await 은 비동기 코드가 동기 코드처럼 읽히게 해준다. 코드 흐름을 이해 하기 쉽다.E
+
+## 2. scope: 변수에 접근할 수 있는 범위
+
+- 전역 스코프(Global Scope): 전역에 선언되어있어 어느 곳에서든 해당 변수에 접근 가능
+- 지역 스코프(Local Scope)는 해당 지역에서만 접근할 가능. 해당 지역을 벗어난 곳에선 접근 불가능하다. (함수,블록 스코프)
+
+- 함수 스코프: 자바스크립트에서 함수를 선언하면 함수를 선언할 때 함수 내부를 함수 스코프라고 한다.
+- 블록 스코프: 중괄호 {} 로 둘러 쌓인 부분
+
+함수 스코프가 바로 지역 스코프의 예시.
+
+```tsx
+var a = 1 // 전역스코프
+function print() {
+  var a = 111 // 지역스코프
+  console.log(a)
+}
+
+print()
+
+console.log(a)
+```
+
+만약 이전 예시에서 print 함수 안에 변수 a의 선언을 지운다면 console엔 어떤 값이 출력될까요?. 이렇게 되면 undefined 이 나오는 것이 아니라 전역스코프를 사용하게 된다. 이러면 현상을 **scope chain** 이라고 한다. 현재 자신의 scope에서 사용하고자 하는 변수가 없다면 Scope Chain을 통해 해당 변수를 찾게됩니다.
+
+```tsx
+var a = 1 // 전역스코프
+function print() {
+  // 함수스코프
+  console.log(a)
+}
+
+print() // 1
+```
+
+블록스코프 역시 지역스코프에 속한다. 아래의 예시에서 print 를 호출하게 되면 a 가 정의되어 있지 않다는 결과를 얻게 될 것이다. function scope는 함수(function) 단위
+block scope는 중괄호{}를 단위로 범위를 정한다.
+
+```tsx
+function print() {
+  // 함수스코프
+  console.log(a)
+}
+
+{
+  // 블록스코프
+  const a = '1'
+}
+```
+
+## 3. closure
+
+클로저는 어떤 함수가 자신의 내부가 아닌 외부에서 선언된 변수에 접근하는 것을 의미한다.
+
+```tsx
+const rate = 1113.5
+
+function convertUsdToKrw(dollar) {
+  return dollar * rate
+}
+```
+
+예를 들어 rate 가 함수 외부에서 선언 되었더라도 함수를 실행하는데 문제 없다. 왜냐하면 클로저 덕분에 외부에서 선언된 변수를 내부에서 사용 할 수 있기 때문이다.
+
+```tsx
+function outer() {
+  const outerVal = '외부변수'
+
+  function inner() {
+    console.log(outerVal)
+  }
+
+  return inner
+}
+
+const innerExecute = outer()
+innerExecute() // 외부변수
+```
+
+위의 예시에서도 마찬가지로 inner 함수가 함수 외부 스코프에 선언된 변수에 접근 하게 된다. 그래서 innerExecute() 를 실행하면 `외부변수` 라는 결과가 출력된다.
+
+### 3.1 클로저를 사용하는 이유
+
+- 데이터 보존
+  > 클로저 함수는 외부 함수의 실행이 끝나더라도 외부 함수의 변수를 함수 내부에서 사용하는 것이 가능하다.
+- 모듈화
+  > 클로저 함수를 각각의 변수에 할당하면 각자 독립적으로 값을 사용하고 보존할 수 있다. 이와 같이 함수의 재사용성을 극대화 함수 하나를 독립적인 부품의 형태로 분리하는 것을 모듈화라고한다.
+
+### 3.2 클로저의 부작용
+
+클로저는 과용하거나 오용하면 코드를 읽거나 고치기가 매우 어려워진며 버그가 발생하기 쉽다.
+
+```tsx
+let rate = 1113.5
+
+function batchConvertedUsdToKrw(dollars) {
+  const convertUsdToKrw = (dollar) => dollar * tree
+  return dollars.map(convertUsdToKrw)
+}
+```
+
+위의 예시처럼 rate 변수에 의해 batchConvertUsdToKrw 에 클로저가 발생하고 convertUsdToKrw 함수 입장에서는 중첩 클로저가 발생한다. 이 함수가 짧기때문에 수정하는게 어렵지 않지만 매우 긴 함수였다면 출처를 파악하고 수정하는데 굉장히 어려울 것이다. 또한 let 으로 선언되어있기 때문에 batchConvertUsdToKrw 외부에서 값을 수정 할 수 있기 때문에 버그가 발생 할 수 있다. 이러한 문제를 방지 하기 위해서는 중첩되는 클로저는 최대한 지양하는 것이다.
+
+## 4. keyword
+
+**var vs const vs let**
+
+const 는 말 그대로 변하지 않는다는 의미이다. 한번 변수를 선언하면 바꿀수 없다. let 과 var 는 변수를 변경 해 줄 수 있다. 하지만 let 과 var 에도 많은 차이가 있다.
+
+### Scoping rule (유효범위)
+
+- var 는 함수스코프
+- let const 는 블록스코프 (블록범위 이외에서 호출하게 되면 에러가 발생한다)
+
+```tsx
+function run() {
+  var foo = 'Foo'
+  let bar = 'Bar'
+
+  console.log(foo, bar) // Foo Bar
+
+  {
+    var moo = 'Mooo'
+    let baz = 'Bazz'
+    console.log(moo, baz) // Mooo Bazz
+  }
+
+  console.log(moo) // Mooo
+  console.log(baz) // ReferenceError
+}
+```
+
+위의 예시에서 baz 는 let 을 이용해서 할당된 블록스코프이기 때문에 블록 밖에서 호출하면 에러가 발생한다.
+허나 moo 의 경우 var 로 선언되어있다. var 는 함수스코프이기 때문에 에러가 발생하지 않는다.
+
+### Hoisting
+
+Hoisting 은 변수 선언을 함수 최상단으로 끌어올려주는 기능을 말한다. 이 기능은 var 에서만 가능하다. 따라서 아래의 함수가 실행되어도 var foo 선언이 자동으로 최상단으로 올라게된다. let,const 는 불가능하다.
+
+```tsx
+function test() {
+  foo = 'hello'
+  console.log(foo)
+  var foo
+}
+
+test()
+```
+
+### Redeclaration
+
+Strict mode 에서 var는 재 선언이 가능하다.
+
+```tsx
+'use strict'
+
+var foo = 'foo1'
+var foo = 'foo2'
+
+let bar = 'bar1'
+let bar = 'bar2' // syntax error: identifier bar has already been declared
+```
+
+## 5. AJAX
+
+- 서버와 브라우저가 비동기 방식으로 데이터를 교환할 수 있는 통신 기능
+- 페이지 이동 없이 서버에 request 를 보내고 response 를 받는 기능
+
+AJAX 를 통해 비동기 API 통신을 하는 방법에는 XMLHttpRequest 와 fetch 가 있다.
+
+- XMLHttpRequest : 전통적인 이벤트 통신기반, 브라우저간 기능불일치, 코드가 긴편
+- fetch : promise 기반, 브라우저에 내장되어 기능일치, 코드가 간편함, ES6 미지원 브라우저는 사용불가
+- axios: 3rd party library
+
+## 6. call stack
+
+자바스크립트는 기본적으로 single threaded language 이다. 그 말은 오직 한개의 call stack (단일 콜 스택) 만이 프로그램을 실행하는데 사용된다. 다른말로 바꿔말하면, 자바스크립트가 한 번에 1개의 작업만 다룰 수 있다는 뜻이다.
+
+JavaScript is basically a single-threaded language. It means that only one call stack is used to run the program. In other words, JavaScript can only handle one task at a time.
+
+**call stack은 자바스크립트 엔진이 구동되면서 실행 중인 코드를 추적하는 공간이 콜스택이다.**
+
+The call stack is a tracking space of javascript engine
+
+```tsx
+function foo() {
+  console.log('function foo is called')
+  throw new Error('oops')
+}
+
+function bar() {
+  console.log('function bar is called')
+}
+
+function baz() {
+  console.log('function baz is called')
+  bar()
+}
+
+baz()
+```
+
+위의 코드를 실행하면 아래와 같은 출력값을 얻게 된다.
+
+![callstack2](/static/interview/callstack2.png)
+
+이 과정을 스택으로 이미지화 시켜본다면 다음과 같다.
+먼저 baz 함수를 호출한다. 그리고 baz 가 콜스택에 push 된다. 그다음 bar 함수가 호출되고 bar 가 콜 스택에 push 된다. 마지막으로 foo 함수가 호출되고 foo 함수가 콜스택에 push 된다. 그렇게 되면 최종적으로 아래와 같은 그림으로 나타나게 된다.
+
+![callstack3](/static/interview/callstack3.png)
+
+모든 콜스택이 push 되고 문제가 없는 경우 상단에 존재하는 함수부터 하나씩 pop 이된다. (스택은 기본적으로 last in first out을 원칙으로 한다.) pop을 하면서 콜스택이 비어 있을 때까지 작업을 수행한다. 콜스택이 완전히 비게 되면 해당 프로그램이 종료되는 것이다. 위의 경우에는 foo 에서 에러를 던지기 때문에 프로그램이 비정상적으로 종료된다. 에러가 던져진 이후의 콜 스택을 확인해 보면 다음과 같은 것을 알 수 있다.
+
+![callstack4](/static/interview/callstack4.png)
+
+이처럼 foo 가 가장위 그다음에 bar 그다음에 baz 가 나온것을 확인 할 수 있다.
+
+## 7.자바스크립트의 장단점
+
+자바스크립트의 장점
+
+- script 태그안에서 코드를 작성 할 수 있기 때문에 개발 속도가 빠릅니다.
+- 또한 컴파일 과정이 필요 없기 때문에 즉시 실행이 가능
+- 한가지 언어로 웹,모바일,서버 환경 개발가능
+
+자바스크립트의 단점
+
+- 사용자들이 자바스크립트 코드를 볼수있어서 악의적으로 사용될 우려가 있음
+- 브라우저 지원이 서로달라 transpile 해주어야 하는 경우가 있음
+
+## 8."==" 와 "==="의 차이
+
+- "=="는 동등 연산자로, 두 값을 비교할 때 형변환(type coercion)을 수행합니다. 즉, 비교하는 값의 데이터 타입이 다르더라도 자동으로 형변환을 수행한 후에 비교합니다.
+
+```tsx
+console.log(1 == '1') // true
+```
+
+- "==="는 일치 연산자로, 두 값이 데이터 타입과 값이 모두 같은지 비교합니다. 따라서 "==="를 사용하면 형변환 없이 정확한 값을 비교할 수 있습니다.
+
+```tsx
+console.log(1 === '1') // false
+```
+
+# JavaScript 심화
+
+## 1. Event loop
+
+자바스크립트는 single threaded language 이다. 싱글스레드이기 때문에 한번에 하나의 call stack 이 호출된다.
+즉 한번에 1개의 작업만 처리가 가능하다는 말이다. 그런데 자바스크립트는 setTimeout, 이벤트 callback 함수 등은 비동기처리를 한다. 이 말은 single thread 에 정 반대되는 말이다. 호출스택이 하나인 자바스크립에서 동시성이 지원 가능한 이유는 event loop 덕분이다.
+
+- Event loop 는 자바스크립트 엔진에 포함되지 않고, 브라우저 에서 자체적으로 관리한다.
+- 자바스크립트가 비동기 처리를 할 수 있는 것은 브라우저가 multi thread 이기 때문에 가능하다.
+
+![eventloop](/static/interview/eventloop.png)
+
+```tsx
+function foo() {
+  console.log('foo')
+}
+
+function bar() {
+  console.log('bar')
+}
+
+setTimeout(function () {
+  bar()
+}, 100)
+
+foo()
+
+setTimeout(function () {
+  console.log('bar')
+}, 100)
+```
+
+setTimeout 은 비동기 처리함수 이며 WebAPI 기능의 일부이다. 위의 코드를 실행하면 다음과 같은 과정이 일어나게 된다.
+
+- 1. 스크립트가 실행되면 글로벌 스코프 내에서 실행된다.
+     - callstack : global
+     - Webapi: 비어있음
+     - Task queue: 비어있음
+
+- 2. 첫번째 setTimeout 실행된다.
+     - callstack : global, setTimeout
+     - Webapi: setTimeout(cb,100)
+     - Task queue: 비어있음
+
+- 3. 첫번째 setTimeout 종료된다
+     - callstack : global
+     - Webapi: setTimeout(cb,100)
+     - Task queue: 비어있음
+
+- 4. foo 가 실행된다
+     - callstack : global, foo
+     - Webapi: setTimeout(cb,100)
+     - Task queue: 비어있음
+
+- 5. foo 의 console.log 가 call stack 에 쌓인다.
+     - callstack : global, foo, console.log
+     - Webapi: setTimeout(cb,100)
+     - Task queue: 비어있음
+
+- 6. 로그를 찍고나서 console.log 종료, 그다음 foo함수도 종료된다.
+     - callstack : global
+     - Webapi: setTimeout(cb,100)
+     - Task queue: 비어있음
+
+- 7. 두번째 setTimeout 이 실행된다
+     - callstack : global, setTimeout
+     - Webapi: setTimeout(cb,100), setTimeout(cb2,100)
+     - Task queue: 비어있음
+
+- 8. 두번째 setTimeout 이 종료된다
+     - callstack : global
+     - Webapi: setTimeout(cb,100), setTimeout(cb2,100)
+     - Task queue: 비어있음
+
+- 9. 스크립트가 종료된다
+     - callstack : 비어있음
+     - Webapi: setTimeout(cb,100), setTimeout(cb2,100)
+     - Task queue: 비어있음
+
+- 10. WebAPI 에 저장된 비동기 콜백이 실행되고 그것들을 task queue에 넣는다.
+      - callstack : 비어있음
+      - Webapi: 비어있음
+      - Task queue: cb,cb2
+
+- 11. 만약 콜스택 이 비어있다면 task queue 에 담겨져 있는 것들을 콜스택 으로 넘긴다. 이러한 과정을 **“틱”** 이라고 한다. 이렇게 되면 차례대로 cb,bar,console.log가 콜스택에 쌓이게 된다.
+      - 이때 task queue 안에 있는 cb2 는 콜스택이 비어있지 않기 때문에 틱을 실행 할 수 없다.
+      - callstack : cb,bar,console.log(‘bar’)
+      - Webapi: 비어있음
+      - Task queue: cb2
+
+- 12. 로그가 찍히고 나면 순차적으로 console.log(‘bar’), bar, cb 순으로 pop 됩니다.
+      - callstack : 비어있음
+      - Webapi: 비어있음
+      - Task queue: cb2
+
+- 13. 이전 과정을 동일하게 cb2 에서 반복하게 된다.
+      - callstack : cb2,console.log(‘baz’)
+      - Webapi: 비어있음
+      - Task queue: 비어있음
+
+- 14. 로그를 찍고 순차적으로 console.log(‘baz’),cb2 가 pop 된다.
+      - callstack : 비어있음
+      - Webapi: 비어있음
+      - Task queue: 비어있음
+
+이때 task queue 에 있는 데이터들이 콜스택으로 넘어가게 하는 것을 **event loop** 가 처리해준다. 이 예시의 경우 cb,cb2 가 콜스택으로 넘어가는 경우 event loop 가 처리해준다.
+
+## 2. undefinded vs null
+
+> undefined is 정의 되지않은 것
+
+> null is 정의는 되었지만 값이 없는 것.
+
+## 3. primitive type (원시타입) vs reference type (참조타입)
+
+원시 타입을 제외한 것들은 모두 참조타입. object, array, function
+단 array 와 function 역시 자바스크립트 에서는 객체로 취급이 된다. 즉 비교를 할 때 메모리 주소 참조
+따라서 참조타입은 object. 참조타입은 크기가 동적으로 변한다 (mutable). 하지만 원시타입은 immutable
+
+## 4. 자바스크립트의 number 가 다른언어들과 다른점?
+
+- 암시적 변환이 가능, 암시적변환은 작은 범위의 자료형에서 넓은 범위의 자료형으로 변환할 때 일어난다.
+- 다른 언어에서는 불가능
+
+## 5. 자바스크립트 대신 타입스크립트 사용하는 이유
+
+- 코드를 실행하기 이전에 에러를 강제화 할 수 있다. (The error can be enforced before executing the code.)
+- 타입을 강제화한다.(개발자들 간의 소통 문제로 버그를 발생시킬 경우 방지). (Force the type (preventing bugs due to communication problems between developers))
+
+## 6. module(모듈)
+
+자바스크립트는 각각의 파일을 별개의 프로그램으로 처리한다.
+과거에 모듈이라는 개념이 나오기 전에는 모든 자바스크립트 파일들이 전역스코프와의 통신을 통해 작동했다.
+
+![module1](/static/interview/module1.png)
+
+하지만 서로 다른 자바스크립트 파일간에 의존도 및 실행순서를 파악하기 어렵기 때문에 모듈이라는 개념이 등장했다.
+
+모듈을 사용하면 스크립트간 의존도 및 실행순서를 파악 할 수 있는 구조로 변하게 된다.
+
+![module2](/static/interview/module2.png)
+
+**모듈** 을 한 문장으로 정의 하자면: 특정한 기능을 하는 함수나 변수들의 집합을 말한다. (module is a set of functions or variables that perform a particular task.)
+
+노드에서는 두 가지 형식의 모듈을 사용한다.
+
+- CommonJS
+- ECMAScript
+
+## 7. this in javascript
+
+this 는 다른언어에서와 달리 상황에 따라 쓰임과 가지는 의미가 달라지기 때문에 정확히 이해하고 사용하지 않으면 예상치 못한 버그를 얻게 될 수 있다. 이 포스팅에서는 자바스크립트에서 발생 할 수 있는 7가지 this의 쓰임과 의미를 정리해 보았다.
+
+### 7.1 단독으로 쓴 this
+
+그냥 this를 호출하게 되면 globla object(전역객체/window 객체) 를 가리키에 된다.
+
+```tsx
+'use strict'
+
+var x = this
+console.log(this) //Window
+```
+
+### 7.2 함수 안에서 호출한 this
+
+함수 안에서 this는 함수의 주인 (전역객체) 에게 바인딩됩니다. 즉 함수 안에서 this 는 전역객체에 바인딩 된다.
+
+```tsx
+function example() {
+  return this
+}
+
+console.log(example()) // Window
+```
+
+```tsx
+function addNum() {
+  this.num = 100
+  num++
+}
+
+console.log(num) // 101
+console.log(window.num) // 101
+console.log(num == window.num) // true
+
+addNum()
+```
+
+다만, strict mode(엄격 모드)에서는 조금 다릅니다. 함수 내의 this에 디폴트 바인딩이 없기 때문에 **undefined**가 됩니다.
+
+```tsx
+function exmaple() {
+  return this
+}
+
+console.log(exmaple()) // undefined
+```
+
+```tsx
+// use strict
+var num = 0
+
+function addNum() {
+  this.num = 100 // error cannot set property 'num' of undefined
+  num++
+}
+
+addNum()
+```
+
+### 7.3 객체의 메소드에서의 this
+
+메서드 내부 코드에서 사용된 this는 해당 메서드를 호출한 **객체**로 바인딩됩니다.
+
+```tsx
+var person = {
+  firstname = 'john',
+  lastname = 'doe',
+  fullname = function () {
+    return this.firstname + ' ' + this.lastname
+  },
+}
+
+person.fullname() // john doe
+```
+
+### 7.4 event handler 에서 쓴 this
+
+이벤트 핸들러에서 this는 이벤트를 받는 HTML 요소를 가리킵니다.
+
+```tsx
+var btn = document.querySelector('#btn')
+btn.addEventListener('click', function () {
+  console.log(this) // #btn
+})
+```
+
+### 7.5 생성자 함수 에서의 this
+
+생성자 함수가 생성하는 객체로 this가 바인딩 됩니다. 생성자 함수는 객체를 생성하는데 사용되기 때문에 new 를 무조건 써야 한다.
+
+```tsx
+function Person(name) {
+  this.name = name
+}
+
+var kim = new Person('kim')
+var lee = new Person('lee')
+
+console.log(kim.name) // kim
+console.log(lee.name) // lee
+```
+
+### 7.6 명시적 바인딩 (apply,call,bind)
+
+명시적 바인딩은 짝을 지어준다는 뜻이다. 예를 들어 주어진 아래 예시처럼 2개의 생성자 함수가 있고 둘은 공통적으로 this.name 과 this.level 을 받아온다. 중복되는 부분을 apply 나 call 을 이용해서 처리 해 줄 수 있다.
+
+```tsx
+function Character(name, level) {
+  this.name = name
+  this.level = level
+}
+
+function Player(name, level) {
+  this.name = name
+  this.level = level
+}
+```
+
+apply 사용하기 (배열)
+
+```tsx
+function Character(name, level) {
+  this.name = name
+  this.level = level
+}
+
+function Player(name, level, job) {
+  Character.apply(this, [name, level])
+  this.job = job
+}
+
+var me = new Player('nana', 10, 'developer')
+console.log(me.name, me.level, me.job) // nana 10 developer
+```
+
+call 사용하기 (배열없이 단순 나열)
+
+```tsx
+function Character(name, level) {
+  this.name = name
+  this.level = level
+}
+
+function Player(name, level, job) {
+  Character.call(this, name, level)
+  this.job = job
+}
+
+var me = new Player('nana', 10, 'developer')
+console.log(me.name, me.level, me.job) // nana 10 developer
+```
+
+bind를 사용하여 함수를 객체와 바인딩 하게 되면 바인딩 된 함수는 객체를 참조하게 된다.
+
+```tsx
+var obj = {
+  name: 'shpark',
+}
+
+function bindTest() {
+  console.log(this.name)
+}
+
+bindTest() // undefined
+var bindTest2 = bindTest.bind(obj)
+bindTest2() // shpark
+```
+
+### 7.7 arrow function
+
+this를 함수 내부에서 쓰면 함수의 주인인 window 객체 (전역 객체) 에 바인딩 된다.
+
+```tsx
+var Person = function (name, age) {
+  this.name = name
+  this.age = age
+
+  setTimeout(function () {
+    console.log(this) // window
+  })
+}
+
+var me = new Person('kihun', 30)
+```
+
+따라서 이러한 것을 방지 하고 싶다면 arrow function 을 쓰면된다. arrow function 을 쓰게되면 자기자신이 속한 객체를 바인딩한다.
+
+```tsx
+var Person = function (name, age) {
+  this.name = name
+  this.age = age
+
+  setTimeout(() => {
+    console.log(this) // Person {name:'kihun',age:30}
+  })
+}
+
+var me = new Person('kihun', 30)
+```
+
+## 8. Array.prototype.map & filter
+
+혹시라도 map,filter,forEach 와 return 을 같이 사용해서 로직을 짜는 것을 고려하신다면 다음과 같은 상황에 주의하시길 바랍니다.
+
+```tsx
+const arr = [2, 3, 1, 5]
+
+const list1 = arr.filter((e) => {
+  if (e > 3) return
+  else return e
+})
+
+console.log(list1)
+
+const list2 = arr.filter((e) => {
+  if (e > 3) return
+  else return e
+})
+
+console.log(list2)
+```
+
+둘의 결과는 과연 어떻게 다를까요? 직관적으로 보면 같다고 생각할 수 있지만 결과는 약간의 차이가 있다.
+
+```tsx
+list1: [2, 3, 1, undefined]
+
+list2: [2, 3, 1]
+```
+
+보다시피 map 에는 undefined 가 들어가 있다. 이러한 확실한 차이가 존재하는데 filter 는 필터링을 위한 목적으로 설계 된 것이지만 map 은 그렇지 않다. 따라서 무언가를 리턴해주어야 하고 그렇지 않으면 undefined 을 리턴하게 된다. 원래 자바스크립트는 defualt 로 undefined 을 리턴해준다 (심지어 return type 을 void 로 지정해주어도 undefined 을 리턴한다)
+
+따라서 필터링이 목적이라면 filter 메소드를 사용하자.
+
+## 9. forEach 메소드와 loop 제어문
+
+혹시라도 forEach 로 iteration 제어를 시도했다면 죄송하지만 forEach 를 완전 잘못 이해하고 있는 겁니다. 공식문서에도 나와있드시 forEach 는 예외를 발생시키는 경우를 제외하고는 forEach 루프를 중단시킬 방법이 없다. 따라서 그러한 목적으로 forEach 메소드를 사용해서는 안된다.
+
+**즉 forEach 제어하기 위해**
+
+- **break**
+- **continue**
+
+**를 쓰면 compile 에러가 발생한다.**
+
+- **return**
+
+은 컴파일상에는 에러가 없다. 하지만 리턴값에 영향을 주지는 않는다. 왜냐하면 forEach 는 배열을 순회하는 역활을 하지, 순회하면서 설정된 로직에 의해 새로운 배열을 자동으로 리턴해주지는 않기 때문이다.
+
+**따라서 return 은 있으나 없으나 에러는 발생시키지 않지만 동작도 하지 않는다.**
+
+혹시 이러한 목적을 생각했다면 forEach 가 아니라 map 혹은 filter 를 사용해야한다.
+
+필자가 생각하기에 forEach 를 쓰기에 적합한 상황은 크게 2가지가 있다.
+
+```tsx
+1. 입력받은 배열의 내부요소를 추가적인 공간을 사용하지 않고 변경 할 때
+
+const arr = [2,3,1,5]
+
+arr.forEach((e,i) => {
+  if(e<4) arr[i] = e+1
+})
+
+arr = [3, 4, 2, 5]
+```
+
+```tsx
+2. 입력받은 배열의 내부요소를 변경하고 추가적인 공간에 저장 할 때
+
+const arr = [2,3,1,5]
+let list = []
+
+arr.forEach((e,i) => {
+  if(e<4) list.push(e+1)
+})
+
+list = [3, 4, 2]
+```
+
+## 10. Map,Set 의 등장 그리고 object
+
+ES6부터 새롭게 등장한 자료구조 형태가 바로 Map 과 Set 이다. Set,Map이 등장하게 된 이유는 무엇일까? 한 3가지 정도로 요약 해볼 수 있다.
+
+- object는 문자열/심볼 만 key 값으로 들어간다. (map,set은 1와 '1'도 구분된다.)
+- 객체의 프로퍼티의 개수를 알아야할경우 object 로 파악하는게 가능하지만 빌트인 함수가 없어서 시간이 오래 걸린다.
+- object는 for of 또는 spread syntax로 접근이 힘들다. (object는 not iterable)
+
+### Map
+
+- Map 은 pair 형태로 unique key 와 key 를 매핑하여 데이터를 저장한다.
+- key는 unique 하기때문에 중복을 허용하지 않는다.
+- Map 의 주요 사용 목적은 빠르게 searching, looking up 하는데 사용된다. 그 이유는 시간복잡도가 O(1) 이기 때문이다. 해당 key 와 그에 매핑된 값이 pair 로 저장되어 있기 때문에 상수시간 만큼 소요된다.
+- 매핑될때 들어가는 key,value 는 어떠한 type 도 허용이 된다.
+- elements 의 순서가 보존된다.
+- map 은 built-in iterable 하다.
+
+```tsx
+Example: {(1, “smile”), (2, “cry”), (42, “happy”)}
+```
+
+위와 같은 형태로 저징이 된다. key 와 value 하나도 묶여 있다. 또한 built-in iterable 하기 때문에 forEach,for..of 같은 것을 바로 사용하는 것이 가능하다.
+
+```tsx
+console.log(typeof map[Symbol.iterator]) //function
+
+//For map: { 2=>3, 4=>5}
+for (const item of map) {
+  console.log(item)
+  //Array[2,3]
+  //Array[4,5]
+}
+//Or
+for (const [key, value] of map) {
+  console.log(`key: ${key}, value: ${value}`)
+  //key: 2, value: 3
+  //key: 4, value: 5
+}
+
+map.forEach((value, key) => console.log(`key: ${key}, value: ${value}`))
+//key: 2, value: 3
+//key: 4, value: 5
+```
+
+### Object
+
+object 는 map 과 상당히 다른 부분이 많이 있다.
+
+- 일단 key,value 쌍으로 저장되는 것은 맞지만 매핑이 되지는 않는다.
+
+```tsx
+Example: {1: ‘smile’, 2: ‘cry’, 42: ‘happy’}
+```
+
+- key 에 integer 와 string 만 허용이된다. map 에서는 어떠한 타입도 다 허용되었던거와는 많은 차이가 있다.
+- elements 의 순서가 보존되지 않는다.
+- Map 은 object 의 instance 이다. 하지만 object 는 map 의 인스턴스가 아니다.
+- Object 는 built-in iterable 하지 않다.
+- Object에서 key를 주로 property 부른다
+- JSON 은 object 를 지원하지만 map 은 지원하지 않는다. 따라서 JSON 형태로 데이터를 다루는 경우(사실 대부분의 경우 서버로부터 데이터를 받아올떄는 JSON 을 사용한다.)
+
+```tsx
+var map = new Map([
+  [1, 2],
+  [3, 4],
+])
+console.log(map instanceof Object) //true
+var obj = new Object()
+console.log(obj instanceof Map) //false
+```
+
+object 는 built-in iterable 하기 않기 때문에 forEach,for..of 을 직접 쓸수 없다. 그래서 for..in 을 사용한다. Object.key(obj) 을 이용해서 iterate 할 수 있다.
+
+```tsx
+
+{id: 1, name: "test"}
+for (var key in obj){
+   console.log(`key: ${key}, value: ${obj[key]}`);
+   //key: id, value: 1
+   //key: name, value: test
+}
+
+Object.keys(obj).forEach((key)=> console.log(`key: ${key}, value: ${obj[key]}`));
+//key: id, value: 1
+//key: name, value: test
+```
+
+### Set
+
+Set은 중복을 허용하지 않는 데이터 집합을 찾고 싶을 때 사용한다.
+Set을 사용하면 데이터에 빠르게 엑세스 할 수 있다.
+1와 '1'은 다른것으로 간주 즉, 중복을 확인하기 위해 강제적으로 자료형을 변형하지 않는다.
+forEach(callback(value,key,set)[, thisArg]), for of 로 값에 접근가능하다.
+
+### Map 와 Set 을 배열화 하기
+
+spread operator 를 사용하세요
+
+```tsx
+const set = new Set()
+set.add(1)
+const map = new Map()
+map.set(0, 1)
+
+console.log([...set, ...map])
+```
+
+### Map.prototype.entries / Set.prototype.entries
+
+JavaScript Map.entries() 메서드는 맵의 각 요소의 [key, value] 쌍을 모두 포함하는 반복기 개체를 반환하는 데 사용됩니다. map의 모든 요소의 [키, 값] 쌍을 삽입 순서대로 반환합니다
+
+```tsx
+const map = new Map()
+map.set('abc', 'bfew')
+map.set('bbb', 'forty two')
+map.set(43, 33)
+map.set(44, 131)
+
+const iterator1 = map.entries()
+
+console.log(iterator1.next().value) // ["abc", "bfew"]
+console.log(iterator1.next().value) // ["bbb", "forty two"]
+
+for (const entry of iterator1) {
+  console.log(entry)
+  // Expected output: Array [43, 43]
+  // Expected output: Array ["44", "131"]
+}
+```
+
+Set.prototype.entries() 메소드는 Set 객체의 각각의 요소를 삽입순서대로 [값, 값]의 형태로 가진 배열의 새로운 Iterator 객체를 반환합니다. Set객체에는 Map객체의 key가 없습니다. 그러나, Map 객체의 API와 비슷하게 유지하기 위해, 각각의 "요소"는 "키"와 "값" 자리에 같은 값을 가지게 됩니다. 결과적으로 [값, 값] 형태의 배열이 반환되게 됩니다.
+
+```tsx
+const set1 = new Set()
+set1.add(42)
+set1.add('forty two')
+set1.add(43)
+set1.add(44)
+
+const iterator1 = set1.entries()
+
+console.log(iterator1.next().value) // [42, 42]
+console.log(iterator1.next().value) // ["forty two", "forty two"]
+
+for (const entry of iterator1) {
+  console.log(entry)
+  // Expected output: Array [43, 43]
+  // Expected output: Array ["44", "44]
+}
+```
+
+핵심적인 특징은 한번 지난 것은 다시 불러오는 것이 안된다. 위의 예시에서 보면 4개의 데이터를 저장했다. 그리고 next().value 를 찍어서 처음 데이터를 가져옴, 그리고 같은 것을 반복하면 그 다음것이 출력됨. 그리고 나머지 2개(43,44) 는 for..of 로 출력했다.
+
+### Object 와 Map 의 호환
+
+둘은 호환이 가능하다. fromEntries() & entries() 를 이용해서 호환할 수 있다.
+
+```tsx
+1. Object.entries(obj): object -> map
+
+let obj = {
+  name: 'John',
+  age: 30,
+}
+
+let map = new Map(Object.entries(obj))
+
+alert(map.get('name')) // John
+```
+
+```tsx
+2. Object.fromEntries(map.entries()): map -> object
+let map = new Map()
+map.set('banana', 1)
+map.set('orange', 2)
+map.set('meat', 4)
+
+let obj = Object.fromEntries(map.entries()) // 맵을 일반 객체로 변환 (*)
+
+// 맵이 객체가 되었습니다!
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange) // 2
+```
+
+## 11. npm vs yarn
+
+npm 과 yarn 의 차이를 아시나요? 둘다 자바스크립트 패키지 매니저 (Javascript Package Manager) 로 잘 알려져 있습니다. 둘다 결과적으로 필요한 패캐지들을 불러오는 역할을 하는데 어떠한 차이가 있는지 아는 것이 중요합니다.
+
+### 속도
+
+- npm은 필수 단계를 순차적으로 수행, 다음 패키지로 넘어가기 전에 각 패키지를 완전히 설치해야 한다고 한다. 이러한 문제는 npm 6이상에서 보완되어 yarn 과 비슷한 성능을 보여줌
+- yarn은 동시에 여러 패키지들을 설치할 수 있기 때문에 속도 면에서 크게 향상된다는 것이다.
+
+### 의존성
+
+- npm은 의존 관계를 가지는 패키지들을 추가적으로 가져와 모두 포함하여 설치한다.
+- yarn은 yarn.lock이나 package.json 파일에 있는 것들만 설치를 한다. 즉 모든 설치 환경에 같은 패키지 설치를 보장해주어 서로다른 환경마다 설치하면서 발생하는 버그를 줄여준다.
+
+### 패키지 잠금 파일
+
+- npm => package-lock.json
+- yarn => yarn.lock
+
+## 12. 프론트앤드 메모이제이션
+
+메모이제이션은 특정 작업에 대한 결과를 캐싱하여 다른 작업에 재활용하여 비싼 작업의 속도를 높이는 기술을 말한다.
+
+예를 들어 클라이언트가 서버에 request 를 반복적으로 보내서 데이터를 얻어야 하는 경우 메모이제이션을 이용하여 데이터를 재활용 하거나 특정 랜더링 작업에 필요한 데이터를 캐시 메모리로 부터 재활용 한다면 비싼 작업에 대한 속도를 개선하고 performance 를 개선 할 수 있다.
+
+Memoization is a technique for speeding up expensive operations by caching the results of a particular operation and reusing them for other operations.
+For example, if the client needs to make repeated requests to the server to get data, using memoization to reuse data from cache memory.
+
+## 13. iframe (inline frame)
+
+현재 html 페이지에 다른 html 페이지를 불러와서 내장 할 수 있는 기능을 의미한다. 대표적으로 유튜브 영상을 공유 할 떄 많이 쓴다.
+
+```tsx
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/rsuUVEIMpYU"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </body>
+</html>
+```
+
+## 14. 리액트를 사용하는 이유 그리고 리액트에서의 함수형 컴포넌트와 클래스 컴포넌트의 차이점
+
+React가 UI 구축과 관리를 쉽게 할 수 있는 사용자 측 라이브러리이기 때문입니다. 또한, 리액트 컴포넌트는 모듈화를 통해서 개발 생산성을 높이고, 코드 유지 보수성을 높일 수 있습니다. 리액트에서 컴포넌트를 만드는 방법에는 클래스형 컴포넌트(class components)와 함수형 컴포넌트(functional components)가 있습니다.
+
+### 클래스 컴포넌트
+
+- ES6의 클래스(class)를 사용하여 컴포넌트를 정의
+- 상태를 this.state로 정의하고, 생명주기 메서드를 오버라이드하여 다양한 작업을 수행하며 this를 이용하여 상태나 메서드를 참조한다.
+
+### 함수형 컴포넌트
+
+- 함수형 컴포넌트는 ES6의 화살표 함수(arrow function)를 사용하여 컴포넌트를 정의합니다. 이 방식은 훅(hook) API와 함께 많이 사용되며, 컴포넌트의 상태와 생명주기를 다룰 때도 유용합니다.
+- 함수형 컴포넌트는 상태를 useState 훅을 사용하여 정의하고, useEffect 훅을 사용하여 생명주기를 다룹니다.
+- 함수형 컴포넌트에서는 this 키워드를 사용하지 않습니다. 이러한점 때문에, 함수형 컴포넌트는 더 간결하고 가독성이 좋아지며, 테스트와 리팩토링이 쉽게 이루어질 수 있습니다.
+
+## 15. 스코프 체이닝(scope chaining)
+
+- 스코프 체이닝(scope chaining)은 변수를 참조할 때 현재 스코프에서 해당 변수를 찾지 못하면 상위 스코프로 올라가며 찾는 것을 말합니다.
+- JavaScript에서는 함수가 실행될 때 스코프가 생성됩니다. 함수 내부에 변수가 정의되면 해당 변수는 현재 함수의 스코프 내에서만 유효합니다. 하지만, 함수 내부에서 변수를 참조할 때 해당 변수가 현재 스코프에 없다면 상위 스코프에서 변수를 찾아볼 수 있습니다. 이러한 과정을 스코프 체이닝이라고 합니다.
+- 예를 들어, 아래 코드에서는 함수 inner 내부에서 num1 변수를 참조하고 있습니다. 하지만 num1 변수는 inner 함수의 스코프 내에 정의되어 있지 않습니다. 따라서, inner 함수는 상위 스코프인 outer 함수의 스코프에서 num1 변수를 찾으러 갑니다. 만약 num1 변수가 outer 함수의 스코프 내에도 없다면, 더 상위 스코프를 찾아볼 것입니다.
+
+```tsx
+function outer() {
+  var num1 = 1
+
+  function inner() {
+    console.log(num1)
+  }
+
+  inner() // 1
+}
+
+outer()
+```
+
+## 16. 가비지 컬렉터
+
+가비지 컬렉터는 프로그래밍 언어에서 자동으로 메모리를 관리하는 기능입니다.
+
+예를 들어 자바스크립트에서는 객체를 생성할 때, 이 객체를 가리키는 변수나 프로퍼티 등이 없어지면 메모리에서 자동으로 제거됩니다. 이 때, 가비지 컬렉터가 해당 객체를 더 이상 사용하지 않는 것으로 간주하고, 해당 객체의 메모리를 자동으로 해제합니다.
+
+# JavaScript 로 구현한 알아두면 유용한 로직
+
+## 17. 깊은복사 (deepcopy) vs 얕은 복사 (shallow copy)
+
+- 대다수 프러그래밍 언어에서 어떤 변수에 담김 값을 다른 변수에 복사할 때는 깊은 복사와 얕은 복사라는 2가지 방식을 지원합니다. 복사 방식츤 값의 타입에 따라 각기 다르게 적용됩니다. 만일 number,boolean 등 값의 메모리 크기를
+  컴파일 타임때 알 수 있는 타입은 항상 깊은복사가 일어납니다. 예외적으로 타입스크립트에서 문자열은 항상 읽기 전용이므로 메모리 크기를 컴파일 타임때 알 수 있어 깊은 복사가 일어납니다.
+
+- 반면에 객체,배열 등 값의 메모리 크기를 런타임 때 알 수 있는 타입은 앝은 복사가 일어납니다.
+
+```tsx
+let str1 = 'abc'
+let str2 = str1
+str2 = 'def'
+
+console.log(str1, str2) // abc def
+```
+
+이처럼 문자열은 깊은복사가 일어납니다. 하지만 객체와 같은 참조타입들은 조금 다르게 작동합니다.
+
+```tsx
+let obj1 = { a: 1 }
+let obj2 = obj1
+
+obj2.a = 2
+
+console.log(obj1, obj2) // {a:2} {a:2}
+```
+
+그래서 참조타입을 복사하기 위해선 다른 방법이 필요합니다.
+
+```tsx
+let obj1 = { a: 1 }
+let obj2 = { ...obj1 }
+
+obj2.a = 2
+
+console.log(obj1, obj2) // {a:1} {a:2}
+```
+
+혹은 다른 방법으로 아래와 같이 해도 가능하다.
+
+```tsx
+let obj1 = { a: 1 }
+let obj2 = Object.assign({}, obj1)
+
+obj2.a = 2
+
+console.log(obj1, obj2) // {a:1} {a:2}
+```
+
+그런데 만약 객체가 다음과 같은 경우에는 조금 상황이 다를 수 있다.
+
+```tsx
+let obj1 = { a: [{ b: 1 }] }
+let obj2 = { ...obj1 }
+
+obj2.a[0].b = 2
+
+console.log(obj1, obj2) // { a: [{ b: 2 }] } { a: [{ b: 2 }] }
+```
+
+이처럼 객체안에 또다른 객체가 value 로 들어간 경우에는 기존의 방법으로 깊은 복사를 할 수 없다. 따라서 이런경우에는 다른 방법을 생각해보아야 한다
+
+```tsx
+function deepCopy(obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    // if obj is not an object or is null, return it
+    return obj
+  }
+
+  const copy = Array.isArray(obj) ? [] : {}
+
+  Object.keys(obj).forEach((key) => {
+    // recursively copy each property of the object
+    copy[key] = deepCopy(obj[key])
+  })
+
+  return copy
+}
+
+const original = { a: [{ b: 1 }] }
+const copy = deepCopy(original)
+
+// modify the original object
+original.a[0].b = 2
+
+console.log(original) // { a: [{ b: 2 }] }
+console.log(copy) // { a: [{ b: 1 }] }
+```
+
+이처럼 재귀함수를 이용하여 해결하는 방법이 있고, 좀더 간단하게 하기 위해선 JSON.stringify 를 사용해도 된다.
+
+```tsx
+const original = { a: [{ b: 1 }] }
+const copy = JSON.parse(JSON.stringify(original))
+
+// modify the original object
+original.a[0].b = 2
+
+console.log(original) // { a: [{ b: 2 }] }
+console.log(copy) // { a: [{ b: 1 }] }
+```
+
+## 1. Combination (조합)
+
+조합이란 서로 다른 n개원소 중 r개를 뽑아 만든 집합. 겹치는거 고려하여 가능한 조합들을 만들어 낸다. 예를 들어 [ 1, 4, 5 ] 와 [1, 5, 4] 는 같은 것으로 취급해서 둘중 1개만 리턴값에 포함된다.
+
+시간복잡도: O(Math.pow(2,n))
+
+```tsx
+function combinations(arr, r) {
+  // 1개만 뽑는다면 그대로 조합을 반환한다. 탈출 조건으로도 사용된다.
+  if (r === 1) return arr.map((v) => [v])
+  const result = []
+
+  // 요소를 순환한다
+  arr.forEach((fixed, idx, arr) => {
+    // 현재 index 이후 요소를 추출한다.
+    // index번째는 선택된 요소
+    const rest = arr.slice(idx + 1)
+    // 선택된 요소 이전 요소들을 제외하고 재귀 호출한다.
+    const temp = combinations(rest, r - 1)
+    // 선택된 요소와 재귀 호출을 통해 구한 조합을 합쳐준다.
+    const combine = temp.map((v) => [fixed, ...v])
+    // 결과 값을 추가한다.
+    result.push(...combine)
+  })
+  // 결과 반화
+  return result
+}
+```
+
+## 2. Permutation (순열)
+
+순열이란 서로 다른 n개원소 중 r개를 택하여 일렬로 나열하는 경우를 말한다. 겹치는거 고려 하지 않는다. 예를들어 [ 1, 4, 5 ] ,[ 1, 5, 4 ] 는 원소들이 곂치는 배열이지만 둘다 독립적인 원소로 취급하여 둘다 리턴값에 포함된다.
+
+시간복잡도: O(n!)
+
+```tsx
+function permutations(arr, r) {
+  if (r === 1) return arr.map((v) => [v])
+  let result = []
+
+  arr.forEach((fixed, idx, arr) => {
+    // 현재 index를 제외한 요소를 추출한다.
+    // index번째는 선택된 요소
+    const rest = arr.filter((_, index) => index !== idx)
+    // 선택된 요소를 제외하고 재귀 호출한다.
+    const temp = permutations(rest, r - 1)
+    // 선택된 요소와 재귀 호출을 통해 구한 순열을 합쳐준다.
+    const combine = temp.map((v) => [fixed, ...v])
+    // 결과 값을 추가한다.
+    result.push(...combine)
+  })
+  // 결과 반환
+  return result
+}
+```
+
+## 3. Factorial
+
+```tsx
+function factorialize1(num) {
+  if (num < 0) return -1
+  else if (num == 0) return 1
+  else {
+    return num * factorialize1(num - 1)
+  }
+}
+
+function factorialize2(num) {
+  let result = num
+  if (num === 0 || num === 1) return 1
+  while (num > 1) {
+    num--
+    result *= num
+  }
+  return result
+}
+```
+
+## 4. Prime number (소수)
+
+1과 자기자신만으로만 나누어지며 1보다 큰 숫자를 소수라고 한다.
+
+1.find prime number / O(n)
+
+```tsx
+function findPN(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false
+  }
+  return true
+}
+```
+
+2. 그 어떤 소수도 n의 제곱근보다 큰 수로 나눠질 수 없다. 여기서 N의 제곱근은 제곱해서 N가 되는 모든 수 / O(sqrt(n))
+
+```tsx
+function findPN2(num) {
+  for (let i = 2; i * i <= num; i++) {
+    if (num % i === 0) return false
+  }
+  return true
+}
+```
+
+3.에라스토테네스의 체 / O(n \* log(logn))
+
+```tsx
+function findNumberOfPN(num) {
+  const prime = [false, false, ...Array(num - 1).fill(true)]
+
+  for (let i = 2; i * i <= num; i++) {
+    if (prime[i]) {
+      for (let j = i * 2; j <= num; j += i) {
+        prime[j] = false
+      }
+    }
+  }
+
+  return prime.reduce((acc, item) => {
+    if (item) acc += 1
+    return acc
+  })
+}
+```
+
+4. 범위안에 속한 모든 소수 찾기
+
+```tsx
+function returnAllPN(num) {
+  const prime = [false, false, ...Array(num - 1).fill(true)]
+
+  for (let i = 2; i * i <= num; i++) {
+    if (prime[i]) {
+      for (let j = i * 2; j <= num; j += i) {
+        prime[j] = false
+      }
+    }
+  }
+
+  return prime.reduce((acc, cv, ci) => {
+    if (cv) acc.push(ci)
+    return acc
+  }, [])
+}
+```
+
+## 5. localeCompare (자바스크립트 내장함수)
+
+알바벳 비교 및 순서 나열하는데 사용되는 함수
+
+```tsx
+// 알파벳순서
+
+console.log('a'.localeCompare('c'))
+// negative value -> "a" is before "c"
+
+console.log('check'.localeCompare('against'))
+// positive value) -> "check" comes after "against"
+
+console.log('a'.localeCompare('a')) //
+// zero -> "a" and "a" are equivalent
+
+const arr = ['réservé', 'cliché', 'adieu']
+console.log(arr.sort((a, b) => a.localeCompare(b)))
+```
+
+## 6. Array-flatten
+
+1.foreach
+
+```tsx
+let arr = [1, 2, [[3, 4]], [5, 6, 7, 8, 9], [10, 11, 12]]
+
+function flatten(arr) {
+  let result = []
+  arr.forEach((k) => {
+    if (Array.isArray(k)) {
+      result = result.concat(flatten(k))
+    } else {
+      result.push(k)
+    }
+  })
+  return result
+}
+```
+
+2.reduce
+
+```tsx
+let arr = [1, 2, [[3, 4]], [5, 6, 7, 8, 9], [10, 11, 12]]
+
+function flatten(arr) {
+  return arr.reduce((a, b) => {
+    if (Array.isArray(b)) {
+      a = a.concat(flatten(b))
+    } else {
+      a.push(b)
+    }
+    return a
+  }, [])
+}
+```
+
+## 7. find duplicated elements
+
+1.filter
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+let find = arr.filter((k, i, arr) => {
+  return arr.indexOf(k) !== i
+})
+```
+
+2.hash-map
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+let hash = new Map()
+for (const k of arr) {
+  hash.set(k, hash.get(k) + 1 || 1)
+}
+
+console.log([...hash].filter(([_, count]) => count > 1).map((e) => e[0]))
+```
+
+3.reduce
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+const find = arr.reduce(
+  (acc, cv) => {
+    if (!acc.unique.includes(cv)) acc.unique.push(cv)
+    else acc.find.push(cv)
+    return acc
+  },
+  {
+    unique: [],
+    find: [],
+  }
+)
+```
+
+## 8. remove duplicated elements
+
+1.reduce
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+const unique = arr.reduce((a, b) => {
+  if (!a.includes(b)) a.push(b)
+  return a
+}, [])
+```
+
+2.for-loop
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+let pure = []
+for (let i = 0; i < arr.length; i++) {
+  if (!pure.includes(arr[i])) pure.push(arr[i])
+}
+```
+
+3.filter
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+let unique = arr.filter((e, i, arr) => {
+  return arr.indexOf(e) === i
+})
+```
+
+4.set
+
+```tsx
+let arr = ['js', 1, 2, 'js', 1, 'startup', '2', true, 'startup', false, true]
+
+console.log([...new Set(arr)])
+```
+
+## 9. reverse array
+
+1.while
+
+```tsx
+let temp = [9, 2, 8, 5, 5, 6, 2, 3]
+
+function reverse(array) {
+  let result = []
+  while (array.length) {
+    result.push(array.pop())
+  }
+
+  return result
+}
+
+console.log(reverse(temp))
+```
+
+2.for-loop
+
+```tsx
+let temp = [9, 2, 8, 5, 5, 6, 2, 3]
+
+let len = temp.length - 1
+for (let i = 0; i <= len / 2; i++) {
+  let cnt = temp[i]
+  temp[i] = temp[len - i]
+  temp[len - i] = cnt
+}
+console.log(temp)
+```
+
+3.reduce-right
+
+```tsx
+let temp = [9, 2, 8, 5, 5, 6, 2, 3]
+
+temp.reduceRight((prev, curr) => {
+  prev.push(curr)
+  return prev
+}, [])
+```
+
+4.for-loop reverse
+
+```tsx
+let temp = [9, 2, 8, 5, 5, 6, 2, 3]
+
+let reverse = []
+for (let i = temp.length; i > 0; i--) {
+  reverse.push(temp[i - 1])
+}
+console.log(reverse)
+```
+
+## 10. Square overlapping
+
+겹치지 않는 사각형. 주어진 좌표값들을 이용해서 박스를 그린다. 입력받은 순서대로 그린다. 만약 이미 그려진 것들과 새로 그리게 될 박스가 겹친다면 그리지 않고 다음거로 넘어간다.좌표값은 [x1,y1,x2,y2] 로 들어간다.
+
+```tsx
+function isBoxOverlap(rec1, rec2) {
+  let overlap = false
+  const [E, F, G, H] = rec2
+  for (const temp of rec1) {
+    const [A, B, C, D] = temp
+    if (E >= C || G <= A || F >= D || H <= B) {
+      continue
+    } else {
+      overlap = true
+      break
+    }
+  }
+  return overlap
+}
+
+function solution(boxes) {
+  let drawnBox = [boxes[0]]
+  let answer = [0]
+  boxes.forEach((box, idx) => {
+    // 첫번째 pass
+    if (!idx) return
+    if (isBoxOverlap(drawnBox, box)) return
+    else {
+      drawnBox.push(box)
+      answer.push(idx)
+    }
+  })
+  return answer
+}
+
+const boxlist = [
+  [1, 1, 3, 3],
+  [2, 2, 4, 4],
+  [1, 5, 6, 7],
+  [3, 3, 5, 5],
+]
+console.log(solution(boxlist)) // [0,2,3], 두번째꺼는 겹쳐서 넘어간다.
+```
+
+## 11.String Number sorting
+
+```tsx
+const strNum = ['a10', 'a2', 'a1', 'a12', 'j5', 'j10', 'j2', 'j1', 'j13', 'j19']
+
+const sorting = (arr) => {
+  return arr.sort((a, b) => {
+    return a.localeCompare(b, undefined, {
+      numeric: true,
+      sensitivity: 'base',
+    })
+  })
+}
+
+console.log(sorting(strNum))
+```
+
+## 12. Find matched string
+
+```tsx
+function stringCompare(str1, str2) {
+  if (str1.length !== str2.length) return false
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== '?' && str1[i] !== str2[i]) return false
+  }
+  return true
+}
+
+function solution(words, queries) {
+  let list = new Map()
+  for (const query of queries) {
+    list.set(query, 0)
+    for (const word of words) {
+      if (stringCompare(query, word)) {
+        list.set(query, list.get(query) + 1 || 1)
+      }
+    }
+  }
+  return [...list].map((e) => e[1])
+}
+
+const words = ['test', 'tikitaka', 'techtaka', 'tech', 'tell', 'techargo', 'argoport']
+const queries = ['te??', '??c?taka', 't???taka', 'pro?']
+console.log(solution(words, queries))
+```
+
+## 13. Regular expression
+
+```tsx
+/*
+  flag option
+  g	모든 문자 일치(global)
+  i	영어 대소문자를 구분 않고 일치(ignore case)
+  m	여러 줄 일치(multi line)
+*/
+
+// 생성자 함수 방식: new RegExp(expression,flag)
+const rexExp1 = new RegExp('^d+')
+const regExp2 = new RegExp('^d+', 'gi')
+// 리터럴 방식
+const rexExp3 = /^\d+/
+const regExp4 = /^\d+/gi
+
+// .test() -> return boolean
+const message1 = '안녕하세요 010-1234-5678 으로 연락주세요'
+const message2 = '안녕하세요. 연락하지 마세요!'
+const message3 = '안녕하세요. 010-1234-5678 으로 연락하지 말고 010-2153-3493'
+
+const numExp = /\d{3}-\d{3,4}-\d{4}/
+console.log(numExp.test(message1))
+console.log(numExp.test(message2))
+
+//.exec() -> return array (matched data,index) or null
+console.log(numExp.exec(message1))
+console.log(numExp.exec(message2))
+
+// match,matchAll()
+// match work like find, return array or null but only the first matched data
+console.log(message2.match(numExp))
+console.log(message3.match(numExp))
+
+// replace -> replaced matched data
+console.log(message1.replace(numExp, '전화번호'))
+console.log(message3.replace(/\d{3}-\d{3,4}-\d{4}/g, '전화번호'))
+
+// search : return first index of matched data
+console.log(message1.search(numExp))
+console.log(message2.search(numExp)) // negative number (no matched data)
+console.log(message3.search(/\d{3}-\d{3,4}-\d{4}/g))
+
+// capture : 캡처가 적용된 정규표현식을 이용하면 match 반환값의 1번 인텍스부터 순차적으로 캡처 결과가 들어간다
+// / (...): Capture everything enclosed
+const capture = /(\d{3})-(\d{3,4})-(\d{4})/ //
+console.log(message1.match(capture))
+```
+
+## 14. Compare Array
+
+배열은 객체로 취급되기때문에 비교를 할 때 기본적으로 참조값을 비교한다. 따라서 각각의 객체에 대한 참조값은 같을수가 없다. 배열의 구성이 동일히더라도 참고값이 다르기 때문에 무조건 false 가 나온다. 따라서 배열의 비교를 위해서 다른 방법이 필요하다. 가장 쉽고 간결한 방법은 **문자열** 로 전환해서 비교하는 것이다.
+
+```tsx
+// 방법 1
+console.log(JSON.stringify(arr1) === JSON.stringify(arr2))
+
+// 방법 2
+console.log(arr1.join('') === arr2.join(''))
+```
+
+## 15.Union & Intersecrtion & Difference
+
+### Union
+
+```tsx
+let a = new Set([1, 2, 3])
+let b = new Set([4, 3, 2])
+let union = new Set([...a, ...b])
+console.log(union)
+// {1,2,3,4}
+```
+
+### Intersecrtion
+
+```tsx
+let a = new Set([1, 2, 3])
+let b = new Set([4, 3, 2])
+let intersection = new Set([...a].filter((x) => b.has(x)))
+console.log(intersection)
+// {2,3}
+```
+
+### Difference
+
+```tsx
+let a = new Set([1, 2, 3])
+let b = new Set([4, 3, 2])
+let difference = new Set([...a].filter((x) => !b.has(x)))
+console.log(difference)
+// {1}
+```
+
+#### reference
+
+- [자바스크립트 this 총정리](https://nykim.work/71)
+- [diffing algorithm](https://www.geeksforgeeks.org/what-is-diffing-algorithm/)
+- [Set,Map,Object 정리](https://medium.com/front-end-weekly/es6-map-vs-object-what-and-when-b80621932373) -[javascript-info](https://ko.javascript.info/)
+
+감사합니다.

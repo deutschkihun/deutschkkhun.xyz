@@ -1,0 +1,125 @@
+---
+title: '[Next.js] SSG vs SSR vs CSR vs SEO'
+date: '2022-09-12'
+lastmod: '2022-09-12'
+tags: ['react', 'nextjs', 'ssg', 'ssr']
+draft: false
+summary: '이 포스팅에서는 SSG vs SSR vs CSR vs SEO 에 대한 개념들을 소개하는 포스팅 입니다.'
+images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
+authors: ['default']
+---
+
+이 포스팅에서는 정적 사이트 생성 하는법 그리고 관련된 SSR,SEO 과 같은 개념들에 대해서 알아보겠습니다.
+
+![main](/static/ssg/cover.jpg)
+
+## 1. Next.js 의 기본 동작 원리
+
+Next.js는 브라우저에 렌더링 할때 **기본적으로 pre-rendering(사전 렌더링)** 을 해줍니다.
+
+- pre-rendering: 서버에서 DOM 요소들을 Build하여 HTML 문서를 렌더링 하는 것
+
+![main](/static/ssg/pre-rendering.png)
+
+위의 사진을 통해 단순 리액트로만 랜더링 할 떄와 Next.js 를 이용 할 떄와 큰 차이가 있다.
+
+- Hydration: HTML을 미리 렌더링하고, 그 뒤에 요청이 오면 Chunk 단위로 javascript를 로드해서 앱이 작동하게 되는 과정
+
+**이렇게 서버에서 pre-rendering 하는 것까지가 Next.js의 특징** 이며 여기서 더 나아가
+
+- pre-rendering을 동적으로 해서 페이지를 생성하면 => SSR
+- pre-rendering을 정적으로 해서 페이지를 생성하면 => SSG
+
+로 나뉘게 된다.
+
+## 2. SSG (Static Site Generation)
+
+정적 사이트 생성은 아래의 그림으로 한번에 설명 할 수 있다.
+
+![main](/static/ssg/sg.png)
+
+- HTML 이 빌드 시점에 생성되고 각각의 요청에 재사용된다.
+- SSG는 빌드를 진행할 때 pages 폴더에서 작성한 각 페이지들에 대해 각각의 문서를 생성해서 static한 파일로 생성합니다
+
+![main](/static/ssg/pages.png)
+
+- 만약 해당 페이지에 대한 요청이 발생하게 되면, 이 페이지들을 재생성하는 것이 아니라 이미 생성이 된 페이지를 반환하는 형태로 동작 그 덕분에 CSR보다 응답속도가 빠름
+- 랜더링 데이터가 동적으로 변하지 않는 정적인 페이지 예를 들어 블로그,마케팅 페이지 같은 곳에 SSG 를 쓰기 적합하다.
+
+## 3. SSR (Server Side Rendering)
+
+SSR은 유저가 페이지를 매번 요청할 때마다 그에 맞는 HTML 문서를 클라이언트가 아닌 서버에서 생성해서 브라우저로 반환하여 랜더링 하는 것을 말합니다.
+
+![main](/static/ssg/ssr.png)
+
+실제로는 아래와 같다.
+
+![main](/static/ssg/ssr2.png)
+
+이렇게 동적으로 페이지를 생성해야 하는 겨우 또는 항상 최신 상태를 유지해야하는 웹 페이지나, 분석 차트, 게시판 등, 사용자의 요청마다 페이지가 업데이트 되어야 하는 경우에 SSR 을 사용한다.
+
+SSR 장점
+
+- 초기 랜더링 속도가 빠름
+- 서버에서 pre-render 를 통해 완성된 html 을 클라이언트로 보내주기 때문에 seo 에 더 적합함
+
+SSR 단점
+
+- need to wait before interacting: ssr 을 통해 사용자가 빠르게 웹사이트를 확인할 수는 있지만 interactive web page 를 만드는 데에는 csr 이 더 좋다. 예를 들어 동적으로 데이터를 처리하는 자바스크립트를 아직 다운 받지 못해 페이지의 여러부분을 클릭해도 반응이 없는 경우가 생길수 있음
+
+## 4. CSR(Client Side Rendering) & SPA(Single Page Application)
+
+CSR 은 React.js 의 기본 동작원리로 pre-rendering 을 하지 않고 모든 작업을 클라이언트에서 수행 하여 랜더링 하는 작업
+
+이때 같이 니온 개념이 **SPA**이며,
+
+- 최초 한번 전체 페이지를 로딩한 이후 부터에는 브라우저 내부에서 데이터만 변경해서 사용하는 방식
+- 서버에 요청을 다시 보내는 것 없이 브라우저 내부에서 처리되기 때문에 SPA 방식은 트래픽을 감소시키고 사용자에게 최적화된 환경을 제공할 수 있게 됩니다.
+
+따라서 서버는 단순하게 Json 파일만 보내주고, 클라이언트 측에선 초기에 전송받은 HTML과 javascript를 통해 렌더링을 수행합니다. 이러한 과정을 CSR(클라이언트 사이드 렌더링)이라고 합니다.
+
+CSR 장점
+
+- 사용자의 액션에 따라 필요한 부분만 다시 읽어드리기 때문에 인터랙션이 빠르다
+
+CSR 단점
+
+- 서버에서 View를 렌더링하지 않고, HTML, JS, 각종 리소스를 서버에서 다운 받은 후 브라우저에서 렌더링을 수행하기 때문에 초기 로딩 속도가 느림.
+
+## 5.SEO: 사이트 상위 노출을 위한 검색엔진 최적화
+
+SSR 은 빌드시점에 완성된 정적인 페이지를 만들기 때문에 웹 스크롤러가 완성된 HTML 을 읽어 SEO 작업을 할 수 있다.
+
+하지만 CSR 같은 경우는 완성된 페이지가 아닌 html+js+css와 같은 리소스를 받아서 브라우저 측에서 조합하는 SPA 방식을 쓰기 때문에 SEO 작업을 할 수 없다. 또한 웹 스크롤러는 js 를 읽을 수 없어서 CSR 로 SEO 작업을 할 수 없다.
+
+## 6. SSR vs CSR (feat. TTV,TTI)
+
+CSR 과 SSR 의 작동 원리를 잘 비교해서 이해하는 것이 상당히 중요합니다. 또한 TTV,TTI 의 개념이 같이 사용되는데
+
+- TTV (time to view): 보여지는데 까지 걸리는 시간
+- TTI (time to interactive): 반응 하는데 까지 걸리는 시간
+
+### CSR 작동순서
+
+- 사이트에 접속
+- 서버로부터 index.html 파일 다운로드, index.html 파일은 현재 텅텅 비어있음, 즉 사용자에게는 아무것도 보여지지 않음
+- 클라이언트는 index.html 파일에 링크된 것 중 웹사이트를 만드는데 필요한 모든 로직이 담긴 js 파일을 서버에 요청하게 된다.
+- 서버로부터 웹 어플리케이션을 실행 시킬수 있는 모든 로직이 담긴 js 파일을 받아와 앱을 실행시킨다.
+- 앱이 실행되는 순간부터 웹사이트가 viewable + interatable 하게 된다. 즉 tti 와 ttv 가 같다.
+
+### SSR 작동순서
+
+- 사이트에 접속
+- 서버로부터 index.html 파일 다운로드, 이 index.html 은 pre-render 를 통해 완전히 완성된 html 파일. 따라서 ttv 는 이 시점부터 시작
+- 그리고 나머지 과정은 csr 과 동일. 즉 tti 와 ttv 가 다르다. 따라서 화면에 보이지만 반응하는 시간은 늦기 때문에 화면을 스크롤하거나 클릭했을때 동작하지 않는 경우가 생길 수 있다.
+
+감사합니다.
+
+#### reference
+
+- [LINE에서 하루 만에 정적 웹 페이지 개발해서 배포하는 방법](https://engineering.linecorp.com/ko/blog/how-to-quickly-develop-static-pages-in-line/)
+- [Next.js SSG, SSR 개념 정리](https://narup.tistory.com/235)
+- [SEO 처리 하기](https://narup.tistory.com/265)
+- [SSR과 CSR(SPA) 차이](https://narup.tistory.com/264)
+- [서버 사이드 렌더링(SSR)과 클라이언트 사이드 렌더링(CSR)](https://goodgid.github.io/Server-Side-Rendering-and-Client-Side-Rendering/)
+- [Hydrate](https://helloinyong.tistory.com/315)

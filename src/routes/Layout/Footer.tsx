@@ -38,6 +38,18 @@ export default function Footers() {
           </Link>
         </div>
         <div className="grid grid-flow-col gap-4">
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:deutschkihun@gmail.com">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-8 h-8 text-black fill-current">
+              <path d="M2.003 5.884 10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"></path>
+              <path d="m18 8.118-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"></path>
+            </svg>
+          </Link>
           <Link href="https://github.com/deutschkihun">
             <svg
               viewBox="0 0 24 24"

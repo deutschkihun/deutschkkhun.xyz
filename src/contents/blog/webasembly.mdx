@@ -1,0 +1,61 @@
+---
+title: '[Web] WebAssembly (웹 어셈블리)'
+date: '2022-08-19'
+lastmod: '2022-08-19'
+tags: ['WebAssembly', 'Web']
+draft: false
+summary: '웹 어셈블리가 있기 전까지는 브라우저는 오직 html,css,javascript 만 읽을 수 있었다. 특히 여기서 개발 안어라고 할 수 있는 건 javascript 뿐이기 때문에 웹 개발을 위해서는 javascript 를 필수적으로 알아야 하며 지금 까지도 웹개발은 javascript 가 개발판도를 쥐어 잡고 있다. 하지만 웹 어셈블리가 나오면서 이제는 다른 언어로 만든 서비스를 웹 어셈블리를 이용하여 브라우저상에 구현하는 것이 가능해졌다. 이 포스팅을 통해 웹 어셈블리가 무엇인지 알아보자.'
+authors: ['default']
+---
+
+![main](/static/webassembly/cover.png)
+
+웹 어셈블리가 있기 전까지는 브라우저는 오직 html,css,javascript 만 읽을 수 있었다. 특히 여기서 개발 안어라고 할 수 있는 건 javascript 뿐이기 때문에 웹 개발을 위해서는 javascript 를 필수적으로 알아야 하며 지금 까지도 웹개발은 javascript 가 개발판도를 쥐어 잡고 있다. 하지만 웹 어셈블리가 나오면서 이제는 다른 언어로 만든 서비스를 웹 어셈블리를 이용하여 브라우저상에 구현하는 것이 가능해졌다. 이 포스팅을 통해 웹 어셈블리가 무엇인지 알아보자.
+
+## 1. WebAssembly
+
+웹 어셈블리는 정확히 말하자면 새로운 언어가 아니라 브라우저가 실행 할 수 있는 새로운 파일형식이라고 이해하면 된다. 따라서 웹 개발자들이 새로운 언어를 배워야 한다고 생각 하면 웹 어셈블리를 정확히 이해하지 못 한것이라 말 할 수 있다. 파일 형식은
+
+- .wasm
+
+으로 처리해주면 된다. 웹 어셈블리는 새로운 언어가 아니기 때문에 .wasm 파일을 새롭게 만들어서 작성하는 방식으로 사용하지 않습니다. 기존의 c++,java 같은 언어들을 .wasm 형식으로 컴파일 (변환) 할 수 있게 함으로써 사용한다.
+
+따라서 기존의 javascript 가 아닌 다른 언어로 작성된 서비스도 웹 어셈블리를 이용하면 브라우저에서 실행이 가능한 것이다.
+
+## 2. WebAssembly 가 JavaScript 보다 좋은점
+
+웹 어셈블리는 JavaScript 보다 빠릅니다. 왜 빠른지를 이해가 위해서는 브라우저가 JavaScript 와 WebAssembly 를 어떻게 실행 시키는지를 이해해야 한다.
+
+### 브라우저가 JavaScript 를 실행할때
+
+- 작성된 JavaScript 를 감지한다
+- Parsing 을 한다.
+- Parsing 결과를 기반으로 ByteCode 를 생성한다. ByteCode 는 기계친화적인 (machine friendly) 자바스크립트 해석본이라고 이해하면 된다.
+- Interpreter 가 ByteCode 를 실행 시켜준다. 크롬에서는 Ignito 라는 Interpreter 를 이용해 실행한다.
+
+ex) node --print-bytecode index.js
+
+라고 실행하면 ByteCode 가 어떻게 생긴건지 확인해 볼 수 있다.
+
+- 추가적으로 ByteCode 에서 반복되는 코드들은 최적화 작업 (optimizing) 을 통해 optimized code 를 생성하고 이것을 실행하게 된다. 크롬에서는 turbofan 이라는 엔진이 실행 시켜준다.
+
+### 브라우저가 .wasm 를 실행할때
+
+- 작성된 .wasm 를 감지한다
+- 엔진을 이용해 실행한다. 크롬에서는 Liftoff 라는 엔진을 이용해서 실행한다.
+
+이게 끝입니다. 이래서 더 .wasm 이 더 빠릅니다.
+
+- 마찬가지로 optimizing 작업도 하는데 이는 javascript 와 동일하다
+
+또한 optimizing 을 할 때에도 .wasm 의 경우는 거의 모든 코드들이 최적화 작업이 이뤄지며 초기 실행속도가 javascript 보다 훨씬 빠르다. 이해 비해 javascript 는 반복되는 코드만 optimizing 한다.
+
+### 그러면 항상 .wasm 가 javascript 보다 빠른건가요?
+
+항상은 아니닐 수 있다. 둘의 속도가 유사한 수준으로 갈 수 있는데 이는 optimizing 을 하는 turbofan 이 잘 읽을수 있도록 javascript 코드를 짜게 되면 거의 모든 코드들이 optimizing 를 하게되는데 그러면 애초부터 거의 모든 코드를 optimizing 하는 .wasm 과 속도가 비슷해질 수 있을 것이다.
+
+## 3. WebAssembly 활용법
+
+이제 그럼 웹 어셈블리를 어떠한 방식으로 사용 할 지에 대해 고민을 해야 하는데요. 기본적으로 웹 어셈블리가 javascript 를 당장대체하는 것은 불가능합니다. javascript 및 javascript 를 지원해주는 수많은 framework 기능을 따라가는게 아직은 불가능하기 때문입니다. 다만 javascript 로 실행하는데 특정 부분의 실행속도나 성능이 좋지 않은 부분이 있다면 .wasm 로 파일을 변환하게되면 좀 더 나은 퍼포먼스를 보여주는 서비스를 개발 하는 것이 가능해 질 것이다.
+
+#### reference: [초보 개발자를 위한 웹 신기술 WebAssembly 설명](https://www.youtube.com/watch?v=VJag_H2Cosc)
