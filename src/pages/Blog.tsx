@@ -5,7 +5,7 @@ export const Blog = (): JSX.Element => {
   return (
     <div className="min-h-[80vh]">
       <Title>
-        <FormattedMessage id="ProjectList" />
+        <FormattedMessage id="BlogList" />
       </Title>
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom"></section>
     </div>
