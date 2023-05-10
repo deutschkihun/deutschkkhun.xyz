@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {useRef, useEffect} from 'react'
-import {DarkLightMode} from './DarkLightMode'
-import {Languages} from '.'
+import {Languages, DarkLightToggleButton} from '.'
 import {useRecoilState, useRecoilValue} from 'recoil'
 import {modeState} from '../recoil/mode'
 import {locationState, toggleState} from '../recoil/toggle'
@@ -58,7 +57,7 @@ export const SubMenu = (): JSX.Element => {
       ref={container}
       onMouseOver={() => setToggle(true)}>
       <div className="flex flex-wrap">
-        <DarkLightMode />
+        <DarkLightToggleButton />
         <Languages />
       </div>
     </SubMenuContainer>

@@ -55,7 +55,7 @@ const ToggleLabel = styled.label`
   }
 `
 
-export const DarkLightMode = (): JSX.Element => {
+export const DarkLightToggleButton = (): JSX.Element => {
   const [mode, setMode] = useRecoilState(modeState)
   const onClickModeHandler = () => {
     const colorMode = mode === 'dark-mode' ? 'light-mode' : 'dark-mode'

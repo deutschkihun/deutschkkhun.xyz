@@ -14,6 +14,8 @@ const ListCard: FC<ListCardProps> = ({card, onClick, onRemove, draggableId, inde
   const {image, writer} = card
   const {avatar, name, jobTitle} = writer
 
+  console.log('onClick', onClick)
+
   return (
     <CardDraggable draggableId={draggableId} index={index}>
       <Div className="m-2 border shadow-lg rounded-xl" width="10rem" onClick={onClick}>

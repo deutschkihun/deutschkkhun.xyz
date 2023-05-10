@@ -23,7 +23,7 @@ export const Project = (): JSX.Element => {
   }, [vizList])
 
   return (
-    <aside onMouseOver={() => setToggle(false)}>
+    <aside className="min-h-max" onMouseOver={() => setToggle(false)}>
       <Title children={<FormattedMessage id="ProjectList" />} />
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom">
         <ul
