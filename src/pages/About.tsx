@@ -4,10 +4,10 @@ export const About = (): JSX.Element => {
       <div className="flex flex-col w-full max-w-4xl m-auto gap-36 print:gap-10">
         <div className="flex flex-col gap-6 print:mt-10 print:gap-2">
           <h1 className="text-3xl md:text-6xl">
-            <span className="font-black">Pouya</span>
-            <span className="font-extralight">Saadeghi</span>
+            <span className="font-black">Kihun</span>
+            <span className="font-extralight">Kim</span>
           </h1>
-          <h2 className="md:text-xl">Product designer &amp; Front-end developer</h2>
+          <h2 className="md:text-xl">Front-end developer</h2>
         </div>
         <div className="flex flex-col gap-16 print:gap-6 lg:gap-6">
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
@@ -341,23 +341,6 @@ export const About = (): JSX.Element => {
               <p>Rasht, Iran</p>
             </div>
           </div>
-          <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
-            <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Jan 2009 – Jan 2012</span>
-            </div>
-            <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">
-                Associate's degree in Software Engineering
-              </h2>
-              <span>at Shahid Chamran University</span>
-            </div>
-            <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60"></span>
-            </div>
-            <div className="print:col-span-3 lg:col-span-3">
-              <p>Rasht, Iran</p>
-            </div>
-          </div>
         </div>
         <div className="flex flex-col gap-16 print:gap-6 lg:gap-6">
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
@@ -374,67 +357,6 @@ export const About = (): JSX.Element => {
                 <li>JavaScript frameworks including Svelte, Vue.js, React, Alpine.js</li>
                 <li>JavaScript meta frameworks including SvelteKit, Nuxt, Next.js</li>
                 <li>Design tools like Figma, Sketch, etc.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-16 print:gap-6 lg:gap-6">
-          <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
-            <div className="print:col-span-3 print:col-start-2 lg:col-span-3 lg:col-start-2">
-              <h2 className="text-2xl font-bold text-blue-600">Contact Info</h2>
-            </div>
-          </div>
-          <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
-            <div className="print:col-span-3 print:col-start-2 lg:col-span-3 lg:col-start-2">
-              <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
-                <li className="[&amp;_a]:underline">
-                  Email:{' '}
-                  <a
-                    href="mailto:pouya.saadeghi@gmail.com"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    pouya.saadeghi@gmail.com
-                  </a>
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Linkedin:{' '}
-                  <a
-                    href="https://linkedin.com/in/saadeghi/"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    linkedin.com/in/saadeghi
-                  </a>
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Github:{' '}
-                  <a
-                    href="https://github.com/saadeghi"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    github.com/saadeghi
-                  </a>
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Twitter:{' '}
-                  <a
-                    href="https://twitter.com/saadeghi"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    @saadeghi
-                  </a>
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Telegram:{' '}
-                  <a
-                    href="https://t.me/saadeghi"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    @saadeghi
-                  </a>
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Location: Istanbul, Turkey (open to relocation)
-                </li>
               </ul>
             </div>
           </div>
