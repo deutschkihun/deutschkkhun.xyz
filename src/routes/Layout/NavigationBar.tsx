@@ -1,14 +1,24 @@
 import {FormattedMessage} from 'react-intl'
 import {Link} from '../../components'
 import {useCallback} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {AppState} from '../../store'
 import * as LG from '../../store/languages'
+import * as M from '../../store/mode'
 
 export default function NavigationBar() {
+  const temp = useSelector<AppState, LG.State>(({languages}) => languages)
   const dispatch = useDispatch()
   const changeLanguageHandler = useCallback(
-    (select: string) => () => {
-      dispatch(LG.chanageLanguage(select))
+    (language: string) => () => {
+      dispatch(LG.chanageLanguage(language))
+    },
+    [dispatch]
+  )
+
+  const changeModeHandler = useCallback(
+    (mode: string) => () => {
+      dispatch(M.changeMode(mode))
     },
     [dispatch]
   )
@@ -87,7 +97,7 @@ export default function NavigationBar() {
           <div className="w-56 mt-16 overflow-y-auto shadow-2xl dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px">
             <ul className="gap-1 p-3 menu menu-compact" tabIndex={0}>
               <li onClick={changeLanguageHandler('en')}>
-                <button className="flex active">
+                <button className={`flex ${temp === 'en' && 'active'}`}>
                   <img
                     loading="lazy"
                     width="20"
@@ -99,7 +109,7 @@ export default function NavigationBar() {
                 </button>
               </li>
               <li onClick={changeLanguageHandler('kr')}>
-                <button className="flex">
+                <button className={`flex ${temp === 'kr' && 'active'}`}>
                   <img
                     loading="lazy"
                     width="20"
@@ -142,6 +152,7 @@ export default function NavigationBar() {
           <div className="mt-16 overflow-y-auto shadow-2xl dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 w-52">
             <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
               <button
+                onClick={changeModeHandler('light')}
                 className="overflow-hidden text-left rounded-lg outline-base-content"
                 data-set-theme="light"
                 data-act-class="[&amp;_svg]:visible">
@@ -171,6 +182,7 @@ export default function NavigationBar() {
                 </div>
               </button>
               <button
+                onClick={changeModeHandler('dark')}
                 className="overflow-hidden text-left rounded-lg outline-base-content"
                 data-set-theme="dark"
                 data-act-class="[&amp;_svg]:visible">

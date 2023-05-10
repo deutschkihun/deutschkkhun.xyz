@@ -1,14 +1,15 @@
 import {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {mock} from './mock'
+import {useSelector} from 'react-redux'
 import {FormattedMessage} from 'react-intl'
-import {useRecoilValue} from 'recoil'
-import {languageState} from '../recoil/language'
+import {mock} from './mock'
 import {Title, IconMaterial} from '../components'
+import {AppState} from '../store'
+import * as LG from '../store/languages'
 
 export const Project = (): JSX.Element => {
   const navigate = useNavigate()
-  const lang = useRecoilValue(languageState)
+  const lang = useSelector<AppState, LG.State>(({languages}) => languages)
 
   const vizList = mock[lang as keyof typeof mock]
 

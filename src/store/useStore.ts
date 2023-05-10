@@ -12,7 +12,7 @@ const localStorageMiddleware =
     return result
   }
 
-const persistedState = JSON.parse(localStorage.getItem('locale') as string) || {}
+const persistedState = JSON.parse(localStorage.getItem('locale') as string) ?? {}
 
 const initializeStore = () => {
   const init = configureStore({

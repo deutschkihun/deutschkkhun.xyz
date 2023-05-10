@@ -1,10 +1,10 @@
 import * as T from './types'
 
-const initialState: T.State = (localStorage.getItem('locale') as string) ?? 'en'
+const initialState: T.State = (localStorage.getItem('mode') as string) ?? 'light'
 
 export const reducer = (state: T.State = initialState, action: T.Actions) => {
   switch (action.type) {
-    case '@languages/change':
+    case '@mode/change':
       return action.payload
   }
   return state
