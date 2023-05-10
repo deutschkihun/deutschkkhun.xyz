@@ -47,12 +47,6 @@ export const vizProject = {
       description: 'kanban board',
       link: 'kanban',
       iconName: 'ViewKanban'
-    },
-    {
-      title: 'Design system',
-      description: 'design system',
-      link: 'design-system',
-      iconName: 'Brush'
     }
   ],
   kr: [
@@ -103,12 +97,6 @@ export const vizProject = {
       description: '칸반 보드',
       link: 'kanban',
       iconName: 'ViewKanban'
-    },
-    {
-      title: '디자인 시스템',
-      description: '디자인 시스템',
-      link: 'design-system',
-      iconName: 'Brush'
     }
   ]
 }
