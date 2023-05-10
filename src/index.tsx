@@ -6,7 +6,7 @@ import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    &.light-mode {
+    &.light {
       background-color: #FFFAFA;
       color: rgba(17, 16, 34, 0.911);
 
@@ -14,12 +14,10 @@ const GlobalStyle = createGlobalStyle`
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       } 
     }
-
     form {      
         box-shadow: 0 20px 25px -5px rgba(243, 237, 237, 0.1),
     0 10px 10px -5px rgba(243, 239, 239, 0.4);
     }
-
   }
 
   .reveal.active {
