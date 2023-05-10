@@ -1,0 +1,44 @@
+---
+title: '[React] Diffing Algorithm 의 이해'
+date: '2023-01-22'
+lastmod: '2023-01-22'
+tags: ['algorithm', 'react', 'dom']
+draft: false
+summary: 'React 는 가상돔의 변화를 Diffing Algorithm 이라는 것을 통해 최적화하여 재조정이라는 과정을 진행한다. 그 과정을 통해 DOM 을 효율적으로 랜더링하는 기법을 만들었는데 Diffing Algorithm 이 서로다른 경우에 따라 어떻게 동작하는지에 대해 알아보겠습니다.'
+---
+
+![main](/static/react/cover.jpg)
+
+## 1. 동작 원리
+
+- React 는 웹 브라우저가 기본적으로 제공하는 dom api 를 이용하지 않는다.
+- 웹 브라우저가 제공하는 기본 dom api 의 가장 큰 단점은 동적 ui 에 최적화되어 있지 않다.
+- 우선 실제 dom 과 동일한 virtual dom 을 만든다. 그리고 동적으로 데이터가 변화했을 때 직접적으로 실제 dom을 조작하는 것이 아니라 virtual dom에서 동적으로 변한 부분이 적용된 또다른 virtual dom을 생성한다.
+
+![virtualdom](/static/interview/virtualdom.png)
+
+그리고 나서 diffing 알고리즘을 이용해 가삼돔 트리를 비교하고 차이가 나는 부분을 실제 돔에 적용하는 방식으로 작동한다,
+
+## 2. 가상돔 비교 경우의 수
+
+### Root Node가 완전히 달리진 경우
+
+이 경우는 완전히 처음부터 다른 시작점을 가지기 때문에 tree 전체를 를 새롭게 구축해야 한다.
+
+### 타입은 같지만 속성이 다른 경우
+
+속성만 달라지는 부분에서는 달라진 속성만 변화 시켜 적용한다.
+
+### 자식 요소가 바뀌는 경우
+
+이경우는 자식요소의 지정된 key props 를 비교한다. key 값을 unique id 로 사용한다. 그래서 react 로 개발하다가 보면 한번쯤 아래와 같은 warning 을 본적이 있을 것이다.
+
+![warning](/static/diffing/warning.png)
+
+props 에 key 값을 넣으라는 의미이며 유일값으로 사용해야 하기 때문에 index 가 아닌 다른 값으로 해주는 것이 좋다.
+
+#### reference:
+
+- [Reconciliation](https://reactjs.org/docs/reconciliation.html#gatsby-focus-wrapper)
+- [How Virtual-DOM and diffing works in React](https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc805f9f84e)
+- [React, diffing 알고리즘](https://velog.io/@joy37/React-diffing-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)

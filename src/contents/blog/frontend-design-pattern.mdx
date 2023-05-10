@@ -1,0 +1,83 @@
+---
+title: 'frontend design pattern'
+date: '2023-02-03'
+lastmod: '2023-02-03'
+tags: ['architecture']
+draft: false
+summary: '프론트엔드 디자인 패턴'
+authors: ['default']
+---
+
+![tailwind-nextjs-banner](/static/frontend-design-pattern/cover.jpg)
+
+디자인 패턴은 쉽게 말하자면 여러사람들이 개발을 하는데 있어서 어떻게 코드를 작성할 것인가에 대한 방법론이다. 이 포스팅에서 프론트엔드에서 많이 언급되는 디자인패턴들에 대해 알아보겠습니다.
+
+## 1. MVC 패턴
+
+MVC 아키텍처는 Model,View,Controller 로 구성된 아키텍처를 말한다.
+
+![mvc](/static/frontend-design-pattern/mvc.png)
+
+- **Model** : 데이터 (서버,db,api 등등)
+- **View** : 화면 / render tree
+- **Controller** : model 에서 데이터를 받아서 view 에 랜더링하는 과정들을 컨트롤
+
+## 2. MVVM 패턴
+
+- MVC 의 Controller 가 담당했던 기능들을 (ex. dom manipulation) 이제는 framework (react) = ViewModel(VM) 가 담당하게 된다.
+- 이전의 MVC에서 MVVM 로 넘어오면서 변한 가장큰 특징으로는 컨트롤러의 반복적인 기능이 선언적으로 개선되었다.
+- 또한 Model과 View의 관점을 분리하려 하지 않고 하나의 템플릿으로 관리하려는 방식으로 발전했다. (기존에는 class나 id등으로 간접적으로 HTML에 접근하려고 했다면 이제는 직접적으로 HTML에 접근하는 방법으로 확장이 되었다.)
+
+## 3. Component (컴포넌트)
+
+- 재사용 할 수 있는 작은 단위로 분리해서 조립하는 방식으로 MVVM 을 구성하는 것을 component 라고 한다. component 의 기본원칙은 범용성이 있어야 하고 재사용을 원칙으로 한다.
+- component 에서 대표적으로 많이 사용하는 디자인 패턴에는 presentational and container component pattern 이 있다.
+- 이 패턴의 치명적인 단점은 container component 에서 presentational component 로 props 넘기게 되는데 만약 presentational component 가 1개가 아니라 여러 layer 로 구성되어 있다면 props 를 사용하지 않는 부모 presentational component 로 props 를 받아서 하위 presentational component 로 넘겨주어야한다. 이러한 문제를 props drilling problem 이라고 한다.
+
+### props drilling
+
+또한 props drilling 은 하위 component 간에 props 를 교환하고자 할때 직접 넘길 수 없고 부모 component 통해 보내주어야 하는 문제도 가지고 있다.
+
+![props-drilling](/static/frontend-design-pattern/props-drilling.png)
+
+## 4. Flux 패턴
+
+flux는 props drilling 을 해결하기 위해 개발된 아키텍쳐이다. flux 패턴은 기존의 mvc 패턴에서 벗어나 단방향 아키텍처를 나타낸다.
+
+![props](/static/frontend-design-pattern/props.png)
+
+![flux](/static/frontend-design-pattern/flux.png)
+
+Flux 패턴은 다음과 같은 순서로 작동한다.
+
+- action 을 호출 (trigger)
+- dispatcher 를 통해 store 라는 공간에 data가 보관되고
+- 저장된 data가 다시 View 로 전달
+
+이러한 패턴을 기반으로 개발된 상태관리 라이브러리중에 가장 대표적인것이 바로 redux 이다. redux 는 위의 flux 패턴에 reducer 라는 파트도 추가되고 dispatcher 가 빠진다. redux 에서는 dispatcher 가 store 에 통합되서 작동한다.
+
+![redux](/static/frontend-design-pattern/redux.jpeg)
+
+Redux는 Reduce + Flux 의 합성어입니다. 여기서 Reducer는 순수함수 역할을 담당한다. **순수함수는 "동일한 인자가 주어졌을 때 항상 동일한 결과를 반환", "외부의 상태를 변경하지 않는 함수" 를 뜻합니다.**
+
+![redux](/static/frontend-design-pattern/redux.gif)
+
+한줄로 요약하면 Redux에서 액션을 보내면, 리듀서 함수를 작동시켜서, 스토어를 업데이트합니다.
+
+## 5. 아토믹 패턴
+
+- 아토믹 패턴은 컴포넌트를 잘 관리하기 위한 방법론으로 View를 원자(Atoms), 분자(Molecules), 유기체(Organisms), 템플릿(Templates), 페이지(Pages) 순으로 작은 것들을 만들고 결합해 더 큰 단위의 View를 그리는 방법이다.
+
+![redux](/static/frontend-design-pattern/atom.png)
+
+- 이러한 아토믹 패턴에서 Atoms 개념을 따온 것이 Recoil 라이브러리에 도입되었는데, Recoil은 Redux 보다 간단한 문법으로 컴포넌트 외부에서 공통의 데이터를 set, get 할 수 있게 하면서 동시에 동기화를 할 수 있게 한다.
+- Recoil에는 Atoms와 Selector라는 개념이 있는데, Selector는 다른 atom이나 selector를 입력으로 받아들이면서 상위의 atoms 또는 seletor가 업데이트되면 하위의 selector 함수도 다시 실행되며 컴포넌트들도 다시 렌더링된다.
+- 이러한 방법은 Redux보다 성능적으로 우수하며 (O(1), Redux는 O(n)), 사용하기에 따라 상태 정의의 유지 관리가 더 쉬울 수 있다.
+
+#### reference:
+
+- [flux pattern](https://medium.com/lunit/redux%EA%B0%80-%ED%95%84%EC%9A%94%ED%95%98%EB%8B%A4%EB%8A%94-%EA%B2%83%EC%9D%84-%EC%96%B8%EC%A0%9C-%EC%95%8C-%EC%88%98-%EC%9E%88%EB%82%98%EC%9A%94-426a148da64d)
+
+- [현대 앱 아키텍쳐 설명 (Backend/Frontend/MVC/Flux/Redux/MSA)](https://devocean.sk.com/blog/techBoardDetail.do?ID=164484)
+
+- [프론트엔드 개발에서의 디자인 패턴](https://velog.io/@st_hwang/babwm67z)

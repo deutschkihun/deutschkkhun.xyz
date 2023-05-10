@@ -1,0 +1,234 @@
+---
+title: '[CSS] Flex, Grid, Box-sizing'
+date: '2023-01-03'
+lastmod: '2023-01-03'
+tags: ['css', 'box-sizing']
+draft: false
+summary: '차세대 css 레이아웃: css flex & css grid, css box-sizing 에 대해 알아보자'
+---
+
+![main](/static/css-flex-grid/cover.png)
+
+차세대 css 레이아웃: css flex & css grid 에 대해 알아보자. 1분코딩님의 자료를 기반으로 제가 이해하기 쉽게 내용을 조정했습니다. 감사합니다.
+
+## 1. CSS Flex
+
+1. CSS Flex 는 단뱡향 레이아웃을 조정하는데 사용. 단방향 중에서도 특히 수평방향에 해당하는 컨텐츠를 dynamic 하게 조정하는데 주로 사용합니다.
+2. Flex 는 Flex container 와 Flex item 에 각각 적용 할 수 있습니다. 둘의 차이는 아래 그림을 통해 알 수 있습니다.
+
+![flex-container-item](/static/css-flex-grid/flex-container-item.jpeg)
+
+### 필수 Flex Container 에 적용하는 속성들
+
+1. display:flex
+
+- 가장 기본이 되는 속성, flex 를 적용하고 싶다면 반드시 넣어주어야 합니다.
+- flex 아이템들은 가로 방향으로 배치되고, 자신이 가진 내용물의 width 만큼만 차지하게 됩니다. 마치 inline 요소들 처럼요.
+- height는 컨테이너의 높이만큼 늘어납니다. height가 알아서 늘어나는 특징은 컬럼 레이아웃을 만들 때 아주 유용합니다.
+
+2. justify-content: 메인축(수평축) 방향 정렬
+
+- css 에서 justify 가 나오면 수평축. 수평방향에서 content 위치 조정 할 수 있음
+
+3 align-items: 수직축 방향 정렬
+
+- css 에서 align 가 나오면 수직축.
+- 수직방향에서 content 위치 조정 할 수 있음.
+
+두가지 속성(justify-content,align-items) 들을 잘 활용하면 item 을 화면 정 가운데 위치시키는 것이 매우 간단한다. 예를 들면 아래와 같다.
+
+```tsx
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.flex-item {
+  width: 30px;
+  height: 30px;
+}
+```
+
+이외에도 아이템들의 배치를 위해 `flex-direction`,`flex-wrap` 같은 속성들을 사용 할수도 있다. 필수는 아니지만 알아두면 유용하게 사용 할 수 있는 속성들이다.
+
+### 필수 Flex Item 에 적용하는 속성들
+
+1.flex
+
+- flex item 에서는 솔직히 flex 만 알고만 있어도 될 정도로 flex 가 절대적으로 많이 쓰인다. flex 는 flex-grow,flex-shrink,flex-basis 순으로 입력을 주면 된다.
+
+- flex-basis: 아이템의 기본크기를 말한다. 기본 값은 auto 이다. 여기에 0 을 넣는 것도 가능하다. 0을 넣으면 기본으로 점유하고 있는 크기가 0이된다.
+
+- flex-grow: flex-grow는 아이템이 flex-basis의 값보다 커질 수 있는지를 결정하는 속성이다. flex-grow에는 숫자값이 들어가는데, 몇이든 일단 0보다 큰 값이 세팅이 되면 해당 아이템이 유연한(Flexible) 박스로 변하고 원래의 크기보다 커지며 빈 공간을 메우게 됩니다.
+
+- flex-shrink: flex-shrink에는 숫자값이 들어가는데, 몇이든 일단 0보다 큰 값이 세팅이 되면 해당 아이템이 유연한(Flexible) 박스로 변하고 flex-basis보다 작아집니다. 만약 flex-shrink 를 0 으로 잡게 되면 크기를 유연하게 조절 하지 않겠다는 의미이다.
+  그래서 flex-shrink 를 0 으로 잡으면 고정폭의 컬럼을 쉽게 만들 수 있다. 고정 크기는 width로 설정합니다.
+
+아래 그림을 통해 좀 더 자세하게 들여다 본다면 다음과 같다.
+
+![flex-container-item](/static/css-flex-grid/flex.png)
+
+정확하게 말하자면 flex-grow 의 값이 0보다 크게 되면 flex-basis 보다 커지게 되는데 아무 기준없이 커지는 것이 아니라, item 이 차지하고 있는 공간을 비율로 나눠서 계산한다. 위의 그림을 보면 쉽게 이해가 될 것이라 생각된다.
+
+![flex-container-item](/static/css-flex-grid/flex-basis.png)
+
+만약 flex-basis 를 0 으로 설정하게 되면 어떻게 될까? 위의 예시처럼 flex: 1 1 0 으로 잡으면 flex-basis 는 0 이 된다. 아이템의 기본 크기가 0이 된다. 기본 크기가 0이 된다고 아이템이 사라지는 것이 아니다.
+이 말은 즉 기본 점유 크기를 0으로 만들어버려 결국 전체 크기를 1:2:1로 나누어 가져서, 영역 자체의 크기가 정확히 1:2:1의 비율로 설정되었습니다. 여백의 비율이 아닌 전체크기 비율로 계산을 하게 된다.
+
+2. z-Index
+
+- 아이템의 z 축 위치를 조정하는 기능을 한다. z-index로 Z축 정렬을 할 수 있어요. 숫자가 클 수록 위로 올라옵니다. (position에서의 z-index랑 똑같이 생각하시면 됩니다.)
+- z-index를 설정 안하면 0이므로, 1만 설정해도 나머지 아이템을 보다 위로 올라온다.
+- 상대적인 값이라서 0보다 무조건 크다고 되는 것이 아니라 다른 item 의 index 와 비교하고 크게 되면 z 축에서 위치하는 모습이 달라지게 된다.
+
+```tsx
+.item:nth-child(2) {
+	z-index: 1;
+	transform: scale(2);
+}
+```
+
+## 2. Grid
+
+1. CSS Flex 와 달리 CSS Grid 는 양방향 레이아웃 시스템을 가진다. 즉 수직수평 방향을 한번에 조정하는 기능을 담당한다.
+
+![flex-grid](/static/css-flex-grid/flex-grid.png)
+
+2.Grid 는 Flex 보다 구조가 복잡하고 용어가 훨씬많다. 개인적으로 생각하기에 다 외울 필요는 없다고 생각한다.
+
+![flex-grid](/static/css-flex-grid/grid-term.png)
+
+### 필수 Grid Container 에 적용하는 속성
+
+1. display: grid
+
+- flex 와 마찬가지로 grid 를 쓰고 싶다면 grid 를 설정해야 한다.
+
+2. grid-template-rows / grid-template-columns
+
+- grid container 에 들어갈 grid-item 들의 공간을 지정해준다. grid-template-rows는 행(row) 배치, grid-template-columns는 열(column) 배치를 의미한다.
+
+```tsx
+
+container {
+	grid-template-columns: 200px 200px 500px;
+	grid-template-columns: 1fr 1fr 1fr */
+	grid-template-columns: repeat(3, 1fr) */
+	grid-template-columns: 200px 1fr */
+	grid-template-columns: 100px 200px auto */
+
+	grid-template-rows: 200px 200px 500px;
+	grid-template-rows: 1fr 1fr 1fr */
+	grid-template-rows: repeat(3, 1fr) */
+	grid-template-rows: 200px 1fr */
+	grid-template-rows: 100px 200px auto */
+}
+
+```
+
+정말 다양한 형태로 옵션 설정하는 것이 가능하다. 예를 들어 grid-template-columns: 200px 200px 500px; 라고 하면 column을 200px, 200px, 500px로 만들겠다는 의미이다.
+
+- repeat(반복횟수,반복값) 을 사용하면 동적으로 grid 설정을 할 수 있다.
+
+```tsx
+.container {
+	grid-template-columns: repeat(5, 1fr);
+	/* grid-template-columns: 1fr 1fr 1fr 1fr 1fr */
+}
+```
+
+- minmax(최소,최대) 라는 함수도 있는데 이 또한 동적으로 크기를 조정하는데 유용하다.
+
+```tsx
+.container {
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, minmax(100px, auto));
+}
+```
+
+- 만약 column 의 개수를 미리 정하지 않고 설정된 너비가 허용하는 한 최대한 셀을 채우고 싶다면 `auto-fill` 또는 `auto-fit` 를 사용하면 된다.
+
+```tsx
+.container {
+	grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+}
+```
+
+위의 경우 auto-fill 의 크기를 20% 로 설정했기 때문에, 1개의 row 에는 5개의 cell 이 들어간다. 만약 5개가 안되면 빈공백으로 남기는데, 이부분은 공백으로 안남기고 자동으로 채우고 싶다면 `auto-fit` 을 사용하면 된다.
+
+```tsx
+.container {
+	grid-template-columns: repeat(auto-fit, minmax(20%, auto));
+}
+```
+
+3. align-items & justify-items vs align-self & justify-self vs align-content & justify-content
+
+- grid-item 의 align-items & justify-items 는 수평 & 수직축 방향 정렬
+- grid-item 의 align-self & justify-self 는 수평 & 수직축 방향 정렬, 그러나 전체가 아닌 개별 item 에 적용
+- grid-item 의 align-content & justify-content 는 grid 아이템들의 높이를 모두 합한 값이 grid 컨테이너의 높이보다 작을 때 grid 아이템들을 통째로 정렬합니다. (이해안되면 레퍼런스 링크를 참조해서 비교하는게 빠름)
+
+## 3. Box-sizing
+
+box-sizing은 박스의 크기를 어떤 것을 기준으로 계산할지를 정하는 속성이다. default 는 content-box 이다.
+
+- content-box : 콘텐트 영역을 기준으로 크기를 정한다.
+- border-box : 테두리를 기준으로 크기를 정한다.
+- initial : 기본값으로 설정한다.
+- inherit : 부모 요소의 속성값을 상속받는다.
+
+## 2.예시
+
+```tsx
+<div class="content">
+    <p>content-box</p>
+</div>
+<div class="box">
+    <p>border-box</p>
+</div>
+```
+
+```tsx
+body {
+    margin: 0px;
+}
+
+div {
+    margin: 20px;
+    padding: 20px;
+    border: 20px solid #dddddd;
+    width: 500px;
+}
+
+.content {
+    box-sizing: content-box;
+}
+
+.box {
+    box-sizing: border-box;
+}
+```
+
+둘 다 width 값을 500px로 정하였으나, box-sizing 속성값에 따라 크기기 달라진다.
+
+첫 번째 박스는 콘텐트 영역이 500px이고 테두리를 포함한 크기는 580px이다. margin left 와 right 각각 20px 그리고 padding left 와 right 가 각각 20px 이다. (500+20x2+20x2 = 580)
+
+하지만 두 번째 박스는 테두리를 포함한 크기가 500px이고, 콘텐트 영역의 크기는 420px이다. margin left 와 right 각각 20px 그리고 padding left 와 right 가 각각 20px 이다. (500-(20x2+20x2) = 420)
+
+위의 코드를 실행시키면 아래와 같다
+
+![main](/static/css-flex-grid/example.png)
+
+이렇게 같은 코드라도 box-sizing 을 어떻게 설정하는냐에 따라 다른 결과가 나오게 된다.
+
+감사합니다.
+
+#### reference:
+
+- [CSS / box-sizing / 박스의 크기를 어떤 것을 기준으로 계산할지를 정하는 속성](https://www.codingfactory.net/10630)
+- [생활코딩 box-sizing](https://opentutorials.org/course/2418/13405)
+- [이번에야 말로 CSS Flex를 익혀보자](https://studiomeal.com/archives/197)
+- [이번에야 말로 CSS Grid를 익혀보자](https://studiomeal.com/archives/533)
