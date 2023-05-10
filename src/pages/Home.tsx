@@ -3,8 +3,6 @@ import * as icons from '../assets'
 import {Title, Splash} from '../components'
 
 export const Home = (): JSX.Element => {
-  const keys = Object.keys(icons)
-
   return (
     <div>
       <Splash />
@@ -16,29 +14,71 @@ export const Home = (): JSX.Element => {
           <h1 className="font-extrabold text-center text-transparent text-7xl bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text">
             <FormattedMessage id="HomeName" />
           </h1>
-          {Array.from({length: keys.length}, (_, k) => (
-            <div
-              className={`bg-white ${
-                k % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'
-              }`}>
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
               <img
                 alt="img"
-                src={icons[keys[k]]}
-                className="max-w-sm m-auto rounded-lg shadow-2xl"
+                src={icons.CodingIcon}
+                className="m-auto rounded-lg w-96 h-96"
               />
-              <div className="flex flex-col justify-center p-6">
-                <h1 className="text-5xl font-bold">Box Office News!</h1>
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id={`HomeAnswer1-1`} />
+                </h1>
                 <p className="py-6">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-                  excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-                  id nisi.
+                  React, TypeScript, Next.js, TailwindCSS, Node.js, Redux, Recoil,
+                  React-Query, Storybook
                 </p>
-                <button className="px-6 py-3 font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-700">
-                  Get Started
-                </button>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-2" />
+                </h1>
+                <p className="py-6">English, German, Korean</p>
+              </div>
+              <img
+                alt="img"
+                src={icons.LanguageIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+            </div>
+          </div>
+
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <img
+                alt="img"
+                src={icons.DataIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-3" />
+                </h1>
+                <p className="py-6">D3.js, SVG, Canvas</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero">
+            <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
+              <div>
+                <h1 className="text-5xl font-bold">
+                  <FormattedMessage id="HomeAnswer1-4" />
+                </h1>
+              </div>
+              <img
+                alt="img"
+                src={icons.LearningIcon}
+                className="m-auto rounded-lg w-96 h-96"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
