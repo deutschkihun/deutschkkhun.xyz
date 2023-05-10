@@ -1,5 +1,5 @@
 import {FormattedMessage} from 'react-intl'
-import {Link} from '../../components'
+import {Icon, Link} from '../../components'
 import {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {AppState} from '../../store'
@@ -153,7 +153,7 @@ export default function NavigationBar() {
             <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
               <button
                 onClick={changeModeHandler('light')}
-                className="overflow-hidden text-left rounded-lg outline-base-content"
+                className="outline-base-content overflow-hidden rounded-lg text-left [&amp;_svg]:visible"
                 data-set-theme="light"
                 data-act-class="[&amp;_svg]:visible">
                 <div
@@ -161,6 +161,7 @@ export default function NavigationBar() {
                   className="w-full font-sans cursor-pointer bg-base-100 text-base-content">
                   <div className="grid grid-cols-5 grid-rows-3">
                     <div className="flex items-center col-span-5 row-span-3 row-start-1 gap-2 px-4 py-3">
+                      <Icon name="check" className="btn-xs btn-ghost" />
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -191,6 +192,7 @@ export default function NavigationBar() {
                   className="w-full font-sans cursor-pointer bg-base-100 text-base-content">
                   <div className="grid grid-cols-5 grid-rows-3">
                     <div className="flex items-center col-span-5 row-span-3 row-start-1 gap-2 px-4 py-3">
+                      <Icon name="check" className="btn-xs btn-ghost" />
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
