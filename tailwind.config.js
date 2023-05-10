@@ -18,5 +18,5 @@ module.exports = {
       // => @media (max-width: 639px) { ... }
     }
   },
-  plugins: [require('@tailwindcss/line-clamp'), require('daisyui')]
+  plugins: [require('daisyui')]
 }
