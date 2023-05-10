@@ -1,9 +1,6 @@
 import {FormattedMessage} from 'react-intl'
-import styled from 'styled-components'
 import * as icons from '../assets'
-
-import {useSetRecoilState} from 'recoil'
-import {toggleState} from '../recoil/toggle'
+import styled from 'styled-components'
 import {Title, Splash} from '../components'
 
 const SilderContainer = styled.div`
@@ -115,11 +112,10 @@ export const AnimationChar = styled.h1`
 `
 
 export const Home = (): JSX.Element => {
-  const setToggle = useSetRecoilState(toggleState)
   const keys = Object.keys(icons)
 
   return (
-    <aside onMouseOver={() => setToggle(false)}>
+    <aside>
       <Splash />
       <Intro>
         <h2>

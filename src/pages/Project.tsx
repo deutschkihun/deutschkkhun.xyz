@@ -3,15 +3,13 @@ import {useNavigate} from 'react-router-dom'
 import {vizProject} from '../mock/project'
 import {IconMaterial} from '../components/IconMaterial'
 import {FormattedMessage} from 'react-intl'
-import {useRecoilValue, useSetRecoilState} from 'recoil'
+import {useRecoilValue} from 'recoil'
 import {languageState} from '../recoil/language'
-import {toggleState} from '../recoil/toggle'
 import {Title} from '../components'
 
 export const Project = (): JSX.Element => {
   const navigate = useNavigate()
   const lang = useRecoilValue(languageState)
-  const setToggle = useSetRecoilState(toggleState)
 
   const vizList = vizProject[lang as keyof typeof vizProject]
 
@@ -23,7 +21,7 @@ export const Project = (): JSX.Element => {
   }, [vizList])
 
   return (
-    <aside className="min-h-max" onMouseOver={() => setToggle(false)}>
+    <aside className="min-h-max">
       <Title children={<FormattedMessage id="ProjectList" />} />
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom">
         <ul

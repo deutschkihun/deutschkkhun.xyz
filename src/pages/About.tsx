@@ -1,13 +1,10 @@
 import {Card, CardActions, CardContent, Button} from '@mui/material'
 import {FormattedMessage} from 'react-intl'
-import {useSetRecoilState} from 'recoil'
-import {toggleState} from '../recoil/toggle'
 import {Subtitle, Title, Typography, Paragraph} from '../components'
 
 export const About = (): JSX.Element => {
-  const setToggle = useSetRecoilState(toggleState)
   return (
-    <aside className="grid" onMouseOver={() => setToggle(false)}>
+    <aside className="grid">
       <Title children={<FormattedMessage id="AboutTitle" />} />
       <Card
         sx={{
