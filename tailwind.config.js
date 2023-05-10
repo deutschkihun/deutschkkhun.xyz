@@ -14,8 +14,10 @@ module.exports = {
       md: {max: '767px'},
       // => @media (max-width: 767px) { ... }
 
-      sm: {max: '640px'}
+      sm: {max: '640px'},
       // => @media (max-width: 639px) { ... }
+
+      ssm: {max: '600px'}
     }
   },
   plugins: [require('daisyui')]

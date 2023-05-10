@@ -1,5 +1,4 @@
 import type {FC, DetailedHTMLProps, HTMLAttributes} from 'react'
-import {makeClassName} from './textUtil'
 
 type TextProps = DetailedHTMLProps<
   HTMLAttributes<HTMLParagraphElement>,
@@ -14,11 +13,8 @@ export const Title: FC<TitleProps> = ({
   numberOfLines,
   ...props
 }) => {
-  const className = makeClassName(
-    'font-bold text-5xl text-center whitespace-pre-line',
-    _className,
-    numberOfLines
-  )
+  // prettier-ignore
+  const className = ['font-bold text-5xl text-center whitespace-pre-line', _className, numberOfLines ? `line-clamp-${numberOfLines}`: ''].join(' ')
   return <p {...props} className={className} />
 }
 
@@ -28,11 +24,8 @@ export const Subtitle: FC<SubtitleProps> = ({
   numberOfLines,
   ...props
 }) => {
-  const className = makeClassName(
-    'font-semibold text-3xl text-center whitespace-pre-line',
-    _className,
-    numberOfLines
-  )
+  // prettier-ignore
+  const className = ['font-semibold text-3xl text-center whitespace-pre-line', _className, numberOfLines ? `line-clamp-${numberOfLines}`: ''].join(' ')
   return <p {...props} className={className} />
 }
 
@@ -42,11 +35,8 @@ export const Typography: FC<TypographyProps> = ({
   numberOfLines,
   ...props
 }) => {
-  const className = makeClassName(
-    'text-sm whitespace-pre-line',
-    _className,
-    numberOfLines
-  )
+  // prettier-ignore
+  const className = ['text-sm whitespace-pre-line', _className, numberOfLines ? `line-clamp-${numberOfLines}`: ''].join(' ')
   return <p {...props} className={className} />
 }
 
@@ -56,10 +46,7 @@ export const Paragraph: FC<ParagraphProps> = ({
   numberOfLines,
   ...props
 }) => {
-  const className = makeClassName(
-    'font-normal text-base whitespace-pre-line',
-    _className,
-    numberOfLines
-  )
+  // prettier-ignore
+  const className = ['font-normal text-base whitespace-pre-line', _className, numberOfLines ? `line-clamp-${numberOfLines}`: ''].join(' ')
   return <p {...props} className={className} />
 }

@@ -14,13 +14,13 @@ export default function NavigationBar() {
   )
 
   return (
-    <div className="navbar">
+    <div className="navbar mb-14 ssm:justify-between">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} className="gap-1 normal-case btn btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
+              className="w-7 h-7"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor">
@@ -59,7 +59,7 @@ export default function NavigationBar() {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="text-xl normal-case btn btn-ghost" href="/">
+        <a className="text-xl normal-case btn btn-ghost ssm:hidden" href="/">
           deutschkihun
         </a>
       </div>
@@ -67,7 +67,7 @@ export default function NavigationBar() {
         <div title="Change Language" className="dropdown dropdown-end">
           <div tabIndex={0} className="gap-1 normal-case btn btn-ghost">
             <svg
-              className="inline-block w-4 h-4 fill-current md:h-5 md:w-5"
+              className="inline-block fill-current w-7 h-7 md:h-5 md:w-5"
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -117,12 +117,10 @@ export default function NavigationBar() {
         <div className="dropdown dropdown-end">
           <div tabIndex={0} className="gap-1 normal-case btn btn-ghost">
             <svg
-              width="20"
-              height="20"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="inline-block w-5 h-5 stroke-current md:h-6 md:w-6">
+              className="inline-block stroke-current w-7 h-7 md:h-6 md:w-6">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

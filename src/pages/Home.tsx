@@ -3,67 +3,6 @@ import * as icons from '../assets'
 import styled from 'styled-components'
 import {Title, Splash} from '../components'
 
-const SilderContainer = styled.div`
-  padding: 1rem;
-  border: 0.2rem solid;
-  width: 70vw;
-  margin: auto;
-  border-radius: 8px;
-  margin-bottom: 3rem;
-`
-
-const Silder = styled.div`
-  padding: 1rem;
-  border: 0.2rem solid;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  height: 420px;
-  justify-items: center;
-
-  svg {
-    fill: black;
-  }
-
-  img {
-    width: 200px;
-    margin: auto;
-  }
-
-  h2 {
-    margin: auto;
-  }
-
-  @media screen and (max-width: 1045px) {
-    display: block;
-    text-align: center;
-
-    h2 {
-      padding: 1rem 0;
-      font-size: 30px !important;
-    }
-
-    img {
-      min-height: 250px;
-    }
-  }
-
-  @media screen and (max-width: 570px) {
-    display: block;
-    text-align: center;
-
-    h2 {
-      padding: 1rem 0;
-      font-size: 20px !important;
-    }
-
-    img {
-      width: 60%;
-      min-height: 250px;
-    }
-  }
-`
-
 const Intro = styled.div`
   max-width: 70vw;
   margin: auto;
@@ -118,9 +57,9 @@ export const Home = (): JSX.Element => {
     <aside>
       <Splash />
       <Intro>
-        <h2>
+        <Title>
           <FormattedMessage id="HomeTitle" />
-        </h2>
+        </Title>
         <AnimationChar>
           <FormattedMessage id="HomeName" />
         </AnimationChar>
@@ -129,14 +68,27 @@ export const Home = (): JSX.Element => {
         <Title />
 
         {Array.from({length: keys.length}, (_, k) => (
-          <SilderContainer key={k} className="reveal-container fade-bottom">
-            <Silder>
-              <img src={icons[keys[k]]} alt="img" />
-              <h2>
-                <FormattedMessage id={`HomeAnswer1-${k + 1}`} />
-              </h2>
-            </Silder>
-          </SilderContainer>
+          <div className="hero">
+            <div
+              className={`flex-col hero-content lg:flex-row-${
+                k % 2 === 1 ? 'reverse' : ''
+              }`}>
+              <img
+                alt="img"
+                src={icons[keys[k]]}
+                className="max-w-sm m-auto rounded-lg shadow-2xl"
+              />
+              <div>
+                <h1 className="text-5xl font-bold">Box Office News!</h1>
+                <p className="py-6">
+                  Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+                  excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
+                  id nisi.
+                </p>
+                <button className="btn btn-primary">Get Started</button>
+              </div>
+            </div>
+          </div>
         ))}
       </Intro>
     </aside>
