@@ -1,17 +1,16 @@
 import {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {vizProject} from '../mock/project'
-import {IconMaterial} from '../components/IconMaterial'
+import {mock} from './mock'
 import {FormattedMessage} from 'react-intl'
 import {useRecoilValue} from 'recoil'
 import {languageState} from '../recoil/language'
-import {Title} from '../components'
+import {Title, IconMaterial} from '../components'
 
 export const Project = (): JSX.Element => {
   const navigate = useNavigate()
   const lang = useRecoilValue(languageState)
 
-  const vizList = vizProject[lang as keyof typeof vizProject]
+  const vizList = mock[lang as keyof typeof mock]
 
   useEffect(() => {
     const reveals = document.querySelectorAll('.reveal')
@@ -22,7 +21,9 @@ export const Project = (): JSX.Element => {
 
   return (
     <aside className="min-h-max">
-      <Title children={<FormattedMessage id="ProjectList" />} />
+      <Title>
+        <FormattedMessage id="ProjectList" />
+      </Title>
       <section className="p-3 m-auto max-w-7xl reveal fade-bottom">
         <ul
           className="grid gap-x-2 "

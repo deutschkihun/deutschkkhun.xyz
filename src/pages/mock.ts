@@ -1,4 +1,4 @@
-export const vizProject = {
+export const mock = {
   en: [
     {
       title: 'SVG',

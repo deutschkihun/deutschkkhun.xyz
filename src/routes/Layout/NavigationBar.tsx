@@ -17,7 +17,7 @@ export default function NavigationBar() {
     <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <div tabIndex={0} className="gap-1 normal-case btn btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5"
@@ -31,7 +31,7 @@ export default function NavigationBar() {
                 d="M4 6h16M4 12h16M4 18h7"
               />
             </svg>
-          </label>
+          </div>
           <ul
             tabIndex={0}
             className="p-2 mt-3 shadow menu menu-compact dropdown-content rounded-box w-52">
@@ -78,7 +78,7 @@ export default function NavigationBar() {
             <svg
               width="12px"
               height="12px"
-              className="hidden w-3 h-3 ml-1 fill-current opacity-60 sm:inline-block"
+              className="w-3 h-3 ml-1 fill-current opacity-60 sm:inline-block"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 2048 2048">
               <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
@@ -129,10 +129,13 @@ export default function NavigationBar() {
                 strokeWidth={2}
                 d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
             </svg>
+            <span className="md:inline">
+              <FormattedMessage id="Theme" />
+            </span>
             <svg
               width="12px"
               height="12px"
-              className="hidden w-3 h-3 ml-1 fill-current opacity-60 sm:inline-block"
+              className="w-3 h-3 ml-1 fill-current opacity-60 sm:inline-block"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 2048 2048">
               <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
