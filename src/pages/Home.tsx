@@ -4,8 +4,7 @@ import * as icons from '../assets'
 
 import {useSetRecoilState} from 'recoil'
 import {toggleState} from '../recoil/toggle'
-import {Title} from '../components/Texts'
-import {Splash} from './Splash'
+import {Title, Splash} from '../components'
 
 const SilderContainer = styled.div`
   padding: 1rem;

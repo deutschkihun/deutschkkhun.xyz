@@ -1,6 +1,5 @@
 export * from './About'
 export * from './Home'
-export * from './Splash'
 export * from './Project'
 export * from './Donut/DonutDemo'
 export * from './Barplot/BarplotDemo'
