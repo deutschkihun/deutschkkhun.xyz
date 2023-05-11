@@ -15,7 +15,7 @@ const localStorageMiddleware =
 
 const persistedState: AppState =
   JSON.parse(localStorage.getItem('locale') as string) ?? {}
-window.document.body.classList.add(persistedState.mode)
+window.document.body.classList.add(persistedState.mode || 'light')
 
 const initializeStore = () => {
   const init = configureStore({
