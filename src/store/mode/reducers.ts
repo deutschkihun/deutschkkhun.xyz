@@ -1,9 +1,7 @@
 import * as T from './types'
 
-const initialState: T.State =
-  JSON.parse(localStorage.getItem('locale') as string)['mode'] ?? 'light'
-
-export const reducer = (state: T.State = initialState, action: T.Actions) => {
+const initialState: T.State = JSON.parse(localStorage.getItem('locale') as string)
+export const reducer = (state: T.State = initialState || 'light', action: T.Actions) => {
   switch (action.type) {
     case '@mode/change':
       if (action.payload === 'dark') {
