@@ -1,10 +1,9 @@
 import {CSSProperties, useEffect, useRef} from 'react'
 import styled from 'styled-components'
-import {useRecoilValue} from 'recoil'
-import {modeState} from '../recoil/mode'
 import {useSelector} from 'react-redux'
 import {AppState} from '../store'
 import * as LG from '../store/languages'
+import * as M from '../store/mode'
 
 interface SplashProps {
   mode: string
@@ -47,8 +46,8 @@ const SplashContainer = styled.aside<SplashProps>`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: ${p => (p.mode === 'light-mode' ? '#FFFAFA' : 'black')};
-  color: ${p => (p.mode === 'light-mode' ? 'black' : '#FFFAFA')};
+  background-color: ${p => (p.mode === 'light' ? '#FFFAFA' : 'black')};
+  color: ${p => (p.mode === 'light' ? 'black' : '#FFFAFA')};
   opacity: 1;
   z-index: 999;
   justify-content: center;
@@ -71,8 +70,8 @@ type ExtendedCSSProperties = CSSProperties & MyStyleType
 
 export const Splash = (): JSX.Element => {
   const ref = useRef<HTMLElement>(null)
-  const mode = useRecoilValue(modeState)
   const lang = useSelector<AppState, LG.State>(({languages}) => languages)
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const locale = lang === 'en' ? 'WELCOME' : '환영합니다'
 
   useEffect(() => {

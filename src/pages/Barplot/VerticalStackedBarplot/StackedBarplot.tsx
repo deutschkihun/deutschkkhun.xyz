@@ -12,21 +12,18 @@ type StackedBarplotProps = {
 }
 
 export const StackedBarplot = ({width, height, data}: StackedBarplotProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const axesRef = useRef(null)
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
   const allGroups = data.map(d => String(d.x))
-  const allSubgroups = ['groupA', 'groupB', 'groupC', 'groupD'] // todo
+  const allSubgroups = ['groupA', 'groupB', 'groupC', 'groupD']
 
-  // Data Wrangling: stack the data
   const stackSeries = d3.stack().keys(allSubgroups).order(d3.stackOrderNone)
-  //.offset(d3.stackOffsetNone);
+
   const series = stackSeries(data)
 
-  // Y axis
-  const max = 200 // todo
+  const max = 200
   const yScale = useMemo(() => {
     return d3
       .scaleLinear()
@@ -34,18 +31,15 @@ export const StackedBarplot = ({width, height, data}: StackedBarplotProps) => {
       .range([boundsHeight, 0])
   }, [boundsHeight])
 
-  // X axis
   const xScale = useMemo(() => {
     return d3.scaleBand<string>().domain(allGroups).range([0, boundsWidth]).padding(0.05)
   }, [allGroups, boundsWidth])
 
-  // Color Scale
   var colorScale = d3
     .scaleOrdinal<string>()
     .domain(allGroups)
     .range(['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'])
 
-  // Render the X and Y axis using d3.js, not react
   useLayoutEffect(() => {
     const svgElement = d3.select(axesRef.current)
     svgElement.selectAll('*').remove()

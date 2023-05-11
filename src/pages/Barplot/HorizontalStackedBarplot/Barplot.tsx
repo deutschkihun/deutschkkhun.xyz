@@ -12,22 +12,18 @@ type BarplotProps = {
 }
 
 export const Barplot = ({width, height, data}: BarplotProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
   const groups = [...new Set(data.map(d => d.group))]
   const subGroups = [...new Set(data.map(d => d.subgroup))]
 
-  // Reformat the dataset
   const stackGenerator = d3
     .stack<string>()
     .keys(subGroups)
     .value(d => data.filter(item => item.group === d)[0].value)
   const series = stackGenerator(groups)
 
-  // Find size of the longest bar and group rank.
-  // Values are available in the last group of the stack
   const lastStackGroup = series[series.length - 1] || []
   const groupTotalValues = lastStackGroup.map(group => {
     const biggest = group[group.length - 1] || 0
@@ -36,7 +32,6 @@ export const Barplot = ({width, height, data}: BarplotProps) => {
   const sortedGroupTotalValues = groupTotalValues.sort((a, b) => b.value - a.value)
   const maxValue = sortedGroupTotalValues[0].value
 
-  // Y axis is for groups since the barplot is horizontal
   const yScale = useMemo(() => {
     return d3
       .scaleBand()
@@ -45,12 +40,10 @@ export const Barplot = ({width, height, data}: BarplotProps) => {
       .padding(BAR_PADDING)
   }, [boundsHeight, groupTotalValues])
 
-  // X axis
   const xScale = useMemo(() => {
     return d3.scaleLinear().domain([0, maxValue]).range([0, boundsWidth])
   }, [boundsWidth, maxValue])
 
-  // Color Scale
   var colorScale = d3.scaleOrdinal<string>().domain(subGroups).range(COLORS)
 
   const rectangles = series.map((subgroup, i) => {
@@ -88,8 +81,7 @@ export const Barplot = ({width, height, data}: BarplotProps) => {
           textAnchor="end"
           alignmentBaseline="central"
           fontSize={12}
-          opacity={xScale(group.value) > 90 ? 1 : 0} // hide label if bar is not wide enough
-        >
+          opacity={xScale(group.value) > 90 ? 1 : 0}>
           {group.value}
         </text>
         <text

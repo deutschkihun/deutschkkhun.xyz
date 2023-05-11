@@ -1,8 +1,9 @@
-import {useEffect, useRef} from 'react'
 import * as d3 from 'd3'
-import {useRecoilValue} from 'recoil'
-import {modeState} from '../../../recoil/mode'
+import {useEffect, useRef} from 'react'
 import {InteractionData} from './type'
+import {useSelector} from 'react-redux'
+import {AppState} from '../../../store'
+import * as M from '../../../store/mode'
 
 type ColorLegendProps = {
   height: number
@@ -20,7 +21,7 @@ export const ColorLegend = ({
   interactionData
 }: ColorLegendProps): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const mode = useRecoilValue(modeState)
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const boundsWidth = width - COLOR_LEGEND_MARGIN.right - COLOR_LEGEND_MARGIN.left
   const boundsHeight = height - COLOR_LEGEND_MARGIN.top - COLOR_LEGEND_MARGIN.bottom
 
@@ -39,14 +40,14 @@ export const ColorLegend = ({
           x2={xScale(tick)}
           y1={0}
           y2={boundsHeight + 10}
-          stroke={mode === 'light-mode' ? 'black' : 'white'}
+          stroke={mode === 'light' ? 'black' : 'white'}
         />
         <text
           x={xScale(tick)}
           y={boundsHeight + 20}
           fontSize={9}
           textAnchor="middle"
-          fill={mode === 'light-mode' ? 'black' : 'white'}>
+          fill={mode === 'light' ? 'black' : 'white'}>
           {tick}
         </text>
       </>

@@ -2,6 +2,7 @@ import {configureStore} from '@reduxjs/toolkit'
 import {useMemo} from 'react'
 import {rootReducer} from './rootReducer'
 import {Action, Dispatch} from 'redux'
+import {AppState} from './AppState'
 
 const localStorageMiddleware =
   <S = any>(store: {getState: () => S}) =>
@@ -12,7 +13,9 @@ const localStorageMiddleware =
     return result
   }
 
-const persistedState = JSON.parse(localStorage.getItem('locale') as string) ?? {}
+const persistedState: AppState =
+  JSON.parse(localStorage.getItem('locale') as string) ?? {}
+window.document.body.classList.add(persistedState.mode)
 
 const initializeStore = () => {
   const init = configureStore({

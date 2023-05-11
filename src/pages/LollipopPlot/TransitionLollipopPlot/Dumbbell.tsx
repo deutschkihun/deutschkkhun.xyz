@@ -11,22 +11,18 @@ type DumbbellProps = {
 }
 
 export const Dumbbell = ({width, height, data}: DumbbellProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  // Y axis is for groups since the barplot is horizontal
   const groups = data.map(d => d.name).sort()
   const yScale = useMemo(() => {
     return d3.scaleBand().domain(groups).range([0, boundsHeight])
   }, [boundsHeight, groups])
 
-  // X axis
   const xScale = useMemo(() => {
     return d3.scaleLinear().domain([0, 120]).range([0, boundsWidth])
   }, [boundsWidth])
 
-  // Build the shapes
   const allShapes = data.map(d => {
     return (
       <DumbbellItem

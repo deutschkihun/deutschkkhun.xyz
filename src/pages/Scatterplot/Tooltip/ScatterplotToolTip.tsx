@@ -18,7 +18,6 @@ export const ScatterplotToolTip = ({width, height}: ScatterplotProps): JSX.Eleme
 
   const [hovered, setHovered] = useState<InteractionData | null>(null)
 
-  // Scales
   const yScale = d3.scaleLinear().domain([0, 85]).range([boundsHeight, 0])
   const xScale = d3.scaleLinear().domain([0, 50000]).range([0, boundsWidth])
   const allGroups = data.map(d => String(d.group))
@@ -27,7 +26,6 @@ export const ScatterplotToolTip = ({width, height}: ScatterplotProps): JSX.Eleme
     .domain(allGroups)
     .range(['#A6A6A6', '#D3F354', '#FF3A28', '#F8FFDE', '#3479FF'])
 
-  // Build the shapes
   const allShapes = data.map((d, i) => {
     return (
       <circle
@@ -57,20 +55,16 @@ export const ScatterplotToolTip = ({width, height}: ScatterplotProps): JSX.Eleme
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
-          {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
 
-          {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} pixelsPerTick={40} height={boundsHeight} />
           </g>
 
-          {/* Circles */}
           {allShapes}
         </g>
       </svg>
 
-      {/* Tooltip */}
       <div
         style={{
           width: boundsWidth,

@@ -8,6 +8,7 @@ import * as M from '../../store/mode'
 
 export default function NavigationBar() {
   const temp = useSelector<AppState, LG.State>(({languages}) => languages)
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const dispatch = useDispatch()
   const changeLanguageHandler = useCallback(
     (language: string) => () => {
@@ -161,7 +162,9 @@ export default function NavigationBar() {
                   className="w-full font-sans cursor-pointer bg-base-100 text-base-content">
                   <div className="grid grid-cols-5 grid-rows-3">
                     <div className="flex items-center col-span-5 row-span-3 row-start-1 gap-2 px-4 py-3">
-                      <Icon name="check" className="btn-xs btn-ghost" />
+                      {mode === 'light' && (
+                        <Icon name="check" className="btn-xs btn-ghost" />
+                      )}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -192,7 +195,9 @@ export default function NavigationBar() {
                   className="w-full font-sans cursor-pointer bg-base-100 text-base-content">
                   <div className="grid grid-cols-5 grid-rows-3">
                     <div className="flex items-center col-span-5 row-span-3 row-start-1 gap-2 px-4 py-3">
-                      <Icon name="check" className="btn-xs btn-ghost" />
+                      {mode === 'dark' && (
+                        <Icon name="check" className="btn-xs btn-ghost" />
+                      )}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"

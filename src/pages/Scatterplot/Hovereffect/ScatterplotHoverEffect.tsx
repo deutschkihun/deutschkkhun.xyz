@@ -21,7 +21,6 @@ export const ScatterplotHoverEffect = ({
 
   const [hoveredGroup, setHoveredGroup] = useState<string | null>(null)
 
-  // Scales
   const yScale = d3.scaleLinear().domain([35, 85]).range([boundsHeight, 0])
   const xScale = d3.scaleLinear().domain([-3000, 50000]).range([0, boundsWidth])
   const allGroups = data.map(d => String(d.group))
@@ -30,7 +29,6 @@ export const ScatterplotHoverEffect = ({
     .domain(allGroups)
     .range(['#e0ac2b', '#e85252', '#6689c6', '#9a6fb0', '#a53253'])
 
-  // Build the shapes
   const allShapes = data.map((d, i) => {
     const className =
       hoveredGroup && d.group !== hoveredGroup
@@ -54,20 +52,16 @@ export const ScatterplotHoverEffect = ({
   return (
     <div>
       <svg width={width} height={height}>
-        {/* first group is for the violin and box shapes */}
         <g
           width={boundsWidth}
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}>
-          {/* Y axis */}
           <AxisLeft yScale={yScale} pixelsPerTick={40} width={boundsWidth} />
 
-          {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} pixelsPerTick={40} height={boundsHeight} />
           </g>
 
-          {/* Circles */}
           {allShapes}
         </g>
       </svg>

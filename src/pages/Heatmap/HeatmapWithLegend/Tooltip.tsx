@@ -13,7 +13,6 @@ export const Tooltip = ({interactionData, width, height}: TooltipProps): JSX.Ele
   }
 
   return (
-    // Wrapper div: a rect on top of the viz area
     <div
       style={{
         width,
@@ -23,7 +22,6 @@ export const Tooltip = ({interactionData, width, height}: TooltipProps): JSX.Ele
         left: 0,
         pointerEvents: 'none'
       }}>
-      {/* The actual box with white background */}
       <div
         className={styles.tooltip}
         style={{
