@@ -15,46 +15,25 @@
   "Theme": "테마",
 
   "HomeTitle": "안녕하세요 저는 웹 개발자",
-  "HomeName": "김기훈 입니다.",
+  "HomeName": "김기훈 입니다",
 
-  "HomeQuestion1": "핵심 역량",
-  "HomeAnswer1-1": "전문 웹개발 실무 경력",
-  "HomeAnswer1-2": "비즈니스 레벨 영어 의사소통",
-  "HomeAnswer1-3": "데이터 시각화",
-  "HomeAnswer1-4": "빠른 러닝 커브",
+  "HomeAnswer1": "전문 웹개발 실무 경력",
+  "HomeAnswer2": "비즈니스 레벨 영어 의사소통",
+  "HomeAnswer3": "데이터 시각화",
+  "HomeAnswer4": "빠른 러닝 커브",
 
-  "AboutTitle": "실무 경력",
+  "JD-col1": "머신러닝에 필요한 대규모 데이터셋 제작 및 관리를 위한 플랫폼 Suite UI/UX 설계 및 개발",
+  "JD-col1-1": "웹 서비스 개발을 위한 사내 디자인 시스템 설계 및 구현",
+  "JD-col1-2": "테스트 coverage 가 높은 UI 및 탄력적인 시스템 설계, 구현, 문서화 및 유지 관리",
+  "JD-col1-3": "d3 & react 기반 차트, dashboard, 디자인 시스템 구축",
 
-  "JD-col1-1": "머신러닝에 필요한 대규모 데이터셋 제작 및 관리를 위한 플랫폼 Suite UI/UX 설계 및 개발",
-  "JD-col1-2": "웹 서비스 개발을 위한 사내 디자인 시스템 설계 및 구현",
-  "JD-col1-3": "테스트 coverage 가 높은 UI 및 탄력적인 시스템 설계, 구현, 문서화 및 유지 관리",
-  "JD-col1-4": "d3 & react 기반 차트, dashboard, 디자인 시스템 구축",
+  "JD-col2": "PACE Drive Application 의 progressive web app (PWA) monorepo 개발",
+  "JD-col2-1": "모바일 앱 기반 실시간 주유 서비스 fueling-app / 유류비 결제 서비스 payment-app 개발",
+  "JD-col2-2": "A/B Test 및 Event-logging 기반 UX 개선",
+  "JD-col2-3": "Unit test 및 자동화 snapshot test pipeline 구축",
 
-  "JD-col2-1": "PACE Drive Application 의 progressive web app (PWA) monorepo 개발",
-  "JD-col2-2": "모바일 앱 기반 실시간 주유 서비스 fueling-app / 유류비 결제 서비스 payment-app 개발",
-  "JD-col2-3": "주유 사업자를 위한 커스텀 플랫폼 서비스 partner-management-app 개발",
-  "JD-col2-4": "MapBox API 기반 주유소 위치 및 실시간 운영정보 제공 서비스 fuel-station-finder-app 개발",
-
-  "JD-col3-1": "Low-code frontend 파트 개발",
-  "JD-col3-2": "반응형 웹 컴포넌트 개발",
-  "JD-col3-3": "Graphic User Interface (GUI) 개발",
-  "JD-col3-4": "Workflow dashboard 개발",
-
-  "Accomplishment-col1-1": "Suite AI platform 작업에 대한 project report, user report 개발",
-  "Accomplishment-col1-2": "사용자 편의성을 고려한 다양한 형태의 차트 제공 (heatmap,treemap,bar chart, donut chart etc.) ",
-  "Accomplishment-col1-3": "자체 디자인 시스템 개발을 통한 일관성있고 퀄리티 높은 UI/UX 제공",
-
-  "Accomplishment-col2-1": "monorepo의 event-logging 구축을 통한 사용자들의 conversion rate (전환율) 파악 및 서비스 개선 방향성 제공",
-  "Accomplishment-col2-2": "A/B Test 을 통한 다양한 User interface 테스트와 실험 결과를 바탕으로 사용자 의견 기반의 User interface 개선",
-  "Accomplishment-col2-3": "Unit test 및 자동화 snapshot test pipeline 구축",
-
-  "Accomplishment-col3-1": "자바스크립트 코드를 정적타입 (타입스크립트) 언어로 전환",
-  "Accomplishment-col3-2": "jQuery 와 같은 레거시 코드를 최신 스택으로 전환",
-  "Accomplishment-col3-3": "GUI 와 Workflow dashboard 관련 시스템 버그 최소화",
-
-  "Splash": "환영합니다",
-  "CodingTitle": "블로그",
-
-  "LoadingTitle": "로딩중",
-  "LoadingBody": "잠시만 기다려 주세요"
+  "JD-col3": "노코드 frontend 플랫폼 개발",
+  "JD-col3-1": "반응형 웹 컴포넌트 개발",
+  "JD-col3-2": "Graphic User Interface (GUI) 개발",
+  "JD-col3-3": "Workflow dashboard 개발"
 }
