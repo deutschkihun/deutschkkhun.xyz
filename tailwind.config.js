@@ -1,6 +1,10 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    height: {
+      120: '500px',
+      150: '600px'
+    },
     screens: {
       nxl: {max: '100vw'},
       // => @media (max-width: 1920px) { ... }

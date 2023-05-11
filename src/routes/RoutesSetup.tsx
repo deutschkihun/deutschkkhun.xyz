@@ -14,13 +14,13 @@ import {
   SVGVisualizationDemo,
   LollipopDemo,
   KanbanDemo,
-  KanbanCardDetail
+  KanbanCardDetail,
+  Blog
 } from '../pages'
 import {IntlProvider} from 'react-intl'
 import * as lang from '../lang'
 import Layout from './Layout'
 import NoMatch from './NoMatch'
-import {Blog} from '../pages/Blog'
 
 export default function RoutesSetup() {
   const selected = useSelector<AppState, LG.State>(({languages}) => languages)
