@@ -40,14 +40,14 @@ export const ColorLegend = ({
           x2={xScale(tick)}
           y1={0}
           y2={boundsHeight + 10}
-          stroke={mode === 'light-mode' ? 'black' : 'white'}
+          stroke={mode === 'light' ? 'black' : 'white'}
         />
         <text
           x={xScale(tick)}
           y={boundsHeight + 20}
           fontSize={9}
           textAnchor="middle"
-          fill={mode === 'light-mode' ? 'black' : 'white'}>
+          fill={mode === 'light' ? 'black' : 'white'}>
           {tick}
         </text>
       </>

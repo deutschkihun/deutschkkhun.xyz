@@ -46,8 +46,8 @@ const SplashContainer = styled.aside<SplashProps>`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: ${p => (p.mode === 'light-mode' ? '#FFFAFA' : 'black')};
-  color: ${p => (p.mode === 'light-mode' ? 'black' : '#FFFAFA')};
+  background-color: ${p => (p.mode === 'light' ? '#FFFAFA' : 'black')};
+  color: ${p => (p.mode === 'light' ? 'black' : '#FFFAFA')};
   opacity: 1;
   z-index: 999;
   justify-content: center;

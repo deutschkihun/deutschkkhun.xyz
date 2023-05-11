@@ -36,7 +36,7 @@ export const AxisBottom: FC<AxisBottomProps> = ({xScale, pixelsPerTick, height})
           <line
             y1={TICK_LENGTH}
             y2={-height - TICK_LENGTH}
-            stroke={mode === 'light-mode' ? 'black' : '#D2D7D3'}
+            stroke={mode === 'light' ? 'black' : '#D2D7D3'}
             strokeWidth={0.5}
           />
           <text
@@ -45,7 +45,7 @@ export const AxisBottom: FC<AxisBottomProps> = ({xScale, pixelsPerTick, height})
               fontSize: '10px',
               textAnchor: 'middle',
               transform: 'translateY(20px)',
-              fill: mode === 'light-mode' ? 'black' : '#D2D7D3'
+              fill: mode === 'light' ? 'black' : '#D2D7D3'
             }}>
             {value}
           </text>

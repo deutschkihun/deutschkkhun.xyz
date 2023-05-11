@@ -29,8 +29,8 @@ export const Scatterplot = ({width, height}: ScatterplotProps): JSX.Element => {
         cx={xScale(d.y)}
         cy={yScale(d.x)}
         opacity={1}
-        stroke={mode === 'light-mode' ? 'black' : 'white'}
-        fill={mode === 'light-mode' ? 'blue' : 'yellow'}
+        stroke={mode === 'light' ? 'black' : 'white'}
+        fill={mode === 'light' ? 'blue' : 'yellow'}
         fillOpacity={0.2}
         strokeWidth={1}
       />

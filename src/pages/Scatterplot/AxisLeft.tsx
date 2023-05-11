@@ -33,7 +33,7 @@ export const AxisLeft = ({yScale, pixelsPerTick, width}: AxisLeftProps): JSX.Ele
           <line
             x1={-TICK_LENGTH}
             x2={width + TICK_LENGTH}
-            stroke={mode === 'light-mode' ? 'black' : '#D2D7D3'}
+            stroke={mode === 'light' ? 'black' : '#D2D7D3'}
             strokeWidth={0.5}
             shapeRendering={'crispEdges'}
           />
@@ -43,7 +43,7 @@ export const AxisLeft = ({yScale, pixelsPerTick, width}: AxisLeftProps): JSX.Ele
               fontSize: '10px',
               textAnchor: 'middle',
               transform: 'translateX(-20px)',
-              fill: mode === 'light-mode' ? 'black' : '#D2D7D3'
+              fill: mode === 'light' ? 'black' : '#D2D7D3'
             }}>
             {value}
           </text>

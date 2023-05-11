@@ -90,7 +90,7 @@ export const Renderer = ({
         y={boundsHeight + 10}
         textAnchor="middle"
         dominantBaseline="middle"
-        fill={mode === 'light-mode' ? 'black' : 'white'}
+        fill={mode === 'light' ? 'black' : 'white'}
         fontSize={10}>
         {name}
       </text>
@@ -110,7 +110,7 @@ export const Renderer = ({
         x={-5}
         y={y + yScale.bandwidth() / 2}
         textAnchor="end"
-        fill={mode === 'light-mode' ? 'black' : 'white'}
+        fill={mode === 'light' ? 'black' : 'white'}
         dominantBaseline="middle"
         fontSize={10}>
         {name}
