@@ -19,7 +19,7 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Oct 2022 – Jan 2023</span>
+              <span>Oct 2022 – Jan 2023</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <h2 className="inline font-bold">Front-end developer</h2>
@@ -35,7 +35,7 @@ export const About = (): JSX.Element => {
               <span className="[&amp;_a]:underline"></span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Full-time</span>
+              <span className="text-sm">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <FormattedMessage id="JD-col1" />
@@ -54,7 +54,7 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Jun 2021 – Sep 2022</span>
+              <span>Jun 2021 – Sep 2022</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <h2 className="inline font-bold">Front-end developer</h2>
@@ -69,7 +69,7 @@ export const About = (): JSX.Element => {
               </span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Full-time</span>
+              <span className="text-sm">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <FormattedMessage id="JD-col2" />
@@ -88,7 +88,7 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Dec 2020 – May 2021</span>
+              <span>Dec 2020 – May 2021</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <h2 className="inline font-bold">Front-end developer</h2>
@@ -103,7 +103,7 @@ export const About = (): JSX.Element => {
               </span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Full-time</span>
+              <span className="text-sm">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <FormattedMessage id="JD-col3" />
@@ -129,7 +129,7 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Sep 2017 – Oct 2020</span>
+              <span>Sep 2017 – Oct 2020</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <h2 className="inline font-bold">B.Sc. in industrial engineering</h2>

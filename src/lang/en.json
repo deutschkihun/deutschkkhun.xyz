@@ -28,19 +28,11 @@
 
   "JD-col2": "Development of  progressive web app (PWA) monorepo in PACE Drive Application",
   "JD-col2-1": "Mobile app based real time fueling service (fueling-app) / fuel-price payments service (payment-app) development ",
-  "JD-col2-2": "Custom fueling platfom for oil company (partner-management-app) development",
-  "JD-col2-3": "MapBox API based providing gas-station location and opening hours (fuel-station-finder-app) development",
+  "JD-col2-2": "A/B Test and Event-logging based UX improvement",
+  "JD-col2-3": "Building unit test and automatic snapshot test pipeline",
 
-  "JD-col3": "Frontend development for Low-code system",
+  "JD-col3": "No-code platform development",
   "JD-col3-1": "Responsive web component development",
   "JD-col3-2": "Graphic User Interface (GUI) development",
-  "JD-col3-3": "Workflow dashboard development",
-
-  "Accomplishment-col1-1": "Project Report Development for Suite AI Application",
-  "Accomplishment-col1-2": "Providing various types of charts considering user convenience (heatmap, treemap, bar chart, donut chart etc.)",
-  "Accomplishment-col1-3": "Providing consistent, high-quality UI/UX through the development of a self-design system",
-
-  "Accomplishment-col2-1": "Identifying the conversion rate of users by building event-logging on the services contained in monorepo and providing direction for service improvement",
-  "Accomplishment-col2-2": "User interface improvement based on user interface experimental results by A/B test",
-  "Accomplishment-col2-3": "Building unit test and automatic snapshot test pipeline"
+  "JD-col3-3": "Workflow dashboard development"
 }
