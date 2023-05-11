@@ -22,7 +22,7 @@ type InteractionData = {
 export const HeatmapWithLegend: FC<HeatmapProps> = ({width, height}): JSX.Element => {
   const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null)
 
-  const [min = 0, max = 0] = d3.extent(data.map(d => d.value)) // extent can return [undefined, undefined], default to [0,0] to fix types
+  const [min = 0, max = 0] = d3.extent(data.map(d => d.value))
 
   const colorScale = d3
     .scaleLinear<string>()

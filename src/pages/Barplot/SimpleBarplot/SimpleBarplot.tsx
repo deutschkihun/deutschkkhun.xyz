@@ -81,8 +81,7 @@ export const SimpleBarplot = ({width, height}: BarplotProps) => {
           textAnchor="end"
           alignmentBaseline="central"
           fontSize={12}
-          opacity={xScale(d.value) > 90 ? 1 : 0} // bar 길이가 너무 짧으면 값을 보여주지 않음
-        >
+          opacity={xScale(d.value) > 90 ? 1 : 0}>
           {d.value}
         </text>
         <text

@@ -1,4 +1,4 @@
-import { useSpring, animated } from '@react-spring/web'
+import {useSpring, animated} from '@react-spring/web'
 
 type DumbbellItemProps = {
   name: string
@@ -16,25 +16,23 @@ type AnimatedProps = {
 }
 
 export const DumbbellItem = (props: DumbbellItemProps) => {
-  const { name, xValue1, xValue2, y } = props
+  const {name, xValue1, xValue2, y} = props
 
   const springProps = useSpring<AnimatedProps>({
-    // the 'from' properties will be used only to animate the initialization of the component
-    // if you put nothing it will be initialized with the first prop that is provided
     from: {
       xValue1: 0,
       xValue2: 0,
-      valueOpacity: 0,
+      valueOpacity: 0
     },
     to: {
       xValue1: xValue1,
       xValue2: xValue2,
       valueOpacity: 1,
-      y,
+      y
     },
     config: {
-      friction: 100,
-    },
+      friction: 100
+    }
   })
 
   return (
@@ -71,8 +69,7 @@ export const DumbbellItem = (props: DumbbellItemProps) => {
         y={springProps.y}
         textAnchor="end"
         alignmentBaseline="central"
-        fontSize={12}
-      >
+        fontSize={12}>
         {name}
       </animated.text>
     </g>

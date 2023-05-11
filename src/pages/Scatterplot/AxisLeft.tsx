@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react'
-import { ScaleLinear } from 'd3'
-import { useRecoilValue } from 'recoil'
-import { modeState } from '../../recoil/mode'
+import {useMemo} from 'react'
+import {ScaleLinear} from 'd3'
+import {useSelector} from 'react-redux'
+import {AppState} from '../../store'
+import * as M from '../../store/mode'
 
 type AxisLeftProps = {
   yScale: ScaleLinear<number, number>
@@ -11,28 +12,23 @@ type AxisLeftProps = {
 
 const TICK_LENGTH = 10
 
-export const AxisLeft = ({
-  yScale,
-  pixelsPerTick,
-  width,
-}: AxisLeftProps): JSX.Element => {
-  const mode = useRecoilValue(modeState)
+export const AxisLeft = ({yScale, pixelsPerTick, width}: AxisLeftProps): JSX.Element => {
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const range = yScale.range()
 
   const ticks = useMemo(() => {
     const height = range[0] - range[1]
     const numberOfTicksTarget = Math.floor(height / pixelsPerTick)
 
-    return yScale.ticks(numberOfTicksTarget).map((value) => ({
+    return yScale.ticks(numberOfTicksTarget).map(value => ({
       value,
-      yOffset: yScale(value),
+      yOffset: yScale(value)
     }))
   }, [pixelsPerTick, range, yScale])
 
   return (
     <>
-      {/* Ticks and labels */}
-      {ticks.map(({ value, yOffset }) => (
+      {ticks.map(({value, yOffset}) => (
         <g key={value} transform={`translate(0, ${yOffset})`}>
           <line
             x1={-TICK_LENGTH}
@@ -47,9 +43,8 @@ export const AxisLeft = ({
               fontSize: '10px',
               textAnchor: 'middle',
               transform: 'translateX(-20px)',
-              fill: mode === 'light-mode' ? 'black' : '#D2D7D3',
-            }}
-          >
+              fill: mode === 'light-mode' ? 'black' : '#D2D7D3'
+            }}>
             {value}
           </text>
         </g>

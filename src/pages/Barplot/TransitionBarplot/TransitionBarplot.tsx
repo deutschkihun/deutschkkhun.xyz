@@ -12,21 +12,17 @@ type BarplotProps = {
 }
 
 export const TransitionBarplot = ({width, height, data}: BarplotProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  // Y axis is for groups since the barplot is horizontal
   const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
   const yScale = useMemo(() => {
     return d3.scaleBand().domain(groups).range([0, boundsHeight]).padding(BAR_PADDING)
   }, [boundsHeight, groups])
 
-  // X axis
   const max = d3.max(data.map(d => d.value)) as number
   const xScale = d3.scaleLinear().domain([0, max]).range([0, boundsWidth])
 
-  // Build the shapes
   const allShapes = data.map(d => {
     return (
       <BarItem

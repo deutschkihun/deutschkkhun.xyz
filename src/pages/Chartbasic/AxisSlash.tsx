@@ -26,13 +26,10 @@ export const AxisSlash = ({width, height}: AxisBasicProps): JSX.Element => {
           height={boundsHeight}
           transform={`translate(${[MARGIN.left, MARGIN.top].join(',')})`}
           overflow={'visible'}>
-          {/* graph content */}
           <StripGenerator width={boundsWidth} height={boundsHeight} />
 
-          {/* Y axis */}
           <AxisSlashLeft yScale={yScale} pixelsPerTick={30} />
 
-          {/* X axis, use an additional translation to appear at the bottom */}
           <g transform={`translate(0, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} pixelsPerTick={60} />
           </g>

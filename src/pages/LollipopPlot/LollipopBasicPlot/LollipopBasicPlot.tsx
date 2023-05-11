@@ -10,17 +10,14 @@ type LollipopProps = {
 }
 
 export const LollipopBasicPlot = ({width, height}: LollipopProps) => {
-  // bounds = area inside the graph axis = calculated by substracting the margins
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
-  // Y axis is for groups since the barplot is horizontal
   const groups = data.sort((a, b) => b.value - a.value).map(d => d.name)
   const yScale = useMemo(() => {
     return d3.scaleBand().domain(groups).range([0, boundsHeight])
   }, [boundsHeight, groups])
 
-  // X axis
   const xScale = useMemo(() => {
     const [, max] = d3.extent(data.map(d => d.value))
     return d3
@@ -29,7 +26,6 @@ export const LollipopBasicPlot = ({width, height}: LollipopProps) => {
       .range([0, boundsWidth])
   }, [boundsWidth])
 
-  // Build the shapes
   const allShapes = data.map((d, i) => {
     const y = (yScale(d.name) as number) + yScale.bandwidth() / 2
 

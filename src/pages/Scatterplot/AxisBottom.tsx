@@ -1,7 +1,8 @@
 import type {ScaleLinear} from 'd3'
 import {FC, useMemo} from 'react'
-import {useRecoilValue} from 'recoil'
-import {modeState} from '../../recoil/mode'
+import {useSelector} from 'react-redux'
+import {AppState} from '../../store'
+import * as M from '../../store/mode'
 
 export type AxisBottomProps = {
   xScale: ScaleLinear<number, number>
@@ -12,8 +13,9 @@ export type AxisBottomProps = {
 const TICK_LENGTH = 10
 
 export const AxisBottom: FC<AxisBottomProps> = ({xScale, pixelsPerTick, height}) => {
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
+
   const [min, max] = xScale.range()
-  const mode = useRecoilValue(modeState)
 
   const ticks = useMemo(() => {
     const width = max - min
@@ -26,7 +28,6 @@ export const AxisBottom: FC<AxisBottomProps> = ({xScale, pixelsPerTick, height})
 
   return (
     <>
-      {/* Ticks and labels */}
       {ticks.map(({value, xOffset}) => (
         <g
           key={value}

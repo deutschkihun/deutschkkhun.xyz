@@ -1,8 +1,9 @@
-import {useMemo} from 'react'
 import * as d3 from 'd3'
+import {useMemo} from 'react'
 import {InteractionData} from '../HeatmapTooltip/HeatmapTooltip'
-import {useRecoilValue} from 'recoil'
-import {modeState} from '../../../recoil/mode'
+import {useSelector} from 'react-redux'
+import {AppState} from '../../../store'
+import * as M from '../../../store/mode'
 
 const MARGIN = {top: 10, right: 50, bottom: 30, left: 50}
 
@@ -19,14 +20,14 @@ export const Renderer = ({
   data,
   setHoveredCell
 }: RendererProps): JSX.Element => {
-  const mode = useRecoilValue(modeState)
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const boundsWidth = width - MARGIN.right - MARGIN.left
   const boundsHeight = height - MARGIN.top - MARGIN.bottom
 
   const allYGroups = useMemo(() => [...new Set(data.map(d => d.y))], [data])
   const allXGroups = useMemo(() => [...new Set(data.map(d => d.x))], [data])
 
-  const [min = 0, max = 0] = d3.extent(data.map(d => d.value)) // extent can return [undefined, undefined], default to [0,0] to fix types
+  const [min = 0, max = 0] = d3.extent(data.map(d => d.value))
   const xScale = useMemo(() => {
     return d3.scaleBand().range([0, boundsWidth]).domain(allXGroups).padding(0.01)
   }, [allXGroups, boundsWidth])
@@ -40,7 +41,6 @@ export const Renderer = ({
     .domain([min, max])
     .range(['#668000', '#FFF9DE'])
 
-  // Build the rectangles
   const allShapes = data.map((d, i) => {
     const x = xScale(d.x)
     const y = yScale(d.y)

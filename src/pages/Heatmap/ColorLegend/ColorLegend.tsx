@@ -1,7 +1,8 @@
 import * as d3 from 'd3'
 import {useEffect, useRef} from 'react'
-import {useRecoilValue} from 'recoil'
-import {modeState} from '../../../recoil/mode'
+import {useSelector} from 'react-redux'
+import {AppState} from '../../../store'
+import * as M from '../../../store/mode'
 
 export const ContinuousColorLegend = (): JSX.Element => {
   const colorScale = d3
@@ -22,7 +23,7 @@ const COLOR_LEGEND_MARGIN = {top: 38, right: 0, bottom: 38, left: 0}
 
 export const ColorLegend = ({height, colorScale, width}: ColorLegendProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const mode = useRecoilValue(modeState)
+  const mode = useSelector<AppState, M.State>(({mode}) => mode)
   const boundsWidth = width - COLOR_LEGEND_MARGIN.right - COLOR_LEGEND_MARGIN.left
   const boundsHeight = height - COLOR_LEGEND_MARGIN.top - COLOR_LEGEND_MARGIN.bottom
 
@@ -30,14 +31,15 @@ export const ColorLegend = ({height, colorScale, width}: ColorLegendProps) => {
   const max = domain[domain.length - 1]
   const xScale = d3.scaleLinear().range([0, boundsWidth]).domain([0, max])
 
-  const allTicks = xScale.ticks(4).map(tick => {
+  const allTicks = xScale.ticks(4).map((tick, k) => {
     return (
       <text
+        key={k}
         x={xScale(tick)}
         y={boundsHeight + 20}
         fontSize={9}
         textAnchor="middle"
-        fill={mode === 'light-mode' ? 'black' : 'white'}>
+        fill={mode === 'light' ? 'black' : 'white'}>
         {tick}
       </text>
     )
