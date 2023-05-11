@@ -1,3 +1,5 @@
+import {FormattedMessage} from 'react-intl'
+
 export const About = (): JSX.Element => {
   return (
     <div>
@@ -17,136 +19,103 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Dec 2020 – Present</span>
+              <span className="text-black/60">Oct 2022 – Jan 2023</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">Open-source contributor</h2>
+              <h2 className="inline font-bold">Front-end developer</h2>
+              <span className="[&amp;_a]:underline">
+                {' '}
+                at
+                <a href="https://superb-ai.com" target="_blank" rel="noreferrer nofollow">
+                  {' '}
+                  SuperbAI
+                </a>
+                (Seoul, South Korea)
+              </span>
               <span className="[&amp;_a]:underline"></span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Part-time</span>
+              <span className="text-sm text-black/60">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
-              <p>Created and actively maintaining open-source projects such as:</p>
+              <FormattedMessage id="JD-col1" />
               <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
                 <li className="[&amp;_a]:underline">
-                  <a
-                    href="https://daisyui.com/"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    daisyui.com
-                  </a>
-                  : the most popular, free and open-source Tailwind CSS component library,
-                  currently being used in 50,000+ open-source projects
+                  <FormattedMessage id="JD-col1-1" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  <a
-                    href="https://lorem.space/"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    lorem.space
-                  </a>
-                  : placeholder image generator API
+                  <FormattedMessage id="JD-col1-2" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  <a
-                    href="https://github.com/saadeghi/svelte-countup"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    svelte-countup
-                  </a>
-                  : component for Svelte.js
-                </li>
-                <li className="[&amp;_a]:underline">
-                  <a
-                    href="https://github.com/saadeghi/theme-change"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    theme-change
-                  </a>
-                  : JavaScript theme management package
+                  <FormattedMessage id="JD-col1-3" />
                 </li>
               </ul>
             </div>
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Dec 2015 – Jun 2022</span>
+              <span className="text-black/60">Jun 2021 – Sep 2022</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">Product designer, web developer</h2>
+              <h2 className="inline font-bold">Front-end developer</h2>
               <span className="[&amp;_a]:underline">
+                {' '}
                 at
-                <a href="https://manasky.com/" target="_blank" rel="noreferrer nofollow">
-                  ManaSky
+                <a href="https://www.pace.car" target="_blank" rel="noreferrer nofollow">
+                  {' '}
+                  Pace Telematics
                 </a>
-                (Istanbul, Turkey)
+                (Karlsruhe, Germany)
               </span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Part-time</span>
+              <span className="text-sm text-black/60">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
+              <FormattedMessage id="JD-col2" />
               <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
                 <li className="[&amp;_a]:underline">
-                  Designed and developed front-end projects using Svelte.js, Vue.js and
-                  React.js frameworks
+                  <FormattedMessage id="JD-col2-1" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  Developed design system for a software development startup
+                  <FormattedMessage id="JD-col2-2" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  Delivered solutions to clients, startups and open-source projects from
-                  Europe and North America
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Designed and developed a website for Ministry of Science, Research and
-                  Technology of Iran to register, evaluate and publish tech inventions:{' '}
-                  <a
-                    href="https://irantechhub.ir/"
-                    target="_blank"
-                    rel="noreferrer nofollow">
-                    irantechhub.ir
-                  </a>
+                  <FormattedMessage id="JD-col2-3" />
                 </li>
               </ul>
             </div>
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span className="text-black/60">Apr 2014 – Jun 2022</span>
+              <span className="text-black/60">Dec 2020 – May 2021</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">
-                Co-founder, product designer, front-end developer
-              </h2>
+              <h2 className="inline font-bold">Front-end developer</h2>
               <span className="[&amp;_a]:underline">
+                {' '}
                 at
                 <a href="https://atbox.io/" target="_blank" rel="noreferrer nofollow">
-                  Atbox.io
+                  {' '}
+                  Vayu-software
                 </a>
-                (Rasht, Iran)
+                (Heidelberg, Germany)
               </span>
             </div>
             <div className="print:text-right lg:text-right">
-              <span className="text-sm text-black/60">Self-employed</span>
+              <span className="text-sm text-black/60">Full-time</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
+              <FormattedMessage id="JD-col3" />
               <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
                 <li className="[&amp;_a]:underline">
-                  Developed Atbox.io since prototype, and it served more than 120k happy
-                  users worldwide
+                  <FormattedMessage id="JD-col3-1" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  Responsible for UI/UX design and day to day improvements
+                  <FormattedMessage id="JD-col3-2" />
                 </li>
                 <li className="[&amp;_a]:underline">
-                  Designed and developed responsive web pages based on web design best
-                  practices
-                </li>
-                <li className="[&amp;_a]:underline">
-                  Provided marketing solutions for user base growth and customer
-                  satisfaction that resulted in significant revenue
+                  <FormattedMessage id="JD-col3-3" />
                 </li>
               </ul>
             </div>

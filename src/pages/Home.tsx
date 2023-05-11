@@ -23,7 +23,7 @@ export const Home = (): JSX.Element => {
               />
               <div>
                 <h1 className="text-5xl font-bold">
-                  <FormattedMessage id={`HomeAnswer1-1`} />
+                  <FormattedMessage id="HomeAnswer1" />
                 </h1>
                 <p className="py-6">
                   React, TypeScript, Next.js, TailwindCSS, Node.js, Express.js, Redux,
@@ -37,7 +37,7 @@ export const Home = (): JSX.Element => {
             <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
               <div>
                 <h1 className="text-5xl font-bold">
-                  <FormattedMessage id="HomeAnswer1-2" />
+                  <FormattedMessage id="HomeAnswer2" />
                 </h1>
                 <p className="py-6">English, German, Korean</p>
               </div>
@@ -58,7 +58,7 @@ export const Home = (): JSX.Element => {
               />
               <div>
                 <h1 className="text-5xl font-bold">
-                  <FormattedMessage id="HomeAnswer1-3" />
+                  <FormattedMessage id="HomeAnswer3" />
                 </h1>
                 <p className="py-6">D3.js, SVG, Canvas</p>
               </div>
@@ -69,7 +69,7 @@ export const Home = (): JSX.Element => {
             <div className="flex-col gap-10 hero-content nxl:flex-row-reverse">
               <div>
                 <h1 className="text-5xl font-bold">
-                  <FormattedMessage id="HomeAnswer1-4" />
+                  <FormattedMessage id="HomeAnswer4" />
                 </h1>
               </div>
               <img
