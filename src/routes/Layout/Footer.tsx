@@ -3,7 +3,7 @@ import {Link} from '../../components'
 
 export default function Footers() {
   return (
-    <footer className="p-10 my-10 border-t-2 border-cyan-800 footer footer-center">
+    <footer className="p-10 mt-10 border-t-2 border-cyan-800 footer footer-center">
       <div>
         <svg
           width="50"
