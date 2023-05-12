@@ -4,7 +4,7 @@
   "About": "소개",
   "Projects": "프로젝트",
   "ProjectList": "프로젝트 목록",
-  "BlogList": "블로그 목록",
+  "Article": "새로운 아티클",
   "Menu": "메뉴",
   "MyApp": "마이앱",
   "Blog": "블로그",
@@ -35,5 +35,10 @@
   "JD-col3": "노코드 frontend 플랫폼 개발",
   "JD-col3-1": "반응형 웹 컴포넌트 개발",
   "JD-col3-2": "Graphic User Interface (GUI) 개발",
-  "JD-col3-3": "Workflow dashboard 개발"
+  "JD-col3-3": "Workflow dashboard 개발",
+
+  "Notice": "공지사항",
+  "Warning": "죄송합니다. 블로그 페이지는 현재 외부에서 작업한 서비스를 통합하는 작업을 진행하고 있습니다. 많은 양해 부탁드립니다. 외부 블로그 페이지는 현재 운영중이니 방문을 원하시면 바로가기 버튼을 눌러주시면 됩니다. 감사합니다.",
+  "Back": "뒤로가기",
+  "Go": "바로가기"
 }
