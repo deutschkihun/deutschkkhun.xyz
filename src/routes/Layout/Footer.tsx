@@ -24,16 +24,16 @@ export default function Footers() {
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
-          <Link href="/">
+          <Link className="mb-2" href="/">
             <FormattedMessage id="Home" />
           </Link>
-          <Link href="/about">
+          <Link className="mb-2" href="/about">
             <FormattedMessage id="About" />
           </Link>
-          <Link href="/project">
+          <Link className="mb-2" href="/project">
             <FormattedMessage id="Projects" />
           </Link>
-          <Link href="blog">
+          <Link className="mb-2" href="blog">
             <FormattedMessage id="Blog" />
           </Link>
         </div>

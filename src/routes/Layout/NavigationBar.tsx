@@ -45,24 +45,24 @@ export default function NavigationBar() {
           </div>
           <ul
             tabIndex={0}
-            className="p-2 mt-3 shadow menu menu-compact dropdown-content rounded-box w-52">
+            className="p-2 mt-3 overflow-y-auto bg-opacity-100 shadow-2xl menu menu-compact dropdown-content rounded-box w-52">
             <li>
-              <Link href="/">
+              <Link className="mb-2" href="/">
                 <FormattedMessage id="Home" />
               </Link>
             </li>
             <li>
-              <Link href="/about">
+              <Link className="mb-2" href="/about">
                 <FormattedMessage id="About" />
               </Link>
             </li>
             <li>
-              <Link href="/project">
+              <Link className="mb-2" href="/project">
                 <FormattedMessage id="Projects" />
               </Link>
             </li>
             <li>
-              <Link href="/blog">
+              <Link className="mb-2" href="/blog">
                 <FormattedMessage id="Blog" />
               </Link>
             </li>
