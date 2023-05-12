@@ -45,7 +45,7 @@ export const KanbanCardDetail = () => {
 
   return (
     <div className="p-4">
-      <Div src={card.image} className="w-full" minHeight="10rem" height="10rem" />
+      <Div src={card.image} className="hero h-96" />
       <Div className="flex flex-row items-center mt-4">
         <Avatar src={card.writer.avatar} size="2rem" />
         <Div className="ml-2">

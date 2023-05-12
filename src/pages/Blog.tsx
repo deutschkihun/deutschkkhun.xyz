@@ -7,7 +7,7 @@ export const Blog = (): JSX.Element => {
     <div className="min-h-[80vh]">
       <div className="mx-40 carousel">
         <div id="item1" className="w-full carousel-item">
-          <Div className="hero h-150" src={I.randomImage(1500, 600)}>
+          <Div className="hero h-96" src={I.randomImage(1500, 600)}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="text-center hero-content text-neutral-content">
               <div className="max-w-md">
@@ -23,7 +23,7 @@ export const Blog = (): JSX.Element => {
           </Div>
         </div>
         <div id="item2" className="w-full carousel-item">
-          <Div className="h-150 hero" src={I.randomImage(1500, 600)}>
+          <Div className="h-96 hero" src={I.randomImage(1500, 600)}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="text-center hero-content text-neutral-content">
               <div className="max-w-md">
@@ -39,7 +39,7 @@ export const Blog = (): JSX.Element => {
           </Div>
         </div>
         <div id="item3" className="w-full carousel-item">
-          <Div className="h-150 hero" src={I.randomImage(1500, 600)}>
+          <Div className="h-96 hero" src={I.randomImage(1500, 600)}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="text-center hero-content text-neutral-content">
               <div className="max-w-md">
@@ -77,7 +77,7 @@ export const Blog = (): JSX.Element => {
             gridTemplateColumns: 'repeat(auto-fill, minmax(400px, auto))'
           }}>
           <div className="shadow-xl card w-96 ">
-            <Div className="hero h-120" src={I.randomImage(200, 200)} />
+            <Div className="hero h-72" src={I.randomImage(200, 200)} />
             <div className="card-body">
               <h2 className="card-title">
                 Shoes!
@@ -91,7 +91,7 @@ export const Blog = (): JSX.Element => {
             </div>
           </div>
           <div className="shadow-xl card w-96 ">
-            <Div className="h-120 hero" src={I.randomImage(200, 200)} />
+            <Div className="h-72 hero" src={I.randomImage(200, 200)} />
 
             <div className="card-body">
               <h2 className="card-title">
@@ -106,7 +106,7 @@ export const Blog = (): JSX.Element => {
             </div>
           </div>
           <div className="shadow-xl card w-96 ">
-            <Div className="h-120 hero" src={I.randomImage(200, 200)} />
+            <Div className="h-72 hero" src={I.randomImage(200, 200)} />
             <div className="card-body">
               <h2 className="card-title">
                 Shoes!
@@ -120,21 +120,7 @@ export const Blog = (): JSX.Element => {
             </div>
           </div>
           <div className="shadow-xl card w-96 ">
-            <Div className="h-120 hero" src={I.randomImage(200, 200)} />
-            <div className="card-body">
-              <h2 className="card-title">
-                Shoes!
-                <div className="badge badge-secondary">NEW</div>
-              </h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="justify-end card-actions">
-                <div className="badge badge-outline">Fashion</div>
-                <div className="badge badge-outline">Products</div>
-              </div>
-            </div>
-          </div>{' '}
-          <div className="shadow-xl card w-96 ">
-            <Div className="h-120 hero" src={I.randomImage(200, 200)} />
+            <Div className="h-72 hero" src={I.randomImage(200, 200)} />
             <div className="card-body">
               <h2 className="card-title">
                 Shoes!
@@ -148,7 +134,21 @@ export const Blog = (): JSX.Element => {
             </div>
           </div>
           <div className="shadow-xl card w-96 ">
-            <Div className="h-120 hero" src={I.randomImage(200, 200)} />
+            <Div className="h-72 hero" src={I.randomImage(200, 200)} />
+            <div className="card-body">
+              <h2 className="card-title">
+                Shoes!
+                <div className="badge badge-secondary">NEW</div>
+              </h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="justify-end card-actions">
+                <div className="badge badge-outline">Fashion</div>
+                <div className="badge badge-outline">Products</div>
+              </div>
+            </div>
+          </div>
+          <div className="shadow-xl card w-96 ">
+            <Div className="h-72 hero" src={I.randomImage(200, 200)} />
             <div className="card-body">
               <h2 className="card-title">
                 Shoes!
