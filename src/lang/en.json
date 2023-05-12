@@ -34,5 +34,10 @@
   "JD-col3": "No-code platform development",
   "JD-col3-1": "Responsive web component development",
   "JD-col3-2": "Graphic User Interface (GUI) development",
-  "JD-col3-3": "Workflow dashboard development"
+  "JD-col3-3": "Workflow dashboard development",
+
+  "Notice": "Notice",
+  "Warning": "Sorry, blog page is currently working on integrating blog page that have been worked on external site. We appreciate your patience and understanding. The external blog page is live, so if you'd like to visit, you can click 'go' button. Thank you.",
+  "Back": "back",
+  "Go": "go"
 }

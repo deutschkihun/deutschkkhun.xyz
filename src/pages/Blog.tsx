@@ -9,27 +9,32 @@ import {
   Title
 } from '../components'
 import * as I from '../data/image'
+import {useCallback} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 export const Blog = (): JSX.Element => {
+  const navigate = useNavigate()
+  const goBack = useCallback(() => {
+    navigate(-1)
+  }, [navigate])
   return (
     <>
       <Modal open={true}>
         <ModalContent closeIconClassName="btn-primary btn-outline">
-          <Title>Notice</Title>
-          <Paragraph className="mt-2">
-            Sorry about that. The blog page is currently working on integrating services
-            that have been worked on externally. We appreciate your patience and
-            understanding. The external blog page is now live, so if you'd like to visit
-            it, you can use the external shortcut button. Thank you.
+          <Title className="text-white">
+            <FormattedMessage id="Notice" />
+          </Title>
+          <Paragraph className="mt-2 text-white">
+            <FormattedMessage id="Warning" />
           </Paragraph>
           <ModalAction>
             <button className="btn btn-primary btn-sm">
-              <Link href="https://blog-deutschkihun.vercel.app">Go to blog site</Link>
-            </button>
-            <button className="btn btn-secondary btn-sm">
-              <Link className="m-0" href="/">
-                Back
+              <Link href="https://blog-deutschkihun.vercel.app">
+                <FormattedMessage id="Go" />
               </Link>
+            </button>
+            <button className="btn btn-secondary btn-sm" onClick={goBack}>
+              <FormattedMessage id="Back" />
             </button>
           </ModalAction>
         </ModalContent>
