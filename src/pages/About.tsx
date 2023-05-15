@@ -54,7 +54,7 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span>Jun 2021 – Sep 2022</span>
+              <span>Dec 2020 – Sep 2022</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
               <h2 className="inline font-bold">Front-end developer</h2>
@@ -82,40 +82,6 @@ export const About = (): JSX.Element => {
                 </li>
                 <li className="[&amp;_a]:underline">
                   <FormattedMessage id="JD-col2-3" />
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
-            <div className="print:text-right lg:text-right">
-              <span>Dec 2020 – May 2021</span>
-            </div>
-            <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">Front-end developer</h2>
-              <span className="[&amp;_a]:underline">
-                {' '}
-                at
-                <a href="https://atbox.io/" target="_blank" rel="noreferrer nofollow">
-                  {' '}
-                  Vayu-software
-                </a>
-                (Heidelberg, Germany)
-              </span>
-            </div>
-            <div className="print:text-right lg:text-right">
-              <span className="text-sm">Full-time</span>
-            </div>
-            <div className="print:col-span-3 lg:col-span-3">
-              <FormattedMessage id="JD-col3" />
-              <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
-                <li className="[&amp;_a]:underline">
-                  <FormattedMessage id="JD-col3-1" />
-                </li>
-                <li className="[&amp;_a]:underline">
-                  <FormattedMessage id="JD-col3-2" />
-                </li>
-                <li className="[&amp;_a]:underline">
-                  <FormattedMessage id="JD-col3-3" />
                 </li>
               </ul>
             </div>
@@ -152,13 +118,14 @@ export const About = (): JSX.Element => {
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:col-span-3 print:col-start-2 lg:col-span-3 lg:col-start-2">
               <ul className="flex flex-col gap-1 mx-5 my-2 text-sm list-disc">
-                <li>JavaScript (also TypeScript) frameworks including React, Node.js</li>
-                <li>JavaScript meta frameworks including Next.js</li>
-                <li>CSS libraries and tools including Tailwind CSS, Styled-components</li>
-                <li>React state management library including Redux, Recoil</li>
-                <li>Asynchronous data management library including React-Query</li>
-                <li>API design including RESTful API and GraphQL (with Apollo)</li>
-                <li>Design tools like Figma</li>
+                <li>JavaScript / TypeScript </li>
+                <li>JavaScript frameworks: React.js, Node.js, Express.js</li>
+                <li>JavaScript meta frameworks: Next.js</li>
+                <li>JavaScript bundling library: Webpack, Rollup</li>
+                <li>CSS and component lib: Tailwind CSS, daisyUI</li>
+                <li>React state management lib: Redux </li>
+                <li>API design: RESTful API and GraphQL, Apollo</li>
+                <li>Design tools: Figma</li>
               </ul>
             </div>
           </div>
