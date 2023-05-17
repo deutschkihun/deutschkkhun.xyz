@@ -26,8 +26,7 @@ export const Home = (): JSX.Element => {
                   <FormattedMessage id="HomeAnswer1" />
                 </h1>
                 <p className="py-6">
-                  React, TypeScript, Next.js, TailwindCSS, Node.js, Express.js, Redux,
-                  Recoil, React-Query, Storybook
+                  React, TypeScript, Next.js, TailwindCSS, Node.js, Express.js, Redux etc
                 </p>
               </div>
             </div>
