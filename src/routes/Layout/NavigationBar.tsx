@@ -62,7 +62,7 @@ export default function NavigationBar() {
               </Link>
             </li>
             <li>
-              <Link className="mb-2" href="/blog">
+              <Link className="mb-2" href="https://blog-deutschkihun.vercel.app">
                 <FormattedMessage id="Blog" />
               </Link>
             </li>
