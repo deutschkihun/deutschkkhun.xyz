@@ -14,8 +14,7 @@ import {
   SVGVisualizationDemo,
   LollipopDemo,
   KanbanDemo,
-  KanbanCardDetail,
-  Blog
+  KanbanCardDetail
 } from '../pages'
 import {IntlProvider} from 'react-intl'
 import * as lang from '../lang'
@@ -32,7 +31,6 @@ export default function RoutesSetup() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/project" element={<Project />} />
           <Route path="/project/svg" element={<SVGVisualizationDemo />} />
           <Route path="/project/chart-basic" element={<ChartBasicDemo />} />
