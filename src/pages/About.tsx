@@ -19,27 +19,6 @@ export const About = (): JSX.Element => {
           </div>
           <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
             <div className="print:text-right lg:text-right">
-              <span>May 2023 – Present</span>
-            </div>
-            <div className="print:col-span-3 lg:col-span-3">
-              <h2 className="inline font-bold">Front-end developer</h2>
-              <span className="[&amp;_a]:underline">
-                {' '}
-                at
-                <a href="https://ingkle.com/" target="_blank" rel="noreferrer nofollow">
-                  {' '}
-                  ingkle
-                </a>
-                (Ansan, South Korea)
-              </span>
-              <span className="[&amp;_a]:underline"></span>
-            </div>
-            <div className="print:text-right lg:text-right">
-              <span className="text-sm">Full-time</span>
-            </div>
-          </div>
-          <div className="grid items-baseline gap-x-10 print:grid-cols-4 lg:grid-cols-4">
-            <div className="print:text-right lg:text-right">
               <span>Oct 2022 – Jan 2023</span>
             </div>
             <div className="print:col-span-3 lg:col-span-3">
