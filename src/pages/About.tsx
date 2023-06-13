@@ -121,11 +121,10 @@ export const About = (): JSX.Element => {
                 <li>JavaScript / TypeScript </li>
                 <li>JavaScript frameworks: React.js, Node.js, Express.js</li>
                 <li>JavaScript meta frameworks: Next.js</li>
-                <li>JavaScript bundling library: Webpack, Rollup</li>
-                <li>CSS and component lib: Tailwind CSS, daisyUI</li>
+                <li>JavaScript bundling library: Webpack</li>
+                <li>CSS and component lib: Tailwind CSS</li>
                 <li>React state management lib: Redux </li>
                 <li>API design: RESTful API and GraphQL, Apollo</li>
-                <li>Design tools: Figma</li>
               </ul>
             </div>
           </div>
